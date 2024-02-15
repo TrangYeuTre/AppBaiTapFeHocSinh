@@ -1,0 +1,39 @@
+/* CARD */
+.card-wrapper {
+  @apply rounded-lg shadow-md border-2 border-coGray1
+      py-6 px-8 max-w-6xl mx-auto;
+}
+.card-wrapper h2 {
+  @apply text-center font-semibold text-2xl pb-4;
+}
+
+/* TAG */
+.myTag {
+  @apply bg-coWhite text-coGray4
+  border-coGray4 hover:bg-coGray4 hover:text-coWhite
+  border-2 rounded-2xl p-1 md:px-4 md:py-[2px] flex flex-row w-fit
+  text-xs md:text-sm
+  justify-center items-center cursor-pointer transition-all
+  before:content-['#'] before:relative before:right-[4px] md:before:right-[8px];
+}
+.myTag {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+.myTag2Light {
+  @apply bg-coBlue1 text-coWhite
+  border-coBlue1 hover:bg-coWhite hover:text-coBlue1;
+}
+
+/* BUTTON */
+/* BUTTON */
+.btn {
+  @apply cursor-pointer text-xl
+  flex flex-row justify-center items-center
+  py-1 px-4 w-full mx-auto border-2 rounded-md
+  transition-all;
+}
+.btn-submit {
+  @apply border-coPink !bg-coPink !text-coWhite
+  hover:!bg-coWhite hover:!text-coPink;
+}

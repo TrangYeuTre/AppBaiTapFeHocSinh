@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "./components/ui.css";
+@import "./components/content.css";
+
+body,
+body > * {
+  @apply text-xl;
+}
+label {
+  @apply italic text-coGray2;
+}
+input,
+textarea {
+  @apply outline-none py-1 px-4 rounded-xl border-4 bg-coWhite border-coWhite
+   focus:border-coPink placeholder:text-coGray4 placeholder:text-base;
+}
