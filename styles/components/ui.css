@@ -1,10 +1,13 @@
 /* CARD */
 .card-wrapper {
-  @apply rounded-lg shadow-md border-2 border-coGray1
+  @apply rounded-lg shadow-md shadow-coGray2 border-2 border-coGray1
       py-6 px-8 max-w-6xl mx-auto;
 }
 .card-wrapper h2 {
   @apply text-center font-semibold text-2xl pb-4;
+}
+.disabled-card {
+  @apply pointer-events-none opacity-50 border-4 border-coRed;
 }
 
 /* TAG */
@@ -24,6 +27,19 @@
   @apply bg-coBlue1 text-coWhite
   border-coBlue1 hover:bg-coWhite hover:text-coBlue1;
 }
+.myStatus {
+  @apply text-coGray4
+  text-xs md:text-sm
+  before:content-['#'] before:relative before:right-[4px] md:before:right-[8px]
+  justify-center items-center;
+}
+
+.myStatus-active {
+  @apply text-coBlue1
+  text-xs md:text-sm
+  before:content-['#'] before:relative before:right-[4px] md:before:right-[8px]
+  justify-center items-center;
+}
 
 /* BUTTON */
 /* BUTTON */
@@ -36,4 +52,16 @@
 .btn-submit {
   @apply border-coPink !bg-coPink !text-coWhite
   hover:!bg-coWhite hover:!text-coPink;
+}
+.btn-main {
+  @apply border-coBlue1 !bg-coBlue1 !text-coWhite
+  hover:!bg-coWhite hover:!text-coBlue1;
+}
+
+.option-item {
+  @apply py-1 px-3 rounded-md border-2 border-coBlue1 text-coBlue1
+   hover:text-coWhite hover:bg-coBlue1 cursor-pointer;
+}
+.option-item-selected {
+  @apply py-1 px-3 rounded-md border-2 border-coBlue1 text-coWhite bg-coBlue1 cursor-pointer;
 }

@@ -1,18 +1,17 @@
 import Image from "next/image";
 import Button from "../UI/Button";
-import { useContext } from "react";
-import { AuthContext } from "../../store/authContext";
 import { useRouter } from "next/router";
+import { useDispatch, useSelector } from "react-redux";
+import { AuthActions } from "../../store/authSlice";
 
 export default function Header() {
-  const authCtx = useContext(AuthContext);
+  const dispatch = useDispatch();
   const router = useRouter();
 
+  const token = useSelector((state) => state.auth.token);
+
   const signOutHandler = () => {
-    authCtx.setAuth({
-      token: "",
-      email: "",
-    });
+    dispatch(AuthActions.clearAuth());
     router.push("/auth");
   };
 
@@ -21,9 +20,7 @@ export default function Header() {
       <div>
         <Image src="/assets/logo.png" alt="Logo web" width={60} height={60} />
       </div>
-      <nav>
-        {authCtx.auth.token && <Button onAction={signOutHandler}>Thoát</Button>}
-      </nav>
+      <nav>{token && <Button onAction={signOutHandler}>Thoát</Button>}</nav>
     </header>
   );
 }

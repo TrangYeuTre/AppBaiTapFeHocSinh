@@ -17,3 +17,11 @@ textarea {
   @apply outline-none py-1 px-4 rounded-xl border-4 bg-coWhite border-coWhite
    focus:border-coPink placeholder:text-coGray4 placeholder:text-base;
 }
+button {
+  @apply disabled:!bg-coGray2 disabled:cursor-not-allowed;
+}
+
+a {
+  @apply text-xl italic underline text-coBlue1 hover:text-coPink;
+}
+

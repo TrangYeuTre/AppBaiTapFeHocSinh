@@ -7,6 +7,7 @@ const nextConfig = {
     FIREBASE_AUTH:
       "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=" +
       FB_API_KEY,
+    API_HOCSINH: "http://localhost:8080/api/v1",
   },
   images: {
     domains: [
@@ -16,6 +17,8 @@ const nextConfig = {
       "res.cloudinary.com",
       "images.pexel.com",
       "images.dmca.com",
+      "trannghia91.quickconnect.to",
+      "cdn.vectorstock.com",
     ],
   },
 };

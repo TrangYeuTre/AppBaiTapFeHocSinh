@@ -1,36 +1,31 @@
+import { useEffect } from "react";
+import { useProtect, useAxiosInstance } from "../../hooks/useHooks";
+import { getAvailableHomeworks1Student } from "../../helper/axiosApi";
 import ExerciseManage from "../../Components/Exercies/ExerciseManage";
-import useProtect from "../../hooks/useProtect";
-import Exercie from "../../model/Exercise";
+import { useDispatch } from "react-redux";
+import { HwsActions } from "../../store/hwsSlice";
 
 export default function ExerciesRoute() {
+  const dispatch = useDispatch();
   //Kiểm tra xem có quyền truy cập nội dung không
-  const email = useProtect();
+  //Lấy về username để render tiêu đề cho học sinh thấy tên mình
+  const { username, hocSinh, token } = useProtect();
+  const axiosInstance = useAxiosInstance(token);
 
-  //Dummy data
-  const dummy = [
-    new Exercie(
-      "Cánh con vịt",
-      "Một con vịt có 2 cái canh, hỏi 3 con vịt có mấy cái cánh",
-      "https://images.unsplash.com/photo-1610834298273-a2ec97ba979d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "Toán đố",
-      6,
-      "Toán",
-      "Lớp 3",
-      "đã nộp",
-      true
-    ),
-    new Exercie(
-      "Mô tả dòng sông",
-      "Hãy viết một đoạn văn ngắn mô tả dòng sông như hình trên",
-      "https://images.unsplash.com/photo-1689245773324-7a73a0d0d208?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      "Mô tả",
-      "",
-      "Tiếng Việt",
-      "Lớp 5",
-      "đã nhận",
-      false
-    ),
-  ];
+  useEffect(() => {
+    doFetchExs({ hocSinh, axiosInstance, dispatch });
+  }, [hocSinh]);
 
-  return <ExerciseManage exercises={dummy} />;
+  return <ExerciseManage username={username} hocSinh={hocSinh} />;
 }
+
+//CB fetch lấy data bài tập
+const doFetchExs = async ({ hocSinh, axiosInstance, dispatch }) => {
+  if (!hocSinh) return;
+  const hws = await getAvailableHomeworks1Student({
+    id: hocSinh,
+    axiosInstance,
+  });
+  //function trên giữ nguyên để tái sử dụng khi bấm nút
+  dispatch(HwsActions.setHws(hws));
+};

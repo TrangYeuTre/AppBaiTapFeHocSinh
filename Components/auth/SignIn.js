@@ -1,36 +1,41 @@
 import Card from "../UI/Card";
 import Button from "../UI/Button";
-import { signIn } from "../../helper/Firebase";
-import { useContext, useRef, useState, useEffect } from "react";
-import { AuthContext } from "../../store/authContext";
+import { signIn } from "../../helper/axiosApi";
+import { useRef, useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import { useDispatch } from "react-redux";
+import { AuthActions } from "../../store/authSlice";
 
 export default function SignIn() {
-  const authCtx = useContext(AuthContext);
+  const dispatch = useDispatch();
   const router = useRouter();
-  const emailRef = useRef();
+  const usernameRef = useRef();
   const passwordRef = useRef();
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState("");
 
   const loginHandler = async () => {
     const dataSubmit = {
-      email: emailRef.current.value || "",
+      username: usernameRef.current.value || "",
       password: passwordRef.current.value || "",
     };
-    if (!dataSubmit.email || !dataSubmit.password) return;
+    if (!dataSubmit.username || !dataSubmit.password) return;
     await signIn({
-      email: dataSubmit.email,
+      username: dataSubmit.username,
       password: dataSubmit.password,
-      authCtx,
+      dispatch,
+      AuthActions,
       router,
+      setError,
     });
   };
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    const email = localStorage.getItem("email");
-    if (token && email) {
-      authCtx.setAuth({ token, email });
+    const username = localStorage.getItem("username");
+    const hocSinh = localStorage.getItem("hocSinh");
+    if (token && username) {
+      dispatch(AuthActions.setAuth({ token, username, hocSinh }));
       router.replace("/exercises");
     }
   }, []);
@@ -38,14 +43,13 @@ export default function SignIn() {
   return (
     <Card plusStyle="w-1/3 flex flex-col gap-4 mt-12 py-4 bg-coBlue3">
       <h2 className="border-b-2 border-coGray2">Đăng nhập</h2>
-      <label htmlFor="email">Email</label>
+      <label htmlFor="username">Username</label>
       <input
-        ref={emailRef}
-        id="email"
-        type="email"
-        placeholder="Điền email ..."
+        ref={usernameRef}
+        id="username"
+        type="username"
+        placeholder="Điền username ..."
         required
-        // className="border-coBlue4 b"
       />
       <div className="flex flex-row items-center shrink-0 gap-2">
         <label htmlFor="Password">Password</label>
@@ -66,6 +70,7 @@ export default function SignIn() {
         required
         minLength={3}
       />
+      {error && <p className="text-base text-coRed">{error}</p>}
       <Button onAction={loginHandler}>Đăng nhập</Button>
     </Card>
   );
