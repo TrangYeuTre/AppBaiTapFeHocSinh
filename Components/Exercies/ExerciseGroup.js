@@ -1,14 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import ExerciseItemViet from "./ExerciseItem_Viet";
 import ExerciseItemTracNghiem from "./ExerciseItem_TracNghiem";
 import ExerciseItemDienKhuyet from "./ExerciseItem_DienKhuyet";
 import ExerciseItemMatching from "./ExerciseItem_Matching";
 
-export default function ExerciseGroup({ hw, xemBaiDaLam }) {
-  //Bung props ra cho dễ quản lý
-  //Chú ý: _id này là id của obj bên trong prop baiTapVeNha của obj homework trên db
-  //Dùng _id này để tìm và update
-  //baiTapLonId là id của 1 obj bài tập về nhà của học sinh lưuu trên db
+export default function ExerciseGroup({ hw, instanceHomeworks }) {
   const {
     _id,
     dapAnCuaGiaoVien,
@@ -19,67 +15,71 @@ export default function ExerciseGroup({ hw, xemBaiDaLam }) {
     baiTapLonId,
     soLanNop,
   } = hw;
-  const kieuBaiTap = getTypeExercise(data);
-  const datasRenderChoKieuBaiTap = data[kieuBaiTap].datas;
+
+  const currentHomework = useMemo(() => {
+    return instanceHomeworks.findHomeworkById(_id);
+  }, [_id]);
+  const currentHomeworkType = useMemo(() => {
+    return instanceHomeworks.getHomeworkType(currentHomework);
+  }, [currentHomework]);
+  const currentHomeworkDatas = useMemo(() => {
+    return instanceHomeworks.getHomeworkTypeDatas(
+      currentHomework,
+      currentHomeworkType
+    );
+  }, [currentHomework, currentHomeworkType]);
 
   return (
     <>
-      {kieuBaiTap === "viet" && (
+      {currentHomeworkType === "viet" && (
         <ExerciseItemViet
+          instanceHomeworks={instanceHomeworks}
           tinhTrang={tinhTrang}
-          datas={datasRenderChoKieuBaiTap}
+          datas={currentHomeworkDatas}
           _id={_id}
           baiLamCuaHocSinh={baiLamCuaHocSinh}
+          dapAnCuaGiaoVien={dapAnCuaGiaoVien}
           data={data}
-          xemBaiDaLam={xemBaiDaLam}
           soLanNop={soLanNop}
         />
       )}
-      {kieuBaiTap === "tracNghiem" && (
+      {currentHomeworkType === "tracNghiem" && (
         <ExerciseItemTracNghiem
+          instanceHomeworks={instanceHomeworks}
           tinhTrang={tinhTrang}
-          datas={datasRenderChoKieuBaiTap}
+          datas={currentHomeworkDatas}
           _id={_id}
           baiTapLonId={baiTapLonId}
           baiLamCuaHocSinh={baiLamCuaHocSinh}
+          dapAnCuaGiaoVien={dapAnCuaGiaoVien}
           data={data}
-          xemBaiDaLam={xemBaiDaLam}
           soLanNop={soLanNop}
         />
       )}
-      {kieuBaiTap === "dienKhuyet" && (
+      {currentHomeworkType === "dienKhuyet" && (
         <ExerciseItemDienKhuyet
+          instanceHomeworks={instanceHomeworks}
           tinhTrang={tinhTrang}
-          datas={datasRenderChoKieuBaiTap}
+          datas={currentHomeworkDatas}
           _id={_id}
           baiLamCuaHocSinh={baiLamCuaHocSinh}
+          dapAnCuaGiaoVien={dapAnCuaGiaoVien}
           data={data}
-          xemBaiDaLam={xemBaiDaLam}
           soLanNop={soLanNop}
         />
       )}
-      {kieuBaiTap === "matching" && (
+      {currentHomeworkType === "matching" && (
         <ExerciseItemMatching
+          instanceHomeworks={instanceHomeworks}
           tinhTrang={tinhTrang}
-          datas={datasRenderChoKieuBaiTap}
+          datas={currentHomeworkDatas}
           _id={_id}
           baiLamCuaHocSinh={baiLamCuaHocSinh}
+          dapAnCuaGiaoVien={dapAnCuaGiaoVien}
           data={data}
-          xemBaiDaLam={xemBaiDaLam}
           soLanNop={soLanNop}
         />
       )}
     </>
   );
 }
-
-//CB kiểm tra loại bài đang được render
-const getTypeExercise = (data) => {
-  let result = "";
-  if (!data) return result;
-  if (data.dienKhuyet.active) result = "dienKhuyet";
-  if (data.tracNghiem.active) result = "tracNghiem";
-  if (data.viet.active) result = "viet";
-  if (data.matching.active) result = "matching";
-  return result;
-};

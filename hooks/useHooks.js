@@ -1,18 +1,24 @@
 import { useRouter } from "next/router";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useMemo } from "react";
 import { AuthContext } from "../store/authContext";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import Account from "../classes/Account";
 
 export const useProtect = () => {
   const { token, username, hocSinh } = useSelector((state) => state.auth);
   const router = useRouter();
 
   useEffect(() => {
-    if (!token) router.push("/auth");
+    if (!token) {
+      router.push("/auth");
+      return;
+    }
   }, [token]);
 
-  return { username, hocSinh, token };
+  const validAccount = new Account(username, hocSinh, token);
+  return validAccount;
+  // return { username, hocSinh, token };
 };
 
 export const useAxiosInstance = (token) => {

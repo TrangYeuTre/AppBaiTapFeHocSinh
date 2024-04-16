@@ -1,9 +1,11 @@
 import Card from "../UI/Card";
 import Image from "next/image";
+import LoadImageFailMessage from "../UI/LoadImageFailMessage";
 import BlockContentBar from "../UI/BlockContentBar";
 import ImagePreview from "../UI/ImagePreview";
 import { useState, useEffect } from "react";
 import { isValidImageUrl } from "../../helper/uti";
+import { useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { HwsActions } from "../../store/hwsSlice";
 import Status from "./Status";
@@ -13,97 +15,102 @@ export default function ExerciseItemViet({
   tinhTrang,
   _id,
   baiLamCuaHocSinh,
+  dapAnCuaGiaoVien,
   data,
-  xemBaiDaLam,
   soLanNop,
+  instanceHomeworks,
 }) {
   const dispatch = useDispatch();
-  const recentElementConfirmId = useSelector(
-    (state) => state.hws.recentElementConfirmId
+  const showStudentAnswers = useSelector(
+    (state) => state.hws.showStudentAnswers
   );
-  const [handledDatas, setHandledDatas] = useState([]);
-  //Xử lý kiểm tra hình có bị lỗi không (Trả về chỉ để render đề bài)
-  // phần render bài làm của học sinh xử lý riêng
-  useEffect(() => {
-    //1. xử lý hình lỗi
-    const handled = datas.map((item) => {
-      const validImage = isValidImageUrl(item.imageUrl);
-      return {
-        id: item.id,
-        imageUrl: !validImage ? "/assets/404-error.png" : item.imageUrl,
-        content: "",
-      };
-    });
-    //2. xử lý fill nội dung bài làm của học sinh nếu có
-    if (baiLamCuaHocSinh.length > 0) {
-      baiLamCuaHocSinh.forEach((bai) => {
-        const target = handled.find((item) => item.id === bai.id);
-        if (target) target.content = bai.content;
-      });
-    }
-    setHandledDatas(handled);
-  }, [datas]);
+  const [homeworkWrittingRender, setHomeworkWrittingRender] = useState([]);
 
-  //SIde effect cuộn xuống bài bấm xác nhận gần nhất
   useEffect(() => {
     setTimeout(() => {
-      const ele = document.getElementById(`${_id}-${recentElementConfirmId}`);
-      if (ele) ele.scrollIntoView({ behavior: "smooth" });
-    }, 100);
-  }, [recentElementConfirmId]);
+      dapAnCuaGiaoVien.forEach((dapAn) => {
+        const dapAnCuaGiaoVienEle = document.getElementById(
+          `bai-sua-giao-vien-${dapAn.id}`
+        );
+        if (dapAnCuaGiaoVienEle)
+          dapAnCuaGiaoVienEle.innerHTML = dapAn.content.baiSuaInnerHtml;
+      });
+    }, 50);
+  }, [dapAnCuaGiaoVien]);
+
+  useEffect(() => {
+    const homeworkWrittingRender =
+      instanceHomeworks.convertHomeworkWrittingDatasToRender({
+        writtingDatas: datas,
+        soLanNop,
+        tinhTrang,
+        baiLamCuaHocSinh,
+      });
+    setHomeworkWrittingRender(homeworkWrittingRender);
+  }, [datas]);
 
   const layDapAnCuaHocSinh = (dataId) => {
     const ele = document.getElementById(`${_id}-${dataId}`);
     const valueGot = ele.value || "";
     dispatch(
       HwsActions.updateAnswersWriting({
-        idObjBaiTap: _id,
-        idBaiTapCon: dataId,
-        cauTraLoi: valueGot,
+        homeworkId: _id,
+        homeworkWrittingId: dataId,
+        answer: valueGot,
+        scrollToElementId: `viet-${dataId}`,
       })
     );
   };
 
-  //Biến xử lý render khoá tương tác
-  let blockContent = false;
-  if (+soLanNop >= 3) blockContent = true;
-
-  return handledDatas.map((item) => {
+  return homeworkWrittingRender.map((item) => {
     return (
-      <Card
-        plusStyle={`p-0 w-full ${blockContent && "disabled-card"}`}
-        key={Math.random()}
+      <div
+        className="flex flex-col gap-0"
+        key={Math.random().toString() + item.id}
       >
-        <div className="flex flex-col gap-3 bg-coGray5 px-3 py-6">
-          <h3>Đề bài: {data.deBai || null}</h3>
-          <ImagePreview url={item.imageUrl} />
-          <Status tinhTrang={tinhTrang} />
-          <hr className="border-coWhite border-2" />
-          <label>Đáp án</label>
-          {item.imageUrl === "/assets/404-error.png" && (
-            <p className="text-coRed">
-              Hình lỗi rồi. Nhắn cô Trang sửa lại nhé.
+        <Card plusStyle={`p-0 w-full ${item.blockContent && "disabled-card"}`}>
+          <div className="writting-wrapper">
+            <h3>Đề bài: {data.deBai || null}</h3>
+            <ImagePreview url={item.imageUrl} />
+            <Status tinhTrang={tinhTrang} />
+            <hr className="line-white" />
+            <p className="guide-text" id={`viet-${item.id}`}>
+              Bé hãy điền đáp án vào chỗ trống
             </p>
-          )}
-          <textarea
-            required
-            placeholder="Nhập đáp án vào đây..."
-            className="w-full h-32"
-            minLength={3}
-            disabled={item.imageUrl === "/assets/404-error.png" ? true : null}
-            id={`${_id}-${item.id}`}
-            defaultValue={xemBaiDaLam ? item.content : null}
-          />
-          <button
-            type="button"
-            className={`btn btn-main ${blockContent && "line-through"}`}
-            onClick={layDapAnCuaHocSinh.bind(this, item.id)}
-          >
-            Xác nhận
-          </button>
-        </div>
-        {blockContent && <BlockContentBar />}
-      </Card>
+
+            {item.imageUrl === "/assets/404-error.png" && (
+              <LoadImageFailMessage />
+            )}
+            <textarea
+              required
+              placeholder="Nhập đáp án vào đây..."
+              className="w-full h-32"
+              minLength={3}
+              disabled={item.imageUrl === "/assets/404-error.png" ? true : null}
+              id={`${_id}-${item.id}`}
+              defaultValue={showStudentAnswers ? item.content : null}
+            />
+            <button
+              type="button"
+              className={`btn btn-main ${item.blockContent && "line-through"}`}
+              onClick={layDapAnCuaHocSinh.bind(this, item.id)}
+            >
+              Xác nhận
+            </button>
+          </div>
+          {item.blockContent && <BlockContentBar />}
+        </Card>
+        {tinhTrang === "Đã sửa" && <BaiSuaCuaGiaoVien item={item} />}
+      </div>
     );
   });
 }
+
+const BaiSuaCuaGiaoVien = ({ item }) => {
+  return (
+    <div
+      className="p-6 bg-coGreen2 rounded-xl"
+      id={`bai-sua-giao-vien-${item.id}`}
+    ></div>
+  );
+};

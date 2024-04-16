@@ -4,6 +4,7 @@
 
 @import "./components/ui.css";
 @import "./components/content.css";
+@import "./components/exercises.css";
 
 body,
 body > * {
@@ -24,4 +25,3 @@ button {
 a {
   @apply text-xl italic underline text-coBlue1 hover:text-coPink;
 }
-

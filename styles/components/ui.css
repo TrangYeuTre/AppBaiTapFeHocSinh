@@ -59,9 +59,17 @@
 }
 
 .option-item {
-  @apply py-1 px-3 rounded-md border-2 border-coBlue1 text-coBlue1
+  @apply py-1 px-3 rounded-md border-2 border-coBlue1 text-coBlue1 bg-coWhite
    hover:text-coWhite hover:bg-coBlue1 cursor-pointer;
 }
 .option-item-selected {
   @apply py-1 px-3 rounded-md border-2 border-coBlue1 text-coWhite bg-coBlue1 cursor-pointer;
+}
+
+/* CÁC PHẦN PHỤ TRONG THẺ RENDER DẠNG BÀI */
+.line-white {
+  @apply border-coWhite border-2;
+}
+.guide-text {
+  @apply italic text-coGray2;
 }

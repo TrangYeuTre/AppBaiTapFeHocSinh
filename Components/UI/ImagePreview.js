@@ -2,16 +2,17 @@ import Image from "next/image";
 
 export default function ImagePreview({ url }) {
   return (
-    <Image
-      src={url}
-      alt="Hình minh họa bài tập"
-      sizes="100vw"
-      style={{
-        width: "100%",
-        height: "auto",
-      }}
-      width={500}
-      height={300}
-    />
+    <div
+      className=" w-full relative
+    h-[200px] sm:max-2xl:h-[300px] 2xl:h-[500px] "
+    >
+      <Image
+        src={url}
+        alt="Hình minh họa bài tập"
+        fill={true}
+        objectFit="contain"
+        objectPosition="center"
+      />
+    </div>
   );
 }

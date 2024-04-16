@@ -20,6 +20,8 @@ module.exports = {
       coPink: "#E966A0",
       coPink2: "#FFF6F6",
       coRed: "#B31312",
+      coGreen: "#508D69",
+      coGreen2: "#CDFADB",
     },
     extend: {},
   },

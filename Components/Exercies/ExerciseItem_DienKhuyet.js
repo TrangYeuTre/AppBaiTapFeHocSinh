@@ -1,6 +1,7 @@
 import Card from "../UI/Card";
 import Image from "next/image";
 import BlockContentBar from "../UI/BlockContentBar";
+import LoadImageFailMessage from "../UI/LoadImageFailMessage";
 import ImagePreview from "../UI/ImagePreview";
 import { useState, useEffect } from "react";
 import { isValidImageUrl } from "../../helper/uti";
@@ -13,135 +14,164 @@ export default function ExerciseItemDienKhuyet({
   tinhTrang,
   _id,
   baiLamCuaHocSinh,
+  dapAnCuaGiaoVien,
   data,
-  xemBaiDaLam,
   soLanNop,
+  instanceHomeworks,
 }) {
   const dispatch = useDispatch();
-  const recentElementConfirmId = useSelector(
-    (state) => state.hws.recentElementConfirmId
+  const showStudentAnswers = useSelector(
+    (state) => state.hws.showStudentAnswers
   );
-  const [handledDatas, setHandledDatas] = useState([]);
-  // console.log("---Kiểm tra datas dk:---");
-  // console.log(handledDatas);
-  //Xử lý kiểm tra hình có bị lỗi không (Trả về chỉ để render đề bài)
-  // phần render bài làm của học sinh xử lý riêng
-  useEffect(() => {
-    //1. xử lý hình lỗi
-    const handled = datas.map((item) => {
-      const validImage = isValidImageUrl(item.imageUrl);
-      return {
-        id: item.id,
-        //Kiểu để phân loại 3 dạng điền khuyết mà render
-        kieu: item.kieu,
-        imageUrl: !validImage ? "/assets/404-error.png" : item.imageUrl,
-        content: "",
-        ve1: item.ve1 || "",
-        ve2: item.ve2 || "",
-      };
-    });
-    //2. xử lý fill nội dung bài làm của học sinh nếu có
-    if (baiLamCuaHocSinh.length > 0) {
-      baiLamCuaHocSinh.forEach((bai) => {
-        const target = handled.find((item) => item.id === bai.id);
-        if (target) target.content = bai.content;
-      });
-    }
-    setHandledDatas(handled);
-  }, [datas]);
 
-  //SIde effect cuộn xuống bài bấm xác nhận gần nhất
+  const [homeworkFillEmptyRender, setHomeworkFillEmptyRender] = useState([]);
+
   useEffect(() => {
-    setTimeout(() => {
-      const ele = document.getElementById(`${_id}-${recentElementConfirmId}`);
-      if (ele) ele.scrollIntoView({ behavior: "smooth" });
-    }, 100);
-  }, [recentElementConfirmId]);
+    const convertedHomeworkFillEmptyRender =
+      instanceHomeworks.convertHomeworkFillEmptyDatasToRender({
+        fillEmptyDatas: datas,
+        soLanNop,
+        tinhTrang,
+        baiLamCuaHocSinh,
+        dapAnCuaGiaoVien,
+      });
+    setHomeworkFillEmptyRender(convertedHomeworkFillEmptyRender);
+  }, [datas]);
 
   const layDapAnCuaHocSinh = (dataId) => {
     const ele = document.getElementById(`${_id}-${dataId}`);
     const valueGot = ele.value || "";
     dispatch(
       HwsActions.updateAnswersFillEmpty({
-        idObjBaiTap: _id,
-        idBaiTapCon: dataId,
-        cauTraLoi: valueGot,
+        homeworkId: _id,
+        homeworkFillEmptyId: dataId,
+        answer: valueGot,
+        scrollToElementId: `dien-khuyet-${dataId}`,
       })
     );
   };
-
-  //Biến xử lý render khoá tương tác
-  let blockContent = false;
-  if (+soLanNop >= 3) blockContent = true;
-
-  return handledDatas.map((item) => {
+  return homeworkFillEmptyRender.map((item) => {
     return (
-      <Card
-        plusStyle={`p-0 w-full ${blockContent && "disabled-card"}`}
-        key={Math.random()}
+      <div
+        className="flex flex-col gap-0"
+        key={Math.random().toString() + item.id}
       >
-        <div className="flex flex-col gap-3 bg-coGray5 px-3 py-6">
-          <h3>Đề bài: {data.deBai || null}</h3>
-          <ImagePreview url={item.imageUrl} />
-          <Status tinhTrang={tinhTrang} />
-          <hr className="border-coWhite border-2" />
-          <label>Đáp án</label>
-          {item.imageUrl === "/assets/404-error.png" && (
-            <p className="text-coRed">
-              Hình lỗi rồi. Nhắn cô Trang sửa lại nhé.
+        <Card plusStyle={`p-0 w-full ${item.blockContent && "disabled-card"}`}>
+          <div className="fill-empty-wrapper">
+            <h3>Đề bài: {data.deBai || null}</h3>
+            <ImagePreview url={item.imageUrl} />
+            <Status tinhTrang={tinhTrang} />
+            <hr className="line-white" />
+            {/* <label>Đáp án</label> */}
+            <p className="guide-text" id={`dien-khuyet-${item.id}`}>
+              Bé hãy điền đáp án vào chỗ trống
             </p>
-          )}
+            {item.imageUrl === "/assets/404-error.png" && (
+              <LoadImageFailMessage />
+            )}
 
-          {item.kieu === "Điền khuyết đầu" && (
-            <div className="flex flex-row gap-3 flex-wrap items-center">
-              <input
-                id={`${_id}-${item.id}`}
-                type="text"
-                required
-                placeholder="Nhập đáp án..."
-                minLength={2}
-                defaultValue={xemBaiDaLam ? item.content : null}
+            {item.kieu === "Điền khuyết đầu" && (
+              <DienKhuyetDau
+                _id={_id}
+                item={item}
+                showStudentAnswers={showStudentAnswers}
               />
-              <p>{item.ve1}</p>
-            </div>
-          )}
-          {item.kieu === "Điền khuyết cuối" && (
-            <div className="flex flex-row gap-3 flex-wrap items-center">
-              <p>{item.ve1}</p>
-              <input
-                id={`${_id}-${item.id}`}
-                type="text"
-                required
-                placeholder="Nhập đáp án..."
-                minLength={2}
-                defaultValue={xemBaiDaLam ? item.content : null}
+            )}
+            {item.kieu === "Điền khuyết cuối" && (
+              <DienKhuyetCuoi
+                _id={_id}
+                item={item}
+                showStudentAnswers={showStudentAnswers}
               />
-            </div>
-          )}
-          {item.kieu === "Điền khuyết giữa" && (
-            <div className="flex flex-row gap-3 flex-wrap items-center">
-              <p>{item.ve1}</p>
-              <input
-                id={`${_id}-${item.id}`}
-                type="text"
-                required
-                placeholder="Nhập đáp án..."
-                minLength={2}
-                defaultValue={xemBaiDaLam ? item.content : null}
+            )}
+            {item.kieu === "Điền khuyết giữa" && (
+              <DienKhuyetGiua
+                _id={_id}
+                item={item}
+                showStudentAnswers={showStudentAnswers}
               />
-              <p>{item.ve2}</p>
-            </div>
-          )}
-          <button
-            type="button"
-            className={`btn btn-main ${blockContent && "line-through"}`}
-            onClick={layDapAnCuaHocSinh.bind(this, item.id)}
-          >
-            Xác nhận
-          </button>
-        </div>
-        {blockContent && <BlockContentBar />}
-      </Card>
+            )}
+            <button
+              type="button"
+              className={`btn btn-main ${item.blockContent && "line-through"}`}
+              onClick={layDapAnCuaHocSinh.bind(this, item.id)}
+            >
+              Xác nhận
+            </button>
+          </div>
+          {item.blockContent && <BlockContentBar />}
+        </Card>
+        {tinhTrang === "Đã sửa" && <BaiSuaCuaGiaoVien item={item} />}
+      </div>
     );
   });
 }
+
+const DienKhuyetDau = ({ _id, item, showStudentAnswers }) => {
+  return (
+    <div className="fill-empty-option">
+      <input
+        id={`${_id}-${item.id}`}
+        type="text"
+        required
+        placeholder="Nhập đáp án..."
+        minLength={2}
+        defaultValue={showStudentAnswers ? item.content : null}
+      />
+      <p>{item.ve1}</p>
+    </div>
+  );
+};
+
+const DienKhuyetGiua = ({ _id, item, showStudentAnswers }) => {
+  return (
+    <div className="fill-empty-option">
+      <p>{item.ve1}</p>
+      <input
+        id={`${_id}-${item.id}`}
+        type="text"
+        required
+        placeholder="Nhập đáp án..."
+        minLength={2}
+        defaultValue={showStudentAnswers ? item.content : null}
+      />
+      <p>{item.ve2}</p>
+    </div>
+  );
+};
+const DienKhuyetCuoi = ({ _id, item, showStudentAnswers }) => {
+  return (
+    <div className="fill-empty-option">
+      <p>{item.ve1}</p>
+      <input
+        id={`${_id}-${item.id}`}
+        type="text"
+        required
+        placeholder="Nhập đáp án..."
+        minLength={2}
+        defaultValue={showStudentAnswers ? item.content : null}
+      />
+    </div>
+  );
+};
+const BaiSuaCuaGiaoVien = ({ item }) => {
+  return (
+    <div className="p-6 bg-coGreen2 rounded-xl flex flex-col gap-6 pointer-events-none">
+      <div className="flex flex-row gap-6">
+        <label>Kết quả: </label>
+        <div className={item.dat ? "option-item-selected" : "option-item"}>
+          Đạt
+        </div>
+        <div className={!item.dat ? "option-item-selected" : "option-item"}>
+          Không đạt
+        </div>
+      </div>
+      <textarea
+        className="w-full h-32"
+        id={`gv-nhan-xet-dien-khuyet-${item.id}`}
+        placeholder="Giáo viên không có nhận xét."
+        defaultValue={item.dapAnCuaGiaoVien || null}
+      />
+    </div>
+  );
+};

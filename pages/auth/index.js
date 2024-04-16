@@ -7,7 +7,6 @@ export default function SignInRoute() {
   const router = useRouter();
 
   const token = useSelector((state) => state.auth.token);
-  console.log(token)
 
   useEffect(() => {
     if (token) router.push("/exercises");

@@ -4,21 +4,18 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   env: {
-    FIREBASE_AUTH:
-      "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=" +
-      FB_API_KEY,
-    API_HOCSINH: "http://localhost:8080/api/v1",
+    // API_HOCSINH: "http://localhost:8080/api/v1",
+    // https://ec2-54-251-92-120.ap-southeast-1.compute.amazonaws.com/nghia-test
+    API_HOCSINH:
+      "https://ec2-54-251-92-120.ap-southeast-1.compute.amazonaws.com/api/v1",
   },
   images: {
-    domains: [
-      "photos.google.com",
-      "lh3.googleusercontent.com",
-      "images.unsplash.com",
-      "res.cloudinary.com",
-      "images.pexel.com",
-      "images.dmca.com",
-      "trannghia91.quickconnect.to",
-      "cdn.vectorstock.com",
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "lh3.googleusercontent.com",
+        pathname: "**",
+      },
     ],
   },
 };

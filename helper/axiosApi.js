@@ -1,4 +1,5 @@
 import axios from "axios";
+import { devErrorMessage } from "./uti";
 
 export const signIn = async ({
   username,
@@ -14,7 +15,6 @@ export const signIn = async ({
       username,
       password,
     });
-    console.log(response);
     if (response.data) {
       dispatch(
         AuthActions.setAuth({
@@ -29,19 +29,31 @@ export const signIn = async ({
     }
     setError("");
   } catch (err) {
-    console.log(err);
+    devErrorMessage(err.response.data || "Thông tin đăng nhập không đúng.");
+
+    setError(
+      err.response.status === 429
+        ? err.response.data
+        : "Thông tin đăng nhập không đúng."
+    );
   }
 };
 
 //Lấy toan bộ bài tập về nhà của học sinh (trong thời hạn)
-export const getAvailableHomeworks1Student = async ({ id, axiosInstance }) => {
+export const getAvailableHomeworks1Student = async ({
+  id,
+  axiosInstance,
+  router,
+}) => {
   const fetchUrl = process.env.API_HOCSINH + "/homeworks/" + id;
   try {
     const response = await axiosInstance.get(fetchUrl);
-    console.log(response);
     return response.data.data || [];
   } catch (err) {
-    console.log(err);
+    devErrorMessage(
+      err.response.data || "Load bài tập về nhà cho học sinh lỗi gì đó."
+    );
+    if (err.response.status === 429) router.replace("/auth");
   }
 };
 
@@ -80,6 +92,7 @@ const convertHwsToUpdateDatas = (hws) => {
       updatedDatas.push({
         _id: curBtvn._id,
         baiLamCuaHocSinh: curBtvn.baiLamCuaHocSinh,
+        soLanNop: +curBtvn.soLanNop || 0,
       });
     }
   }

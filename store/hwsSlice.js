@@ -1,8 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-//recentElementConfirmId lưu tạm id gần nhất của bài tập được bấm xác nhận để
-// dùng scroll đến đó khi load lại hws
-const initState = { hws: [], recentElementConfirmId: "" };
+const initState = {
+  hws: [],
+  recentElementConfirmId: "",
+  //TODO: sửa mục đích và logic cảu showStudentAnswers ở đây
+  showStudentAnswers: true,
+};
 
 const HwsSlice = createSlice({
   name: "hws",
@@ -15,121 +18,132 @@ const HwsSlice = createSlice({
       state.hws = [];
       state.recentElementConfirmId = "";
     },
+    showStudentAnswers(state) {
+      state.showStudentAnswers = true;
+    },
+    hideStudentAnswers(state) {
+      state.showStudentAnswers = false;
+    },
     updateAnswersWriting(state, action) {
-      const clone = [...state.hws];
-      const { idObjBaiTap, idBaiTapCon, cauTraLoi } = action.payload;
-      //Loop for để tìm thôi: array - array (baiTapVeNha) - target
-      for (let i = 0; i < clone.length; i++) {
-        const curObj = clone[i];
-        const curBtvn = curObj.baiTapVeNha;
-        const target = curBtvn.find((item) => item._id === idObjBaiTap);
-        if (target && target.data.viet.active) {
-          //Thêm mới hoặc update phần bài làm của học sinh vào prop baiLamCuaHocSinh
-          const curBaiLamCuaHocSinh = target.baiLamCuaHocSinh;
-          const subTarget = curBaiLamCuaHocSinh.find(
-            (item) => item.id === idBaiTapCon
-          );
-          if (!subTarget) {
-            //Thêm mới
-            curBaiLamCuaHocSinh.push({
-              type: "viet",
-              id: idBaiTapCon,
-              content: cauTraLoi,
-            });
-          } else {
-            //Update
-            subTarget.content = cauTraLoi;
-          }
-          break;
+      const cloneHomeworks = [...state.hws];
+      const { homeworkId, homeworkWrittingId, answer, scrollToElementId } =
+        action.payload;
+
+      for (let i = 0; i < cloneHomeworks.length; i++) {
+        const currentHomework = cloneHomeworks[i];
+
+        const writtingHomework = findSubHomework(
+          currentHomework.baiTapVeNha,
+          homeworkId
+        );
+
+        if (
+          !validSubHomework(writtingHomework, "viet") ||
+          Object.keys(writtingHomework).length === 0
+        )
+          continue;
+
+        const studentWork = findStudentWork(
+          writtingHomework.baiLamCuaHocSinh,
+          homeworkWrittingId
+        );
+
+        if (Object.keys(studentWork).length === 0) {
+          writtingHomework.baiLamCuaHocSinh.push({
+            type: "viet",
+            id: homeworkWrittingId,
+            content: answer,
+          });
+        } else {
+          studentWork.content = answer;
         }
+        break;
       }
-      state.hws = clone;
-      state.recentElementConfirmId = idBaiTapCon;
+
+      state.hws = cloneHomeworks;
+      state.recentElementConfirmId = scrollToElementId;
     },
     updateAnswersTrueFalse(state, action) {
-      const clone = [...state.hws];
-      const { idObjBaiTap, cauTraLoi, idBaiTapCon } = action.payload;
+      const cloneHomeworks = [...state.hws];
+      const { homeworkId, homeworkTrueFalseId, answer, scrollToElementId } =
+        action.payload;
 
-      //1.tìm prop baiLamCuaHocSinh
-      const objBaiTapTracNghiem = clone.find(
-        (item) => item._id === idObjBaiTap
+      const homework = findMainHomework(cloneHomeworks, homeworkId);
+      if (Object.keys(homework).length === 0) return;
+
+      const trueFalseHomework = findSubHomework(
+        homework.baiTapVeNha,
+        homeworkTrueFalseId
       );
-      if (!objBaiTapTracNghiem) return;
+      if (Object.keys(trueFalseHomework).length === 0) return;
 
-      const curBaiTapVeNha = objBaiTapTracNghiem.baiTapVeNha;
-      const targetBaiTapVeNha = curBaiTapVeNha.find(
-        (item) => item._id === idBaiTapCon
-      );
-      if (!targetBaiTapVeNha) return;
-
-      const curBaiLamCuaHocSinh = targetBaiTapVeNha.baiLamCuaHocSinh;
-
-      //2.TÌm ra rồi, giờ xử lý update
-      if (curBaiLamCuaHocSinh.length === 0) {
-        curBaiLamCuaHocSinh.push({
+      if (trueFalseHomework.baiLamCuaHocSinh.length === 0) {
+        trueFalseHomework.baiLamCuaHocSinh.push({
           type: "tracNghiem",
-          id: cauTraLoi,
-          content: cauTraLoi,
+          id: answer,
+          content: answer,
         });
       } else {
-        //Vì trong mảng chỉ chứa 1 obj trả lời câu trắc nghiệm nên không cần xử lý tìm
-        const updatedObj = curBaiLamCuaHocSinh[0];
-        updatedObj.id = cauTraLoi;
-        updatedObj.content = cauTraLoi;
+        const updatedObj = trueFalseHomework.baiLamCuaHocSinh[0];
+        updatedObj.id = answer;
+        updatedObj.content = answer;
       }
 
-      //Trả hàng thôi
-      state.hws = clone;
-      state.recentElementConfirmId = `trac-nghiem-${idObjBaiTap}`;
-
-      // console.log(idObjBaiTap);
-      // console.log(idBaiTapCon);
-      // console.log(objBaiTapTracNghiem);
+      state.hws = cloneHomeworks;
+      state.recentElementConfirmId = scrollToElementId;
     },
     updateAnswersFillEmpty(state, action) {
-      const clone = [...state.hws];
-      const { idObjBaiTap, idBaiTapCon, cauTraLoi } = action.payload;
-      //Loop for để tìm thôi: array - array (baiTapVeNha) - target
-      for (let i = 0; i < clone.length; i++) {
-        const curObj = clone[i];
-        const curBtvn = curObj.baiTapVeNha;
-        const target = curBtvn.find((item) => item._id === idObjBaiTap);
-        if (target && target.data.dienKhuyet.active) {
-          //Thêm mới hoặc update phần bài làm của học sinh vào prop baiLamCuaHocSinh
-          const curBaiLamCuaHocSinh = target.baiLamCuaHocSinh;
-          const subTarget = curBaiLamCuaHocSinh.find(
-            (item) => item.id === idBaiTapCon
-          );
-          if (!subTarget) {
-            //Thêm mới
-            curBaiLamCuaHocSinh.push({
-              type: "dienKhuyet",
-              id: idBaiTapCon,
-              content: cauTraLoi,
-            });
-          } else {
-            //Update
-            subTarget.content = cauTraLoi;
-          }
-          break;
+      const cloneHomeworks = [...state.hws];
+      const { homeworkId, homeworkFillEmptyId, answer, scrollToElementId } =
+        action.payload;
+      for (let i = 0; i < cloneHomeworks.length; i++) {
+        const currentHomework = cloneHomeworks[i];
+
+        const fillEmptyHomework = findSubHomework(
+          currentHomework.baiTapVeNha,
+          homeworkId
+        );
+
+        if (
+          !validSubHomework(fillEmptyHomework, "dienKhuyet") ||
+          Object.keys(fillEmptyHomework).length === 0
+        )
+          continue;
+
+        const studentWork = findStudentWork(
+          fillEmptyHomework.baiLamCuaHocSinh,
+          homeworkFillEmptyId
+        );
+
+        if (Object.keys(studentWork).length === 0) {
+          fillEmptyHomework.baiLamCuaHocSinh.push({
+            type: "viet",
+            id: homeworkFillEmptyId,
+            content: answer,
+          });
+        } else {
+          studentWork.content = answer;
         }
+        break;
       }
-      state.hws = clone;
-      state.recentElementConfirmId = idBaiTapCon;
+
+      state.hws = cloneHomeworks;
+      state.recentElementConfirmId = scrollToElementId;
     },
     updateAnswersMatching(state, action) {
-      const clone = [...state.hws];
-      const { idVeTrai, nhanChon, veTrai, targetId, idObjBtvn } =
+      const cloneHomeworks = [...state.hws];
+      const { idVeTrai, nhanChon, veTrai, scrollToElementId, homeworkId } =
         action.payload;
-      // console.log("---dữ liệu submit lên matching");
-      // console.log(idVeTrai, nhanChon, veTrai, targetId, idObjBtvn);
-      for (let i = 0; i < clone.length; i++) {
-        const curObj = clone[i];
-        const curBaiTapVeNha = curObj.baiTapVeNha;
+
+      for (let i = 0; i < cloneHomeworks.length; i++) {
+        const currentHomework = cloneHomeworks[i];
+
+        const curBaiTapVeNha = currentHomework.baiTapVeNha;
         //Tìm obj bài tập về nhà bên trong
         const targetBtvn = curBaiTapVeNha.find(
-          (item) => item._id === idObjBtvn
+          (item) => item._id === homeworkId
         );
+
         if (targetBtvn) {
           //1. Việc lớn đầu tiên là tìm option của về trái và select nó tương ứng
           const curItemsTrai = targetBtvn.data.matching.datas.itemsTrai;
@@ -160,7 +174,6 @@ const HwsSlice = createSlice({
               id: idVeTrai,
               content: value,
             });
-            console.log("Bài làm rống, đẩy mới vào thành công");
           } else {
             //Tìm xem có tồn tại chưa thì lại xử lý if tiêp
             const existBaiLam = curBaiLamCuaHocSinh.find(
@@ -172,59 +185,51 @@ const HwsSlice = createSlice({
                 id: idVeTrai,
                 content: value,
               });
-              console.log("Bài làm có, đẩy mới vào thành công");
             } else {
               existBaiLam.content = value;
-              console.log("Bài làm có, cập nhật thành công");
             }
           } // end if
           targetBtvn.baiLamCuaHocSinh = curBaiLamCuaHocSinh;
         }
       }
-      state.hws = clone;
-      state.recentElementConfirmId = targetId;
+      state.hws = cloneHomeworks;
+      state.recentElementConfirmId = scrollToElementId;
     },
-    // initFillAnswersMatching(state, action) {
-    //   const { idObjBtvn } = action.payload;
-    //   const clone = [...state.hws];
-    //   for (let i = 0; i < clone.length; i++) {
-    //     const curObj = clone[i];
-    //     const curBaiTapVeNha = curObj.baiTapVeNha;
-    //     //Tìm obj bài tập về nhà bên trong
-    //     const targetBtvn = curBaiTapVeNha.find(
-    //       (item) => item._id === idObjBtvn
-    //     );
-    //     if (targetBtvn) {
-    //       const curBaiLamCuaHocSinh = targetBtvn.baiLamCuaHocSinh;
-    //       const curItemsTrai = targetBtvn.data.matching.datas.itemsTrai;
-    //       const curItemsPhaiRandom =
-    //         targetBtvn.data.matching.datas.itemsPhaiRandom;
-    //       if (curBaiLamCuaHocSinh.length === 0) return;
-    //       curBaiLamCuaHocSinh.forEach((baiLam) => {
-    //         const { id: idVeTrai, content } = baiLam;
-    //         let targetNhan = "";
-    //         //1. Từ content, tìm troang phaiRandom label tương ứng
-    //         const targetItemPhaiRandom = curItemsPhaiRandom.find(
-    //           (ip) => ip.vePhai === content
-    //         );
-    //         if (targetItemPhaiRandom) targetNhan = targetItemPhaiRandom.nhan;
-    //         //2. Có nhẫn rồi thì ta select tương ứng trong itemsTrai
-    //         const targetItemTrai = curItemsTrai.find(
-    //           (it) => it.idVeTrai === idVeTrai
-    //         );
-    //         if (targetItemTrai) {
-    //           targetItemTrai.options.forEach((opt) => (opt.isSelected = false));
-    //           const targetOpt = targetItemTrai.options.find(
-    //             (opt) => opt.nhan === targetNhan
-    //           );
-    //           if (targetOpt) targetOpt.isSelected = true;
-    //         }
-    //       });
-    //     }
-    //   }
-    // },
+    scrollToSubmitErrorMessage(state) {
+      state.recentElementConfirmId = "local-submit-homework-error-message";
+    },
   },
 });
+
+const findMainHomework = (homeworks, homeworkId) => {
+  let result = {};
+  if (!homeworks || homeworks.length === 0 || !homeworkId) return result;
+  const mainHomework = homeworks.find((hw) => hw._id === homeworkId);
+  if (mainHomework) result = mainHomework;
+  return result;
+};
+const findSubHomework = (baiTapVeNha, homeworkTypeId) => {
+  let result = {};
+  if (!baiTapVeNha || baiTapVeNha.length === 0 || !homeworkTypeId)
+    return result;
+  const subHomework = baiTapVeNha.find((btvn) => btvn._id === homeworkTypeId);
+  if (subHomework) result = subHomework;
+  return result;
+};
+const validSubHomework = (homework, type) => {
+  if (!homework || !type) return false;
+  return homework.data[type].active;
+};
+const findStudentWork = (baiLamCuaHocSinh, homeworkTypeId) => {
+  let result = {};
+  if (!baiLamCuaHocSinh || baiLamCuaHocSinh.length === 0 || !homeworkTypeId)
+    return result;
+  const targetBaiLamCuaHocSinh = baiLamCuaHocSinh.find(
+    (btvn) => btvn.id === homeworkTypeId
+  );
+  if (targetBaiLamCuaHocSinh) result = targetBaiLamCuaHocSinh;
+  return result;
+};
 
 export const HwsActions = HwsSlice.actions;
 
