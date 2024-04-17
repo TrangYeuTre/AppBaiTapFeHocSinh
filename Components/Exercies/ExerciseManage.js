@@ -3,6 +3,8 @@ import ExerciseGroup from "./ExerciseGroup";
 import StudentInfo from "../UI/StudentInfo";
 import LocalError from "../UI/LocalError";
 import Homeworks from "../../classes/Homeworks";
+import Modal from "../../Components/modal/Modal";
+import NotiUpdatingStore from "../UI/NotiUpdatingStore";
 import { useAxiosInstance } from "../../hooks/useHooks";
 import { useState, useEffect, useCallback } from "react";
 import { submitAnswers } from "../../helper/axiosApi";
@@ -15,6 +17,8 @@ export default function ExerciseManage({ username, hocSinh }) {
   const router = useRouter();
   const dispatch = useDispatch();
   const homeworks = useSelector((state) => state.hws.hws);
+  const updatingStore = useSelector((state) => state.hws.updatingStore);
+  console.log(updatingStore);
   const token = useSelector((state) => state.auth.token);
   const axiosInstance = useAxiosInstance(token);
   const recentElementConfirmId = useSelector(
@@ -49,7 +53,10 @@ export default function ExerciseManage({ username, hocSinh }) {
 
   useEffect(() => {
     scrollToElementId(recentElementConfirmId);
-  }, [recentElementConfirmId]);
+    setTimeout(() => {
+      dispatch(HwsActions.stopUpdatingStore());
+    }, 1000);
+  }, [recentElementConfirmId, homeworks]);
 
   if (!homeworks || homeworks.length === 0)
     return (
@@ -60,6 +67,11 @@ export default function ExerciseManage({ username, hocSinh }) {
 
   return (
     <section className="content-wrapper">
+      {updatingStore && (
+        <Modal>
+          <NotiUpdatingStore />
+        </Modal>
+      )}
       <StudentInfo username={username} />
       <ul className="exercises-main-list">
         {baiTapVeNhaRender.length > 0 &&

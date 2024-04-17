@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initState = {
   hws: [],
   recentElementConfirmId: "",
+  updatingStore: false,
   //TODO: sửa mục đích và logic cảu showStudentAnswers ở đây
   showStudentAnswers: true,
 };
@@ -25,6 +26,7 @@ const HwsSlice = createSlice({
       state.showStudentAnswers = false;
     },
     updateAnswersWriting(state, action) {
+      state.updatingStore = true;
       const cloneHomeworks = [...state.hws];
       const { homeworkId, homeworkWrittingId, answer, scrollToElementId } =
         action.payload;
@@ -64,6 +66,7 @@ const HwsSlice = createSlice({
       state.recentElementConfirmId = scrollToElementId;
     },
     updateAnswersTrueFalse(state, action) {
+      state.updatingStore = true;
       const cloneHomeworks = [...state.hws];
       const { homeworkId, homeworkTrueFalseId, answer, scrollToElementId } =
         action.payload;
@@ -93,6 +96,7 @@ const HwsSlice = createSlice({
       state.recentElementConfirmId = scrollToElementId;
     },
     updateAnswersFillEmpty(state, action) {
+      state.updatingStore = true;
       const cloneHomeworks = [...state.hws];
       const { homeworkId, homeworkFillEmptyId, answer, scrollToElementId } =
         action.payload;
@@ -131,6 +135,8 @@ const HwsSlice = createSlice({
       state.recentElementConfirmId = scrollToElementId;
     },
     updateAnswersMatching(state, action) {
+      state.updatingStore = true;
+
       const cloneHomeworks = [...state.hws];
       const { idVeTrai, nhanChon, veTrai, scrollToElementId, homeworkId } =
         action.payload;
@@ -197,6 +203,9 @@ const HwsSlice = createSlice({
     },
     scrollToSubmitErrorMessage(state) {
       state.recentElementConfirmId = "local-submit-homework-error-message";
+    },
+    stopUpdatingStore(state) {
+      state.updatingStore = false;
     },
   },
 });

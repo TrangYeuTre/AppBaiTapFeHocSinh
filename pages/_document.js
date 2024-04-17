@@ -15,7 +15,7 @@ class MyDocument extends Document {
           />
         </Head>
         <body>
-          <div id="overlay"></div>
+          <div id="my-overlay"></div>
           <Main></Main>
           <NextScript />
         </body>
