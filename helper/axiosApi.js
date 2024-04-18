@@ -29,13 +29,16 @@ export const signIn = async ({
     }
     setError("");
   } catch (err) {
-    devErrorMessage(err.response.data || "Thông tin đăng nhập không đúng.");
+    console.log(err);
+    if (err) {
+      devErrorMessage(err.response.data || "Thông tin đăng nhập không đúng.");
 
-    setError(
-      err.response.status === 429
-        ? err.response.data
-        : "Thông tin đăng nhập không đúng."
-    );
+      setError(
+        err.response.status === 429
+          ? err.response.data
+          : "Thông tin đăng nhập không đúng."
+      );
+    }
   }
 };
 

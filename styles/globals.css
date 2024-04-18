@@ -5,10 +5,11 @@
 @import "./components/ui.css";
 @import "./components/content.css";
 @import "./components/exercises.css";
+@import "./components/auth.css";
 
 body,
 body > * {
-  @apply text-xl;
+  @apply text-base md:text-xl;
 }
 label {
   @apply italic text-coGray2;

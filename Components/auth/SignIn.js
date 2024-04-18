@@ -41,37 +41,39 @@ export default function SignIn() {
   }, []);
 
   return (
-    <Card plusStyle="w-1/3 flex flex-col gap-4 mt-12 py-4 bg-coBlue3">
-      <h2 className="border-b-2 border-coGray2">Đăng nhập</h2>
-      <label htmlFor="username">Username</label>
-      <input
-        ref={usernameRef}
-        id="username"
-        type="username"
-        placeholder="Điền username ..."
-        required
-      />
-      <div className="flex flex-row items-center shrink-0 gap-2">
-        <label htmlFor="Password">Password</label>
-        <p
-          className="text-base italic text-coPink cursor-pointer"
-          onClick={() => {
-            setShowPassword(!showPassword);
-          }}
-        >
-          {showPassword ? "Ẩn" : "Hiện"}
-        </p>
-      </div>
-      <input
-        ref={passwordRef}
-        id="Password"
-        type={showPassword ? "text" : "password"}
-        placeholder="Điền Password ..."
-        required
-        minLength={3}
-      />
-      {error && <p className="text-base text-coRed">{error}</p>}
-      <Button onAction={loginHandler}>Đăng nhập</Button>
-    </Card>
+    <section className="content-wrapper">
+      <Card plusStyle="login-card">
+        <h2 className="border-b-2 border-coGray2">Đăng nhập</h2>
+        <label htmlFor="username">Username</label>
+        <input
+          ref={usernameRef}
+          id="username"
+          type="username"
+          placeholder="Điền username ..."
+          required
+        />
+        <div className="flex flex-row items-center shrink-0 gap-2">
+          <label htmlFor="Password">Password</label>
+          <p
+            className="text-base italic text-coPink cursor-pointer"
+            onClick={() => {
+              setShowPassword(!showPassword);
+            }}
+          >
+            {showPassword ? "Ẩn" : "Hiện"}
+          </p>
+        </div>
+        <input
+          ref={passwordRef}
+          id="Password"
+          type={showPassword ? "text" : "password"}
+          placeholder="Điền Password ..."
+          required
+          minLength={3}
+        />
+        {error && <p className="text-base text-coRed">{error}</p>}
+        <Button onAction={loginHandler}>Đăng nhập</Button>
+      </Card>
+    </section>
   );
 }
