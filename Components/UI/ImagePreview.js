@@ -13,6 +13,17 @@ export default function ImagePreview({ url }) {
         objectFit="contain"
         objectPosition="center"
       />
+      <div
+        className="absolute bottom-0 w-full opacity-80
+      h-[50px] sm:max-2xl:h-[60px] 2xl:h-[70px]"
+      >
+        <Image
+          src="/assets/watermark.png"
+          fill={true}
+          objectFit="contain"
+          objectPosition="center"
+        />
+      </div>
     </div>
   );
 }
