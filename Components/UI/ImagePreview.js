@@ -22,6 +22,7 @@ export default function ImagePreview({ url }) {
           fill={true}
           objectFit="contain"
           objectPosition="center"
+          alt="Logo Cô Trang"
         />
       </div>
     </div>
