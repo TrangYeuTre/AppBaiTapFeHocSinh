@@ -5,8 +5,8 @@ const nextConfig = {
   env: {
     // API_HOCSINH:
     //   "https://ec2-54-255-215-14.ap-southeast-1.compute.amazonaws.com/api/v1",
-    // API_HOCSINH: "http://localhost:8080/api/v1",
-    API_HOCSINH: "https://appbaitapbehocsinh.azurewebsites.net/api/v1",
+    API_HOCSINH: "http://221.132.33.163/api/v1",
+    // API_HOCSINH: "https://appbaitapbehocsinh.azurewebsites.net/api/v1",
   },
   images: {
     remotePatterns: [
