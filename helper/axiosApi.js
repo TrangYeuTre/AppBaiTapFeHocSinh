@@ -1,5 +1,8 @@
 import axios from "axios";
 import { devErrorMessage } from "./uti";
+import staticData from "../data/static.json";
+
+const API_HOCSINH = staticData.API_HOCSINH;
 
 export const signIn = async ({
   username,
@@ -9,7 +12,7 @@ export const signIn = async ({
   router,
   setError,
 }) => {
-  const fetchUrl = process.env.API_HOCSINH + "/auth/signIn";
+  const fetchUrl = API_HOCSINH + "/auth/signIn";
   try {
     const response = await axios.post(fetchUrl, {
       username,
@@ -49,7 +52,7 @@ export const getAvailableHomeworks1Student = async ({
   axiosInstance,
   router,
 }) => {
-  const fetchUrl = process.env.API_HOCSINH + "/homeworks/" + id;
+  const fetchUrl = API_HOCSINH + "/homeworks/" + id;
   try {
     const response = await axiosInstance.get(fetchUrl);
     return response.data.data || [];
@@ -68,7 +71,7 @@ export const submitAnswers = async ({
   hocSinh,
   router,
 }) => {
-  const fetchUrl = process.env.API_HOCSINH + "/homeworks/" + hocSinh;
+  const fetchUrl = API_HOCSINH + "/homeworks/" + hocSinh;
   const updatedDatas = convertHwsToUpdateDatas(hws);
   try {
     const response = await axiosInstance.put(fetchUrl, updatedDatas);
