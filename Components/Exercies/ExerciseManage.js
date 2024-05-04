@@ -28,6 +28,7 @@ export default function ExerciseManage({ username, hocSinh }) {
   // );
   const instanceHomeworks = new Homeworks(homeworks);
   const baiTapVeNhaRender = instanceHomeworks.getBaiTapVeNhaRender();
+  console.log(baiTapVeNhaRender)
 
   const [error, setError] = useState({
     init: true,
