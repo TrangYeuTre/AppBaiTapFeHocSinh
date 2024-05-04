@@ -21,7 +21,8 @@ export default function AutoResizeTextarea({ inputValue, id }) {
       ref={textareaRef}
       defaultValue={inputValue}
       className="w-full h-auto resize-none
-     p-2 bg-coGray5 border-none font-semibold"
+     p-2 bg-coGray5 border-none font-semibold
+     pointer-events-none"
     />
   );
 }
