@@ -7,7 +7,6 @@ const API_HOCSINH =
   enviroment === "development"
     ? staticData.API_HOCSINH_DEV
     : staticData.API_HOCSINH;
-console.log("API URL nè: " + API_HOCSINH);
 
 export const signIn = async ({
   username,
@@ -37,9 +36,7 @@ export const signIn = async ({
     }
     setError("");
   } catch (err) {
-    console.log(err);
     if (err) {
-      console.log(err);
       devErrorMessage(err.response.data || "Thông tin đăng nhập không đúng.");
 
       setError(

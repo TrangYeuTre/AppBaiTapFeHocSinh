@@ -28,6 +28,5 @@ const doFetchExs = async ({ hocSinh, axiosInstance, dispatch, router }) => {
     axiosInstance,
     router,
   });
-  console.log(homeworks);
   dispatch(HwsActions.setHws(homeworks));
 };

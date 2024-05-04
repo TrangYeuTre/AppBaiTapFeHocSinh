@@ -5,8 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { HwsActions } from "../../store/hwsSlice";
 import { checkBlockHomework } from "../../helper/uti";
 import Status from "./Status";
-import { v4 as uuidv4 } from "uuid";
 import BlockContentBar from "../UI/BlockContentBar";
+import AutoResizeTextarea from "./AutoHeightTextarea";
 
 export default function ExerciseItemMatching({
   datas,
@@ -61,10 +61,14 @@ export default function ExerciseItemMatching({
       <Card plusStyle={`p-0 w-full ${blockContent && "disabled-card"}`}>
         <div className="matching-wrapper">
           {/* <h3 id={`matching-${_id}`}>Đề bài: {data.deBai || null}</h3> */}
-          <textarea
+          {/* <textarea
             id={`matching-${_id}`}
             defaultValue={`Đề bài: ${data.deBai || null}`}
             className="bg-coGray5 font-semibold pointer-events-none p-2 border-none"
+          /> */}
+          <AutoResizeTextarea
+            id={`matching-${_id}`}
+            inputValue={`Đề bài: ${data.deBai || null}`}
           />
           <hr className="line-white" />
           <Status tinhTrang={tinhTrang} />

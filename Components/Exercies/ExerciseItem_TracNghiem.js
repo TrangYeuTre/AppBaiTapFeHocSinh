@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { HwsActions } from "../../store/hwsSlice";
 import { checkBlockHomework } from "../../helper/uti";
 import Status from "./Status";
+import AutoResizeTextarea from "./AutoHeightTextarea";
 
 export default function ExerciseItemTracNghiem({
   datas,
@@ -76,12 +77,6 @@ export default function ExerciseItemTracNghiem({
     );
   };
 
-  useEffect(() => {
-    const ele = document.getElementById(`de-bai-trac-nghiem-${_id}`);
-    console.log("---> truy vấn inner html");
-    console.log(ele.innerHTML);
-  }, []);
-
   return (
     <div className="flex flex-col gap-0">
       <Card
@@ -90,10 +85,9 @@ export default function ExerciseItemTracNghiem({
       >
         <div className="true-false-wrapper">
           {/* <h3 id={`de-bai-trac-nghiem-${_id}`}>Đề bài: {data.deBai || null}</h3> */}
-          <textarea
+          <AutoResizeTextarea
             id={`de-bai-trac-nghiem-${_id}`}
-            defaultValue={`Đề bài: ${data.deBai || null}`}
-            className="bg-coGray5 font-semibold pointer-events-none p-2 border-none"
+            inputValue={`Đề bài: ${data.deBai || null}`}
           />
           <hr className="line-white" />
 

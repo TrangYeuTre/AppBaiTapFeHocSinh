@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { HwsActions } from "../../store/hwsSlice";
 import Status from "./Status";
+import AutoResizeTextarea from "./AutoHeightTextarea";
 
 export default function ExerciseItemViet({
   datas,
@@ -67,11 +68,7 @@ export default function ExerciseItemViet({
       >
         <Card plusStyle={`p-0 w-full ${item.blockContent && "disabled-card"}`}>
           <div className="writting-wrapper">
-            {/* <h3>Đề bài: {data.deBai || null}</h3> */}
-            <textarea
-              defaultValue={`Đề bài: ${data.deBai || null}`}
-              className="bg-coGray5 font-semibold pointer-events-none p-2 border-none"
-            />
+            <AutoResizeTextarea inputValue={`Đề bài: ${data.deBai || null}`} />
             <hr className="line-white" />
             <ImagePreview url={item.imageUrl} />
             <Status tinhTrang={tinhTrang} />

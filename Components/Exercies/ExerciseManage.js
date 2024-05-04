@@ -6,7 +6,7 @@ import Homeworks from "../../classes/Homeworks";
 import Modal from "../../Components/modal/Modal";
 import NotiUpdatingStore from "../UI/NotiUpdatingStore";
 import { useAxiosInstance } from "../../hooks/useHooks";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { submitAnswers } from "../../helper/axiosApi";
 import { scrollToElementId } from "../../helper/uti";
 import { useSelector, useDispatch } from "react-redux";
@@ -18,15 +18,14 @@ export default function ExerciseManage({ username, hocSinh }) {
   const dispatch = useDispatch();
   const homeworks = useSelector((state) => state.hws.hws);
   const updatingStore = useSelector((state) => state.hws.updatingStore);
-  console.log(updatingStore);
   const token = useSelector((state) => state.auth.token);
   const axiosInstance = useAxiosInstance(token);
   const recentElementConfirmId = useSelector(
     (state) => state.hws.recentElementConfirmId
   );
-  const showStudentAnswers = useSelector(
-    (state) => state.hws.showStudentAnswers
-  );
+  // const showStudentAnswers = useSelector(
+  //   (state) => state.hws.showStudentAnswers
+  // );
   const instanceHomeworks = new Homeworks(homeworks);
   const baiTapVeNhaRender = instanceHomeworks.getBaiTapVeNhaRender();
 
