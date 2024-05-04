@@ -4,7 +4,6 @@ import BlockContentBar from "../UI/BlockContentBar";
 import LoadImageFailMessage from "../UI/LoadImageFailMessage";
 import ImagePreview from "../UI/ImagePreview";
 import { useState, useEffect } from "react";
-import { isValidImageUrl } from "../../helper/uti";
 import { useDispatch, useSelector } from "react-redux";
 import { HwsActions } from "../../store/hwsSlice";
 import Status from "./Status";
@@ -58,7 +57,11 @@ export default function ExerciseItemDienKhuyet({
       >
         <Card plusStyle={`p-0 w-full ${item.blockContent && "disabled-card"}`}>
           <div className="fill-empty-wrapper">
-            <h3>Đề bài: {data.deBai || null}</h3>
+            {/* <h3>Đề bài: {data.deBai || null}</h3> */}
+            <textarea
+              defaultValue={`Đề bài: ${data.deBai || null}`}
+              className="bg-coGray5 font-semibold pointer-events-none p-2 border-none"
+            />
             <ImagePreview url={item.imageUrl} />
             <Status tinhTrang={tinhTrang} />
             <hr className="line-white" />

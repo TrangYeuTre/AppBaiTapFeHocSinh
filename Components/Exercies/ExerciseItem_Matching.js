@@ -60,7 +60,13 @@ export default function ExerciseItemMatching({
     <div className="flex flex-col gap-0">
       <Card plusStyle={`p-0 w-full ${blockContent && "disabled-card"}`}>
         <div className="matching-wrapper">
-          <h3 id={`matching-${_id}`}>Đề bài: {data.deBai || null}</h3>
+          {/* <h3 id={`matching-${_id}`}>Đề bài: {data.deBai || null}</h3> */}
+          <textarea
+            id={`matching-${_id}`}
+            defaultValue={`Đề bài: ${data.deBai || null}`}
+            className="bg-coGray5 font-semibold pointer-events-none p-2 border-none"
+          />
+          <hr className="line-white" />
           <Status tinhTrang={tinhTrang} />
         </div>
         <hr className="line-white" />

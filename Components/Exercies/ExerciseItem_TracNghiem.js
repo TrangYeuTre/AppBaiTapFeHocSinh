@@ -71,10 +71,16 @@ export default function ExerciseItemTracNghiem({
         homeworkId: baiTapLonId,
         homeworkTrueFalseId: _id,
         answer: optId,
-        scrollToElementId: `trac-nghiem-${_id}`,
+        scrollToElementId: `de-bai-trac-nghiem-${_id}`,
       })
     );
   };
+
+  useEffect(() => {
+    const ele = document.getElementById(`de-bai-trac-nghiem-${_id}`);
+    console.log("---> truy vấn inner html");
+    console.log(ele.innerHTML);
+  }, []);
 
   return (
     <div className="flex flex-col gap-0">
@@ -83,7 +89,14 @@ export default function ExerciseItemTracNghiem({
         key={Math.random()}
       >
         <div className="true-false-wrapper">
-          <h3 id={`trac-nghiem-${_id}`}>Đề bài: {data.deBai || null}</h3>
+          {/* <h3 id={`de-bai-trac-nghiem-${_id}`}>Đề bài: {data.deBai || null}</h3> */}
+          <textarea
+            id={`de-bai-trac-nghiem-${_id}`}
+            defaultValue={`Đề bài: ${data.deBai || null}`}
+            className="bg-coGray5 font-semibold pointer-events-none p-2 border-none"
+          />
+          <hr className="line-white" />
+
           {imageUrl && <ImagePreview url={imageUrl} />}
           <Status tinhTrang={tinhTrang} />
           <hr className="line-white" />

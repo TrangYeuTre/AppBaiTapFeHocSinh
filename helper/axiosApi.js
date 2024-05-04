@@ -2,7 +2,12 @@ import axios from "axios";
 import { devErrorMessage } from "./uti";
 import staticData from "../data/static.json";
 
-const API_HOCSINH = staticData.API_HOCSINH;
+const enviroment = process.env.NODE_ENV;
+const API_HOCSINH =
+  enviroment === "development"
+    ? staticData.API_HOCSINH_DEV
+    : staticData.API_HOCSINH;
+console.log("API URL nè: " + API_HOCSINH);
 
 export const signIn = async ({
   username,
