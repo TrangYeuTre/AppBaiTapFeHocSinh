@@ -140,6 +140,7 @@ export default class Homeworks {
       if (doAmounts < matchingPairs) conditions.doAllMatching = false;
     }
   }
+  
   findHomeworkById(id) {
     if (!id || this.homeworks.length === 0) {
       devErrorMessage("Không tìm thấy bài tập chính về nhà theo id.");

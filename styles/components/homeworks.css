@@ -1,0 +1,7 @@
+.progress-bar-wrapper {
+  @apply w-full h-8 rounded-xl border-2 border-coGray4 
+    overflow-hidden bg-coGray5 shadow-md ;
+}
+.progress-bar-loading {
+  @apply h-full  bg-coGreen3;
+}

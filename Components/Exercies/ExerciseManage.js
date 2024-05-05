@@ -28,7 +28,6 @@ export default function ExerciseManage({ username, hocSinh }) {
   // );
   const instanceHomeworks = new Homeworks(homeworks);
   const baiTapVeNhaRender = instanceHomeworks.getBaiTapVeNhaRender();
-  console.log(baiTapVeNhaRender)
 
   const [error, setError] = useState({
     init: true,
@@ -76,14 +75,10 @@ export default function ExerciseManage({ username, hocSinh }) {
       <ul className="exercises-main-list">
         {baiTapVeNhaRender.length > 0 &&
           baiTapVeNhaRender.map((hw) => (
-            <>
+            <div key={Math.random().toString() + hw._id.toString()}>
               <hr />
-              <ExerciseGroup
-                key={Math.random().toString() + hw._id.toString()}
-                hw={hw}
-                instanceHomeworks={instanceHomeworks}
-              />
-            </>
+              <ExerciseGroup hw={hw} instanceHomeworks={instanceHomeworks} />
+            </div>
           ))}
       </ul>
       {!error.init && error.message && (

@@ -32,35 +32,24 @@ export const useAxiosInstance = (token) => {
   return instance;
 };
 
-// export function useAutoResizeTextarea() {
-//   const textareaRef = useRef(null);
+export const useLoadHomework = () => {
+  const homeworks = useSelector((state) => state.hwsRender.homeworks);
+  const amountHomeworks = useSelector(
+    (state) => state.hwsRender.amountHomeworks
+  );
+  const loadOrdinalNubmer = useSelector(
+    (state) => state.hwsRender.loadOrdinalNubmer
+  );
 
-//   useEffect(() => {
-//     function autoResize() {
-//       const textarea = textareaRef.current;
-//       if (textarea) {
-//         textarea.style.height = "auto";
-//         textarea.style.height = `${textarea.scrollHeight}px`;
-//       }
-//     }
+  let homework = {};
+  const targetHomework = homeworks.find(
+    (homework) => +homework.ordinalNumber === +loadOrdinalNubmer
+  );
+  if (targetHomework) homework = targetHomework;
 
-//     function handleInput() {
-//       autoResize();
-//     }
-
-//     const textarea = textareaRef.current;
-
-//     if (textarea) {
-//       autoResize(); // Initially set the height
-//       textarea.addEventListener("input", handleInput); // Add event listener
-//     }
-
-//     return () => {
-//       if (textarea) {
-//         textarea.removeEventListener("input", handleInput); // Remove event listener
-//       }
-//     };
-//   }, []);
-
-//   return textareaRef;
-// }
+  return {
+    homeworkData: homework,
+    homeworkOrdinal: loadOrdinalNubmer,
+    totalHomeworks: amountHomeworks,
+  };
+};

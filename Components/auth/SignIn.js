@@ -36,7 +36,8 @@ export default function SignIn() {
     const hocSinh = localStorage.getItem("hocSinh");
     if (token && username) {
       dispatch(AuthActions.setAuth({ token, username, hocSinh }));
-      router.replace("/exercises");
+      // router.replace("/exercises");
+      router.replace("/homeworks");
     }
   }, []);
 

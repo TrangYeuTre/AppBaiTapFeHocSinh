@@ -16,7 +16,10 @@ export default function Header() {
   };
 
   return (
-    <header className="flex flex-1 flex-row items-center justify-between p-4 border-b-2 border-coGray2">
+    <header
+      className="flex flex-1 flex-row items-center
+     justify-between p-2 border-b-2 border-coGray4"
+    >
       <div>
         <Image src="/assets/logo.png" alt="Logo web" width={60} height={60} />
       </div>

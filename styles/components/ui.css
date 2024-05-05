@@ -1,4 +1,8 @@
 /* CARD */
+/* .content-wrapper {
+  @apply mx-auto max-w-4xl w-full px-4
+  lg:max-2xl:px-0 lg:max-2xl:w-2/3 2xl:w-1/2;
+} */
 .card-wrapper {
   @apply rounded-lg shadow-md shadow-coGray2 border-2 border-coGray1
       py-6 px-8 max-w-6xl mx-auto;
@@ -10,6 +14,21 @@
   @apply pointer-events-none opacity-50 border-4 border-coRed;
 }
 
+/* HOMEWORKSTACK CARD */
+.card-homework-wrapper {
+  @apply rounded-xl border-2 border-coGray5 mx-auto 
+  max-w-4xl w-full px-4  shadow-md mb-[160px]
+  lg:max-2xl:px-0 lg:max-2xl:w-2/3 2xl:w-1/2;
+}
+.card-homework-student-work-wrapper {
+  @apply p-4 flex flex-col gap-4 pb-8;
+}
+.card-homework-textarea {
+  @apply w-full h-32 border-2 border-coGray5 shadow-lg mt-3;
+}
+.card-homework-input {
+  @apply border-coGray5 w-fit shadow-lg mt-3;
+}
 /* TAG */
 .myTag {
   @apply bg-coWhite text-coGray4
@@ -44,10 +63,10 @@
 /* BUTTON */
 /* BUTTON */
 .btn {
-  @apply cursor-pointer text-xl
+  @apply cursor-pointer text-2xl
   flex flex-row justify-center items-center
-  py-1 px-4 w-full mx-auto border-2 rounded-md
-  transition-all;
+  py-2 px-4 w-full mx-auto border-2 rounded-md
+  transition-all uppercase;
 }
 .btn-submit {
   @apply border-coPink !bg-coPink !text-coWhite
@@ -56,6 +75,10 @@
 .btn-main {
   @apply border-coBlue1 !bg-coBlue1 !text-coWhite
   hover:!bg-coWhite hover:!text-coBlue1;
+}
+.btn-ghost {
+  @apply border-coGray6 !bg-coGray6 !text-coWhite
+  hover:!bg-coWhite hover:!text-coGray6 !text-lg;
 }
 
 .option-item {
@@ -70,6 +93,10 @@
 .line-white {
   @apply border-coWhite border-2;
 }
+.line-gray {
+  @apply border-coGray4 border-2;
+}
+
 .guide-text {
   @apply italic text-coGray2;
 }

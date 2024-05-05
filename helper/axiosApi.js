@@ -59,10 +59,10 @@ export const getAvailableHomeworks1Student = async ({
     const response = await axiosInstance.get(fetchUrl);
     return response.data.data || [];
   } catch (err) {
-    devErrorMessage(
-      err.response.data || "Load bài tập về nhà cho học sinh lỗi gì đó."
-    );
-    if (err.response.status === 429) router.replace("/auth");
+    console.log(err);
+    devErrorMessage("Load bài tập về nhà cho học sinh lỗi gì đó.");
+    // if (err.response.status === 429) router.replace("/auth");
+    return [];
   }
 };
 

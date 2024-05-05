@@ -1,12 +1,11 @@
 import { useEffect } from "react";
 import { useProtect, useAxiosInstance } from "../../hooks/useHooks";
 import { getAvailableHomeworks1Student } from "../../helper/axiosApi";
-import ExerciseManage from "../../Components/Exercies/ExerciseManage";
 import { useDispatch } from "react-redux";
-import { HwsActions } from "../../store/hwsSlice";
-// import { HwsRenderActions } from "../../store/hwsRenderSlice";
+import { HwsRenderActions } from "../../store/hwsRenderSlice";
 import { useRouter } from "next/router";
-// import HomeworksStack from "../../classes/HomeworksStack";
+import HomeworksStack from "../../classes/HomeworksStack";
+import HomeworksManage from "../../Components/Homeworks/HomeworksManage";
 
 export default function ExerciesRoute() {
   const dispatch = useDispatch();
@@ -20,7 +19,7 @@ export default function ExerciesRoute() {
     doFetchExs({ hocSinh, axiosInstance, dispatch, router });
   }, [hocSinh]);
 
-  return <ExerciseManage username={username} hocSinh={hocSinh} />;
+  return <HomeworksManage username={username} hocSinh={hocSinh} />;
 }
 
 const doFetchExs = async ({ hocSinh, axiosInstance, dispatch, router }) => {
@@ -30,10 +29,9 @@ const doFetchExs = async ({ hocSinh, axiosInstance, dispatch, router }) => {
     axiosInstance,
     router,
   });
-  dispatch(HwsActions.setHws(homeworks));
-  //Test
-  // const newHomeworksRender = new HomeworksStack({}).createInitHomeworksRender(
-  //   homeworks
-  // );
-  // dispatch(HwsRenderActions.setHomeworksRender(newHomeworksRender));
+  const newHomeworksRender = new HomeworksStack({})
+    .createInitHomeworksRender(homeworks)
+    .getCoreData();
+  console.log(newHomeworksRender);
+  dispatch(HwsRenderActions.setHomeworksRender(newHomeworksRender));
 };

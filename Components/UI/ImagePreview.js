@@ -4,7 +4,7 @@ export default function ImagePreview({ url }) {
   return (
     <div
       className=" w-full relative
-    h-[200px] sm:max-2xl:h-[300px] 2xl:h-[500px] "
+    h-[200px] sm:max-2xl:h-[300px] 2xl:h-[400px] "
     >
       <Image
         src={url}

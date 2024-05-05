@@ -7,7 +7,7 @@ export default function Layout({ children }) {
   };
   return (
     <div onContextMenu={preventRightClick}>
-      <Header />
+      {/* <Header /> */}
       <main className="py-10">{children}</main>
     </div>
   );

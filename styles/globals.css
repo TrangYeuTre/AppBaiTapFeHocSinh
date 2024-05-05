@@ -6,6 +6,7 @@
 @import "./components/content.css";
 @import "./components/exercises.css";
 @import "./components/auth.css";
+@import "./components/homeworks.css";
 
 body,
 body > * {

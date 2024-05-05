@@ -50,6 +50,8 @@ export default function ExerciseItemViet({
   const layDapAnCuaHocSinh = (dataId) => {
     const ele = document.getElementById(`${_id}-${dataId}`);
     const valueGot = ele.value || "";
+    console.log(_id, dataId);
+    return;
     dispatch(
       HwsActions.updateAnswersWriting({
         homeworkId: _id,
