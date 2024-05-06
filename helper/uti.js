@@ -28,3 +28,32 @@ export function devErrorMessage(message) {
     console.log(message);
   }
 }
+
+export function manipulateWithLocalStorage({
+  order,
+  idBaiTap = "",
+  content = "",
+}) {
+  if (!order) return;
+
+  let result = "";
+  switch (order) {
+    case "clear":
+      localStorage.clear();
+      break;
+    case "set":
+      localStorage.setItem(idBaiTap, content);
+      break;
+    case "get":
+      result = localStorage.getItem(idBaiTap);
+      break;
+    case "clearStudentWorks":
+      for (let key in localStorage) {
+        if (key.length > 20) {
+          localStorage.removeItem(key);
+        }
+      }
+  }
+  console.log();
+  if (order === "get") return result;
+}

@@ -21,9 +21,7 @@ export default class HomeworksStack {
     };
   }
   createInitHomeworksRender(loadedHomeworks) {
-    // console.log("--- bulild chuyển hóa đây");
-    // console.log(this.homeworks);
-
+    console.log(loadedHomeworks);
     if (!loadedHomeworks || loadedHomeworks.length === 0) return this;
 
     for (let i = 0; i < loadedHomeworks.length; i++) {
@@ -35,27 +33,27 @@ export default class HomeworksStack {
 
       for (let j = 0; j < baiTapVeNha.length; j++) {
         const baiTapVeNhaCon = baiTapVeNha[j];
+        if (baiTapVeNhaCon.soLanNop >= 3) continue;
         const kieuBaiTapVeNhaCon = standardType.find(
           (type) => baiTapVeNhaCon.data[type].active
         );
-        console.log(kieuBaiTapVeNhaCon);
 
-        // if (kieuBaiTapVeNhaCon === "viet") {
-        //   const arrResult = this.#collectWrittingDatas(baiTapVeNhaCon);
-        //   this.homeworks = [...this.homeworks, ...arrResult];
-        // }
-        // if (kieuBaiTapVeNhaCon === "matching") {
-        //   const objResult = this.#collectMatchingData(baiTapVeNhaCon);
-        //   this.homeworks.push(objResult);
-        // }
+        if (kieuBaiTapVeNhaCon === "viet") {
+          const arrResult = this.#collectWrittingDatas(baiTapVeNhaCon);
+          this.homeworks = [...this.homeworks, ...arrResult];
+        }
+        if (kieuBaiTapVeNhaCon === "matching") {
+          const objResult = this.#collectMatchingData(baiTapVeNhaCon);
+          this.homeworks.push(objResult);
+        }
         if (kieuBaiTapVeNhaCon === "dienKhuyet") {
           const arrResult = this.#collectFillEmptyData(baiTapVeNhaCon);
           this.homeworks = [...this.homeworks, ...arrResult];
         }
-        // if (kieuBaiTapVeNhaCon === "tracNghiem") {
-        //   const objResult = this.#collectTrueFalseData(baiTapVeNhaCon);
-        //   this.homeworks.push(objResult);
-        // }
+        if (kieuBaiTapVeNhaCon === "tracNghiem") {
+          const objResult = this.#collectTrueFalseData(baiTapVeNhaCon);
+          this.homeworks.push(objResult);
+        }
       }
     }
 
@@ -136,7 +134,9 @@ export default class HomeworksStack {
     return matching;
   }
   #collectTrueFalseData(baiTapVeNhaCon) {
-    const matching = new HomeworkStackMatching(
+    // console.log("---> truy data tn");
+    // console.log(baiTapVeNhaCon);
+    const trueFalse = new HomeworkStackMatching(
       baiTapVeNhaCon._id,
       null,
       baiTapVeNhaCon.data.nguoiSuaBaiTap,
@@ -147,10 +147,11 @@ export default class HomeworksStack {
         deBai: baiTapVeNhaCon.data.deBai,
         tinhTrang: baiTapVeNhaCon.tinhTrang,
         options: baiTapVeNhaCon.data.tracNghiem.datas,
+        imageUrl: baiTapVeNhaCon.data.tracNghiem.imageUrl,
       },
       "tracNghiem"
     );
-    return matching;
+    return trueFalse;
   }
   #randomHomeworks() {
     const randomHomeworks = this.#randomItemsInArray(this.homeworks);

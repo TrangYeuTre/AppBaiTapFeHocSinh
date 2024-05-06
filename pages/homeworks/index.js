@@ -3,6 +3,7 @@ import { useProtect, useAxiosInstance } from "../../hooks/useHooks";
 import { getAvailableHomeworks1Student } from "../../helper/axiosApi";
 import { useDispatch } from "react-redux";
 import { HwsRenderActions } from "../../store/hwsRenderSlice";
+import { HwsActions } from "../../store/hwsSlice";
 import { useRouter } from "next/router";
 import HomeworksStack from "../../classes/HomeworksStack";
 import HomeworksManage from "../../Components/Homeworks/HomeworksManage";
@@ -34,4 +35,5 @@ const doFetchExs = async ({ hocSinh, axiosInstance, dispatch, router }) => {
     .getCoreData();
   console.log(newHomeworksRender);
   dispatch(HwsRenderActions.setHomeworksRender(newHomeworksRender));
+  dispatch(HwsActions.setHws(homeworks));
 };

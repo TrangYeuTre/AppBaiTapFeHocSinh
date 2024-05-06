@@ -1,7 +1,50 @@
 .progress-bar-wrapper {
-  @apply w-full h-8 rounded-xl border-2 border-coGray4 
-    overflow-hidden bg-coGray5 shadow-md ;
+  @apply w-full rounded-xl border-2 border-coGray4 
+    overflow-hidden bg-coGray5 shadow-md
+    h-2 lg:h-8 flex flex-row flex-wrap;
 }
 .progress-bar-loading {
   @apply h-full  bg-coGreen3;
+}
+/* HOMEWORKSTACK CARD */
+.card-homework-wrapper {
+  @apply rounded-xl border-2 border-coGray5 mx-auto 
+  max-w-4xl  px-4  shadow-md mb-[160px]
+  lg:px-0 h-fit min-h-[80vh]
+  w-full lg:w-2/3 2xl:w-3/4;
+}
+.card-homework-student-work-wrapper {
+  @apply p-4 flex flex-col gap-4 pb-8;
+}
+.card-homework-textarea {
+  @apply w-full h-32 border-2 border-coGray5 shadow-lg mt-3;
+}
+.card-homework-input {
+  @apply border-coGray5 w-fit shadow-lg mt-3;
+}
+
+.homework-actions-wrapper {
+  @apply fixed bottom-0 left-0 w-full bg-coWhite
+  border-t-4 border-dotted border-coGray4 h-fit lg:max-h-[160px]
+  p-3 lg:p-6;
+}
+.homework-actions-container-big {
+  @apply h-full hidden lg:grid  lg:grid-cols-10;
+}
+.homework-actions-container-small {
+  @apply flex flex-col gap-2  lg:hidden;
+}
+.homework-actions-result {
+  @apply flex flex-row flex-1 justify-center items-center gap-4;
+}
+.homework-all-done-wrapper {
+  @apply flex flex-col flex-1 gap-4 rounded-xl bg-coGreen2
+  p-6 justify-items-center py-10;
+}
+.homework-all-done-wrapper p {
+  @apply text-coRed font-semibold text-xl text-center;
+}
+
+.disabled-homework-card {
+  @apply opacity-80 cursor-not-allowed pointer-events-none;
 }

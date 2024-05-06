@@ -1,18 +1,25 @@
 import { useLoadHomework } from "../../hooks/useHooks";
+import Image from "next/image";
 
-export default function ProgressBar() {
+export default function ProgressBar({ plusStyle }) {
   const { homeworkOrdinal, totalHomeworks } = useLoadHomework();
-  console.log(homeworkOrdinal, totalHomeworks);
   const percentage = ((homeworkOrdinal - 1) / totalHomeworks) * 100;
-  console.log(percentage);
+
   return (
-    // <section className="content-wrapper">
-    <div className="progress-bar-wrapper">
+    <div className={`progress-bar-wrapper ${plusStyle}`}>
       <div
         className="progress-bar-loading"
+        id="progress-bar-loading"
         style={{ width: `${percentage}%` }}
       />
+      <div className="relative bottom-4 right-5 hidden lg:block">
+        <Image
+          alt="car-running"
+          src="/assets/car-run.gif"
+          width={80}
+          height={80}
+        />
+      </div>
     </div>
-    // </section>
   );
 }

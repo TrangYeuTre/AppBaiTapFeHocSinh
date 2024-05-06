@@ -8,9 +8,12 @@
 @import "./components/auth.css";
 @import "./components/homeworks.css";
 
+html {
+  @apply box-border;
+}
 body,
 body > * {
-  @apply text-base md:text-xl;
+  @apply text-base lg:max-2xl:text-xl 2xl:text-2xl;
 }
 label {
   @apply italic text-coGray2;
@@ -18,7 +21,7 @@ label {
 input,
 textarea {
   @apply outline-none py-1 px-4 rounded-xl border-4 bg-coWhite border-coWhite
-   focus:border-coPink placeholder:text-coGray4 placeholder:text-base;
+   focus:border-coPink placeholder:text-coGray4 placeholder:text-base box-border;
 }
 button {
   @apply disabled:!bg-coGray2 disabled:cursor-not-allowed;

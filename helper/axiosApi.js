@@ -30,7 +30,7 @@ export const signIn = async ({
           hocSinh: response.data.data.data.hocSinh,
         })
       );
-      if (router) router.push("/exercises");
+      if (router) router.push("/homeworks");
     } else {
       dispatch(AuthActions.clearAuth());
     }
@@ -67,23 +67,15 @@ export const getAvailableHomeworks1Student = async ({
 };
 
 //Nộp bài tập
-export const submitAnswers = async ({
-  hws,
-  axiosInstance,
-  hocSinh,
-  router,
-}) => {
+export const submitAnswers = async ({ hws, axiosInstance, hocSinh }) => {
   const fetchUrl = API_HOCSINH + "/homeworks/" + hocSinh;
   const updatedDatas = convertHwsToUpdateDatas(hws);
   try {
     const response = await axiosInstance.put(fetchUrl, updatedDatas);
-    if (router) {
-      if (response.status === 200) {
-        router.push("/exercises/success");
-      }
-    }
+    return response.status;
   } catch (err) {
     console.log(err);
+    return 500;
   }
 };
 

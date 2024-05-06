@@ -11,11 +11,14 @@ const HwsRenderSlice = createSlice({
   initialState: initState,
   reducers: {
     setHomeworksRender(state, action) {
-      console.log(action.payload);
       const { homeworks, amountHomeworks, loadOrdinalNubmer } = action.payload;
       state.homeworks = homeworks;
       state.amountHomeworks = amountHomeworks;
       state.loadOrdinalNubmer = loadOrdinalNubmer;
+    },
+    increaseLoadOrdinalNumber(state) {
+      if (state.loadOrdinalNubmer - state.amountHomeworks > 1) return;
+      state.loadOrdinalNubmer++;
     },
   },
 });

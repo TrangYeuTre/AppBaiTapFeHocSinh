@@ -38,22 +38,22 @@ export default function ExerciseItemDienKhuyet({
     setHomeworkFillEmptyRender(convertedHomeworkFillEmptyRender);
   }, [datas]);
 
-  const layDapAnCuaHocSinh = (dataId) => {
-    const ele = document.getElementById(`${_id}-${dataId}`);
-    const valueGot = ele.value || "";
-    dispatch(
-      HwsActions.updateAnswersFillEmpty({
-        homeworkId: _id,
-        homeworkFillEmptyId: dataId,
-        answer: valueGot,
-        scrollToElementId: `dien-khuyet-${dataId}`,
-      })
-    );
-  };
+  // const layDapAnCuaHocSinh = (dataId) => {
+  //   const ele = document.getElementById(`${_id}-${dataId}`);
+  //   const valueGot = ele.value || "";
+  //   dispatch(
+  //     HwsActions.updateAnswersFillEmpty({
+  //       homeworkId: _id,
+  //       homeworkFillEmptyId: dataId,
+  //       answer: valueGot,
+  //       scrollToElementId: `dien-khuyet-${dataId}`,
+  //     })
+  //   );
+  // };
   return homeworkFillEmptyRender.map((item) => {
     return (
       <div
-        className="flex flex-col gap-0"
+        className="flex flex-col mb-6"
         key={Math.random().toString() + item.id}
       >
         <Card plusStyle={`p-0 w-full ${item.blockContent && "disabled-card"}`}>
@@ -93,13 +93,13 @@ export default function ExerciseItemDienKhuyet({
                 showStudentAnswers={showStudentAnswers}
               />
             )}
-            <button
+            {/* <button
               type="button"
               className={`btn btn-main ${item.blockContent && "line-through"}`}
               onClick={layDapAnCuaHocSinh.bind(this, item.id)}
             >
               Xác nhận
-            </button>
+            </button> */}
           </div>
           {item.blockContent && <BlockContentBar />}
         </Card>

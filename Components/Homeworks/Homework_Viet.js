@@ -3,88 +3,153 @@ import CardHomework from "../UI/CardHomework";
 import LoadImageFailMessage from "../UI/LoadImageFailMessage";
 import BlockContentBar from "../UI/BlockContentBar";
 import ImagePreview from "../UI/ImagePreview";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { HwsActions } from "../../store/hwsSlice";
+import { HwsRenderActions } from "../../store/hwsRenderSlice";
+import { manipulateWithLocalStorage } from "../../helper/uti";
 import Status from "./Status";
 import AutoResizeTextarea from "./AutoHeightTextarea";
 import HomeworkActionsBar from "./HomeworkActionsBar";
 
-export default function HomeworkTypeViet({ homeworkData }) {
+export default function HomeworkTypeViet({
+  homeworkData,
+  validSubmit,
+  hocSinh,
+}) {
   const { renderDatas } = homeworkData;
+  const dispatch = useDispatch();
+  const updatingStore = useSelector((state) => state.hws.updatingStore);
+  const cauTraLoiCuaHocSinhRef = useRef();
+  const blockHomework = useMemo(() => {
+    return homeworkData.soLanNop >= 3;
+  }, [homeworkData]);
+
+  const [localError, setLocalErorr] = useState("");
   const [studentDo, setStudentDo] = useState(false);
+
+  const enteredAnswer = () => {
+    setTimeout(() => {
+      setStudentDo(true);
+    }, 3000);
+  };
+  const temporatyAnswer = useMemo(() => {
+    return manipulateWithLocalStorage({
+      order: "get",
+      idBaiTap: homeworkData.idBaiTapViet,
+    });
+  }, [homeworkData.idBaiTapViet]);
+
   useEffect(() => {
-    const targetEle = document.getElementById(
+    const answerElement = document.getElementById(
       `bai-lam-viet-textarea-${homeworkData.idBaiTapViet}`
     );
-    targetEle.focus();
-  }, []);
+    if (!temporatyAnswer) answerElement.focus();
 
-  const [inputValue, setInputValue] = useState("");
-  const [typingTimeout, setTypingTimeout] = useState(null);
+    if (
+      temporatyAnswer &&
+      cauTraLoiCuaHocSinhRef &&
+      cauTraLoiCuaHocSinhRef.current
+    ) {
+      cauTraLoiCuaHocSinhRef.current.value = temporatyAnswer;
+    }
+  }, [temporatyAnswer, renderDatas]);
 
-  // Xử lý khi thay đổi giá trị của input
-  const handleChange = (event) => {
-    const value = event.target.value;
-    setInputValue(value);
+  const layDapAnCuaHocSinh = () => {
+    setStudentDo(false);
+    const updatedData = {
+      idBaiTapVeNhaCon: homeworkData.idBaiTapVeNhaCon,
+      idBaiTapViet: homeworkData.idBaiTapViet,
+      content: cauTraLoiCuaHocSinhRef.current.value || "",
+    };
 
-    // Xóa timeout hiện tại (nếu có)
-    clearTimeout(typingTimeout);
+    if (!updatedData.content) {
+      setLocalErorr("Chưa nhập nội dung câu trả lời");
+      setTimeout(() => {
+        const errorElement = document.getElementById(
+          `local-error-message-writting-${homeworkData.idBaiTapViet}`
+        );
+        if (errorElement) errorElement.scrollIntoView({ behavior: "smooth" });
+      }, 100);
 
-    // Thiết lập timeout mới để kiểm tra nội dung sau 3 giây
-    const newTimeout = setTimeout(() => {
-      console.log("Nội dung hiện tại của input:", value);
-      // Thực hiện các hành động kiểm tra hoặc xử lý dữ liệu ở đây
-      if (value && value.length > 3) {
-        setStudentDo(true);
-      } else {
-        setStudentDo(false);
-      }
-    }, 3000);
+      return;
+    } else {
+      setLocalErorr("");
+    }
 
-    // Cập nhật state cho timeout mới
-    setTypingTimeout(newTimeout);
+    dispatch(HwsActions.updateAnswersWriting(updatedData));
+
+    if (!updatingStore) {
+      manipulateWithLocalStorage({
+        order: "set",
+        idBaiTap: updatedData.idBaiTapViet,
+        content: updatedData.content,
+      });
+    }
+
+    if (!updatingStore) {
+      if (!validSubmit) cauTraLoiCuaHocSinhRef.current.value = "";
+      dispatch(HwsRenderActions.increaseLoadOrdinalNumber());
+      cauTraLoiCuaHocSinhRef.current.focus();
+    }
   };
-
-  //TODO: update lên store hws đây
-  const layDapAnCuaHocSinh = () => {};
-
   return (
     <CardHomework>
-      <AutoResizeTextarea
-        inputValue={`Đề bài: ${renderDatas.deBai || null}`}
-        ordinalNumber={homeworkData.ordinalNumber || ""}
-      />
-      <hr className="line-gray" />
+      {validSubmit && (
+        <div className="homework-all-done-wrapper">
+          <p>Chúc mừng bé đã làm hết bài tập. 🎉🎉🎉</p>
+          <p>Nhớ bấm nút NỘP BÀI bên dưới để cô Trang chấm bài nhé</p>
+        </div>
+      )}
+      {!validSubmit && (
+        <div className={blockHomework ? "disabled-homework-card" : null}>
+          <AutoResizeTextarea
+            inputValue={`Đề bài: ${renderDatas.deBai || null}`}
+            ordinalNumber={homeworkData.ordinalNumber || ""}
+          />
+          <hr className="line-gray" />
 
-      <ImagePreview url={renderDatas.imageUrl} />
-      <Status tinhTrang={renderDatas.tinhTrang} />
-      <hr className="line-gray" />
+          <ImagePreview url={renderDatas.imageUrl} />
+          <Status tinhTrang={renderDatas.tinhTrang} />
+          <hr className="line-gray" />
 
-      <div className="card-homework-student-work-wrapper">
-        <p className="guide-text">Bé hãy điền đáp án vào chỗ trống</p>
+          <div className="card-homework-student-work-wrapper">
+            <p className="guide-text">Bé hãy điền đáp án vào chỗ trống</p>
+            {localError && (
+              <p
+                id={`local-error-message-writting-${homeworkData.idBaiTapViet}`}
+                className="error-text"
+              >
+                {localError}
+              </p>
+            )}
+            {renderDatas.imageUrl === "/assets/404-error.png" && (
+              <LoadImageFailMessage />
+            )}
 
-        {renderDatas.imageUrl === "/assets/404-error.png" && (
-          <LoadImageFailMessage />
-        )}
+            <textarea
+              id={`bai-lam-viet-textarea-${homeworkData.idBaiTapViet}`}
+              onKeyDown={enteredAnswer}
+              ref={cauTraLoiCuaHocSinhRef}
+              required
+              placeholder="Nhập đáp án vào đây..."
+              className="card-homework-textarea"
+              minLength={3}
+              disabled={
+                renderDatas.imageUrl === "/assets/404-error.png" ? true : null
+              }
+            />
+          </div>
+          {blockHomework && <BlockContentBar />}
+        </div>
+      )}
 
-        <textarea
-          id={`bai-lam-viet-textarea-${homeworkData.idBaiTapViet}`}
-          value={inputValue}
-          onChange={handleChange}
-          required
-          placeholder="Nhập đáp án vào đây..."
-          className="card-homework-textarea"
-          minLength={3}
-          disabled={
-            renderDatas.imageUrl === "/assets/404-error.png" ? true : null
-          }
-        />
-      </div>
-      {/* {item.blockContent && <BlockContentBar />} */}
       <HomeworkActionsBar
         doAction1={layDapAnCuaHocSinh}
-        bounceButton={studentDo}
+        pulseButton={studentDo}
+        isLoading={updatingStore}
+        validSubmit={validSubmit}
+        hocSinh={hocSinh}
       />
     </CardHomework>
   );

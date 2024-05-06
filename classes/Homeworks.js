@@ -140,7 +140,7 @@ export default class Homeworks {
       if (doAmounts < matchingPairs) conditions.doAllMatching = false;
     }
   }
-  
+
   findHomeworkById(id) {
     if (!id || this.homeworks.length === 0) {
       devErrorMessage("Không tìm thấy bài tập chính về nhà theo id.");
@@ -417,24 +417,18 @@ export default class Homeworks {
       );
       return cloneItemsTrai;
     }
-
+    console.log(baiLamCuaHocSinh);
+    console.log(cloneItemsTrai);
     baiLamCuaHocSinh.forEach((item) => {
       const { id: idVeTrai, content } = item;
-      let targetNhan = "";
-
-      //1.Từ content tra trong itemsPhaiRandom để tìm nhãn
-      const targetIpRandom = itemsPhaiRandom.find(
-        (ip) => ip.vePhai === content
+      const targetItemTrai = cloneItemsTrai.find(
+        (itemTrai) => itemTrai.idVeTrai === idVeTrai
       );
-      if (targetIpRandom) targetNhan = targetIpRandom.nhan;
-      //2. Có nhãn rồi thì tim trong vế trái item tương ứng để kích hoạch
-      const targetIt = cloneItemsTrai.find((it) => it.idVeTrai === idVeTrai);
-      if (targetIt) {
-        const cloneOptions = JSON.parse(JSON.stringify(targetIt.options));
-        cloneOptions.forEach((opt) => (opt.isSelected = false));
-        const targetOpt = cloneOptions.find((opt) => opt.nhan === targetNhan);
-        if (targetOpt) targetOpt.isSelected = true;
-        targetIt.options = cloneOptions;
+      if (targetItemTrai) {
+        const targetOption = targetItemTrai.options.find(
+          (option) => option.nhan === content
+        );
+        if (targetOption) targetOption.isSelected = true;
       }
     });
 

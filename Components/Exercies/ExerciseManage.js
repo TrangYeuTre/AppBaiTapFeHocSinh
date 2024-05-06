@@ -5,6 +5,7 @@ import LocalError from "../UI/LocalError";
 import Homeworks from "../../classes/Homeworks";
 import Modal from "../../Components/modal/Modal";
 import NotiUpdatingStore from "../UI/NotiUpdatingStore";
+import ExerciseActionsBar from "./ExerciseActionsBar";
 import { useAxiosInstance } from "../../hooks/useHooks";
 import { useState, useEffect } from "react";
 import { submitAnswers } from "../../helper/axiosApi";
@@ -14,18 +15,11 @@ import { useRouter } from "next/router";
 import { HwsActions } from "../../store/hwsSlice";
 
 export default function ExerciseManage({ username, hocSinh }) {
-  const router = useRouter();
-  const dispatch = useDispatch();
   const homeworks = useSelector((state) => state.hws.hws);
   const updatingStore = useSelector((state) => state.hws.updatingStore);
   const token = useSelector((state) => state.auth.token);
   const axiosInstance = useAxiosInstance(token);
-  const recentElementConfirmId = useSelector(
-    (state) => state.hws.recentElementConfirmId
-  );
-  // const showStudentAnswers = useSelector(
-  //   (state) => state.hws.showStudentAnswers
-  // );
+
   const instanceHomeworks = new Homeworks(homeworks);
   const baiTapVeNhaRender = instanceHomeworks.getBaiTapVeNhaRender();
 
@@ -34,28 +28,28 @@ export default function ExerciseManage({ username, hocSinh }) {
     message: "",
   });
 
-  const submitHomeworks = async () => {
-    const { valid, message } = instanceHomeworks.validSubmit();
-    if (!valid) {
-      setError({ init: false, message });
-      dispatch(HwsActions.scrollToSubmitErrorMessage());
-    } else {
-      setError({ init: true, message: "" });
-      await submitAnswers({
-        hws: instanceHomeworks.homeworks,
-        axiosInstance,
-        hocSinh,
-        router,
-      });
-    }
-  };
+  // const submitHomeworks = async () => {
+  //   const { valid, message } = instanceHomeworks.validSubmit();
+  //   if (!valid) {
+  //     setError({ init: false, message });
+  //     dispatch(HwsActions.scrollToSubmitErrorMessage());
+  //   } else {
+  //     setError({ init: true, message: "" });
+  //     await submitAnswers({
+  //       hws: instanceHomeworks.homeworks,
+  //       axiosInstance,
+  //       hocSinh,
+  //       router,
+  //     });
+  //   }
+  // };
 
-  useEffect(() => {
-    scrollToElementId(recentElementConfirmId);
-    setTimeout(() => {
-      dispatch(HwsActions.stopUpdatingStore());
-    }, 1000);
-  }, [recentElementConfirmId, homeworks]);
+  // useEffect(() => {
+  //   scrollToElementId(recentElementConfirmId);
+  //   setTimeout(() => {
+  //     dispatch(HwsActions.stopUpdatingStore());
+  //   }, 1000);
+  // }, [recentElementConfirmId, homeworks]);
 
   if (!homeworks || homeworks.length === 0)
     return (
@@ -86,9 +80,10 @@ export default function ExerciseManage({ username, hocSinh }) {
       )}
       <hr className="my-2" />
 
-      <button className="btn btn-submit" onClick={submitHomeworks}>
+      {/* <button className="btn btn-submit" onClick={submitHomeworks}>
         <p className="uppercase font-bold">Nộp bài</p>
-      </button>
+      </button> */}
+      <ExerciseActionsBar />
     </section>
   );
 }

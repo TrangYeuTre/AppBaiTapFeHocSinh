@@ -51,6 +51,7 @@
   @apply text-3xl uppercase font-bold text-coWhite;
 }
 .matching-grid-right-image-wrapper {
-  @apply w-full max-h-[150px] overflow-hidden 
+  @apply w-full max-h-[150px] 
+  overflow-hidden 
   flex flex-row items-center justify-center;
 }

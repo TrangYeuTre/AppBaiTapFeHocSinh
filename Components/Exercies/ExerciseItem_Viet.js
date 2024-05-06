@@ -47,20 +47,20 @@ export default function ExerciseItemViet({
     setHomeworkWrittingRender(homeworkWrittingRender);
   }, [datas]);
 
-  const layDapAnCuaHocSinh = (dataId) => {
-    const ele = document.getElementById(`${_id}-${dataId}`);
-    const valueGot = ele.value || "";
-    console.log(_id, dataId);
-    return;
-    dispatch(
-      HwsActions.updateAnswersWriting({
-        homeworkId: _id,
-        homeworkWrittingId: dataId,
-        answer: valueGot,
-        scrollToElementId: `viet-${dataId}`,
-      })
-    );
-  };
+  // const layDapAnCuaHocSinh = (dataId) => {
+  //   const ele = document.getElementById(`${_id}-${dataId}`);
+  //   const valueGot = ele.value || "";
+  //   console.log(_id, dataId);
+  //   return;
+  //   dispatch(
+  //     HwsActions.updateAnswersWriting({
+  //       homeworkId: _id,
+  //       homeworkWrittingId: dataId,
+  //       answer: valueGot,
+  //       scrollToElementId: `viet-${dataId}`,
+  //     })
+  //   );
+  // };
 
   return homeworkWrittingRender.map((item) => {
     return (
@@ -91,13 +91,13 @@ export default function ExerciseItemViet({
               id={`${_id}-${item.id}`}
               defaultValue={showStudentAnswers ? item.content : null}
             />
-            <button
+            {/* <button
               type="button"
               className={`btn btn-main ${item.blockContent && "line-through"}`}
               onClick={layDapAnCuaHocSinh.bind(this, item.id)}
             >
               Xác nhận
-            </button>
+            </button> */}
           </div>
           {item.blockContent && <BlockContentBar />}
         </Card>

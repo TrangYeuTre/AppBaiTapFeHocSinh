@@ -41,14 +41,24 @@ export const useLoadHomework = () => {
     (state) => state.hwsRender.loadOrdinalNubmer
   );
 
+  let queryOrdinalNumber = null;
+  if (loadOrdinalNubmer - amountHomeworks >= 1) {
+    queryOrdinalNumber = amountHomeworks;
+  } else {
+    queryOrdinalNumber = loadOrdinalNubmer;
+  }
+
   let homework = {};
   const targetHomework = homeworks.find(
-    (homework) => +homework.ordinalNumber === +loadOrdinalNubmer
+    (homework) => +homework.ordinalNumber === +queryOrdinalNumber
   );
   if (targetHomework) homework = targetHomework;
 
+  const validSubmit = loadOrdinalNubmer - amountHomeworks >= 1;
+
   return {
     homeworkData: homework,
+    validSubmit,
     homeworkOrdinal: loadOrdinalNubmer,
     totalHomeworks: amountHomeworks,
   };

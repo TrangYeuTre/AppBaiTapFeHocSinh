@@ -2,10 +2,10 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initState = {
   hws: [],
-  recentElementConfirmId: "",
   updatingStore: false,
-  //TODO: sửa mục đích và logic cảu showStudentAnswers ở đây
+  //TODO: ổn rồi thì xóa nè
   showStudentAnswers: true,
+  recentElementConfirmId: "",
 };
 
 const HwsSlice = createSlice({
@@ -25,182 +25,125 @@ const HwsSlice = createSlice({
     hideStudentAnswers(state) {
       state.showStudentAnswers = false;
     },
-    updateAnswersWriting(state, action) {
+    updateAnswersFillEmpty(state, action) {
       state.updatingStore = true;
+      const { idBaiTapVeNhaCon, idBaiTapDienKhuyet, content } = action.payload;
       const cloneHomeworks = [...state.hws];
-      const { homeworkId, homeworkWrittingId, answer, scrollToElementId } =
-        action.payload;
 
       for (let i = 0; i < cloneHomeworks.length; i++) {
-        const currentHomework = cloneHomeworks[i];
+        const baiTapVeNha = cloneHomeworks[i].baiTapVeNha;
+        const baiTapCon = baiTapVeNha.find(
+          (baiTap) => baiTap._id === idBaiTapVeNhaCon
+        );
+        if (!baiTapCon) continue;
 
-        const writtingHomework = findSubHomework(
-          currentHomework.baiTapVeNha,
-          homeworkId
+        const baiLamCuaHocSinh = baiTapCon.baiLamCuaHocSinh;
+
+        const baiLam = baiLamCuaHocSinh.find(
+          (baiLam) => baiLam.id === idBaiTapDienKhuyet
         );
 
-        if (
-          !validSubHomework(writtingHomework, "viet") ||
-          Object.keys(writtingHomework).length === 0
-        )
-          continue;
-
-        const studentWork = findStudentWork(
-          writtingHomework.baiLamCuaHocSinh,
-          homeworkWrittingId
-        );
-
-        if (Object.keys(studentWork).length === 0) {
-          writtingHomework.baiLamCuaHocSinh.push({
-            type: "viet",
-            id: homeworkWrittingId,
-            content: answer,
-          });
+        if (baiLam) {
+          baiLam.content = content;
+          console.log("cập nhật nè");
         } else {
-          studentWork.content = answer;
+          baiLamCuaHocSinh.push({
+            type: "dienKhuyet",
+            id: idBaiTapDienKhuyet,
+            content: content,
+          });
+          console.log("Thêm mới nè");
         }
-        break;
       }
 
       state.hws = cloneHomeworks;
-      state.recentElementConfirmId = scrollToElementId;
+      state.updatingStore = false;
+    },
+
+    updateAnswersWriting(state, action) {
+      state.updatingStore = true;
+      const { idBaiTapVeNhaCon, idBaiTapViet, content } = action.payload;
+      const cloneHomeworks = [...state.hws];
+
+      for (let i = 0; i < cloneHomeworks.length; i++) {
+        const baiTapVeNha = cloneHomeworks[i].baiTapVeNha;
+        const baiTapCon = baiTapVeNha.find(
+          (baiTap) => baiTap._id === idBaiTapVeNhaCon
+        );
+        if (!baiTapCon) continue;
+
+        const baiLamCuaHocSinh = baiTapCon.baiLamCuaHocSinh;
+
+        const baiLam = baiLamCuaHocSinh.find(
+          (baiLam) => baiLam.id === idBaiTapViet
+        );
+
+        if (baiLam) {
+          baiLam.content = content;
+        } else {
+          baiLamCuaHocSinh.push({
+            type: "viet",
+            id: idBaiTapViet,
+            content: content,
+          });
+        }
+      }
+
+      state.hws = cloneHomeworks;
+      state.updatingStore = false;
     },
     updateAnswersTrueFalse(state, action) {
       state.updatingStore = true;
       const cloneHomeworks = [...state.hws];
-      const { homeworkId, homeworkTrueFalseId, answer, scrollToElementId } =
-        action.payload;
+      const { idBaiTapVeNhaCon, content } = action.payload;
 
-      const homework = findMainHomework(cloneHomeworks, homeworkId);
-      if (Object.keys(homework).length === 0) return;
-
-      const trueFalseHomework = findSubHomework(
-        homework.baiTapVeNha,
-        homeworkTrueFalseId
-      );
-      if (Object.keys(trueFalseHomework).length === 0) return;
-
-      if (trueFalseHomework.baiLamCuaHocSinh.length === 0) {
-        trueFalseHomework.baiLamCuaHocSinh.push({
-          type: "tracNghiem",
-          id: answer,
-          content: answer,
-        });
-      } else {
-        const updatedObj = trueFalseHomework.baiLamCuaHocSinh[0];
-        updatedObj.id = answer;
-        updatedObj.content = answer;
-      }
-
-      state.hws = cloneHomeworks;
-      state.recentElementConfirmId = scrollToElementId;
-    },
-    updateAnswersFillEmpty(state, action) {
-      state.updatingStore = true;
-      const cloneHomeworks = [...state.hws];
-      const { homeworkId, homeworkFillEmptyId, answer, scrollToElementId } =
-        action.payload;
       for (let i = 0; i < cloneHomeworks.length; i++) {
-        const currentHomework = cloneHomeworks[i];
+        const baiTapVeNha = cloneHomeworks[i].baiTapVeNha;
 
-        const fillEmptyHomework = findSubHomework(
-          currentHomework.baiTapVeNha,
-          homeworkId
+        const baiTapVeNhaCon = baiTapVeNha.find(
+          (baiTap) => baiTap._id === idBaiTapVeNhaCon
         );
+        if (!baiTapVeNhaCon) continue;
 
-        if (
-          !validSubHomework(fillEmptyHomework, "dienKhuyet") ||
-          Object.keys(fillEmptyHomework).length === 0
-        )
-          continue;
+        const baiLamCuaHocSinh = baiTapVeNhaCon.baiLamCuaHocSinh;
 
-        const studentWork = findStudentWork(
-          fillEmptyHomework.baiLamCuaHocSinh,
-          homeworkFillEmptyId
-        );
-
-        if (Object.keys(studentWork).length === 0) {
-          fillEmptyHomework.baiLamCuaHocSinh.push({
-            type: "viet",
-            id: homeworkFillEmptyId,
-            content: answer,
+        if (baiLamCuaHocSinh.length === 0) {
+          baiLamCuaHocSinh.push({
+            id: content,
+            content: content,
+            type: "tracNghiem",
           });
         } else {
-          studentWork.content = answer;
+          baiLamCuaHocSinh[0].id = content;
+          baiLamCuaHocSinh[0].content = content;
         }
-        break;
       }
 
       state.hws = cloneHomeworks;
-      state.recentElementConfirmId = scrollToElementId;
+      state.updatingStore = false;
     },
     updateAnswersMatching(state, action) {
       state.updatingStore = true;
 
+      const { idBaiTapVeNhaCon, baiLamCuaHocSinh } = action.payload;
       const cloneHomeworks = [...state.hws];
-      const { idVeTrai, nhanChon, veTrai, scrollToElementId, homeworkId } =
-        action.payload;
 
       for (let i = 0; i < cloneHomeworks.length; i++) {
-        const currentHomework = cloneHomeworks[i];
+        const baiTapVeNha = cloneHomeworks[i].baiTapVeNha;
 
-        const curBaiTapVeNha = currentHomework.baiTapVeNha;
-        //Tìm obj bài tập về nhà bên trong
-        const targetBtvn = curBaiTapVeNha.find(
-          (item) => item._id === homeworkId
+        const baiTapVeNhaCon = baiTapVeNha.find(
+          (baiTap) => baiTap._id === idBaiTapVeNhaCon
         );
+        if (!baiTapVeNhaCon) continue;
 
-        if (targetBtvn) {
-          //1. Việc lớn đầu tiên là tìm option của về trái và select nó tương ứng
-          const curItemsTrai = targetBtvn.data.matching.datas.itemsTrai;
-          const targetItemTrai = curItemsTrai.find(
-            (item) => item.idVeTrai === idVeTrai
-          );
-          if (targetItemTrai) {
-            targetItemTrai.options.forEach((item) => (item.isSelected = false));
-            const curOption = targetItemTrai.options.find(
-              (item) => item.nhan === nhanChon
-            );
-            if (curOption) curOption.isSelected = true;
-          }
-          //2. Việc lớn thứ 2 là update kết quả trả lời vào prop cauTraLoiCuaHocSinh
-          //2.1.Dựa vào nhanChon, ta tìm trong itemsPhaiRandom hiện taị nó đang là giá trị gì
-          const curItemsPhaiRandom =
-            targetBtvn.data.matching.datas.itemsPhaiRandom;
-          const targetItemPhai = curItemsPhaiRandom.find(
-            (item) => item.nhan === nhanChon
-          );
-          const value = targetItemPhai.vePhai || "";
-          //2.2. Giờ thì tìm trong prop baiLamCuaHocSinh để update / thêm mới
-          const curBaiLamCuaHocSinh = [...targetBtvn.baiLamCuaHocSinh];
-          if (curBaiLamCuaHocSinh.length === 0) {
-            //2.3. Xử lý đẩy mới vào thôi
-            curBaiLamCuaHocSinh.push({
-              type: "matching",
-              id: idVeTrai,
-              content: value,
-            });
-          } else {
-            //Tìm xem có tồn tại chưa thì lại xử lý if tiêp
-            const existBaiLam = curBaiLamCuaHocSinh.find(
-              (item) => item.id === idVeTrai
-            );
-            if (!existBaiLam) {
-              curBaiLamCuaHocSinh.push({
-                type: "matching",
-                id: idVeTrai,
-                content: value,
-              });
-            } else {
-              existBaiLam.content = value;
-            }
-          } // end if
-          targetBtvn.baiLamCuaHocSinh = curBaiLamCuaHocSinh;
-        }
+        baiTapVeNhaCon.baiLamCuaHocSinh = baiLamCuaHocSinh;
       }
+
       state.hws = cloneHomeworks;
-      state.recentElementConfirmId = scrollToElementId;
+      state.updatingStore = false;
     },
+
+    //TODO: ổn rồi thì xóa nè
     scrollToSubmitErrorMessage(state) {
       state.recentElementConfirmId = "local-submit-homework-error-message";
     },

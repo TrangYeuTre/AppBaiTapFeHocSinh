@@ -44,17 +44,17 @@ export default function ExerciseItemMatching({
     if (itemsTraiWithStudentWork) setItemsTrai(itemsTraiWithStudentWork);
   }, [datas]);
 
-  const layDapAnCuaHocSinh = ({ idVeTrai, nhanChon, veTrai }) => {
-    dispatch(
-      HwsActions.updateAnswersMatching({
-        idVeTrai,
-        nhanChon,
-        veTrai,
-        scrollToElementId: `matching-${_id}`,
-        homeworkId: _id,
-      })
-    );
-  };
+  // const layDapAnCuaHocSinh = ({ idVeTrai, nhanChon, veTrai }) => {
+  //   dispatch(
+  //     HwsActions.updateAnswersMatching({
+  //       idVeTrai,
+  //       nhanChon,
+  //       veTrai,
+  //       scrollToElementId: `matching-${_id}`,
+  //       homeworkId: _id,
+  //     })
+  //   );
+  // };
 
   return (
     <div className="flex flex-col gap-0">
@@ -80,7 +80,7 @@ export default function ExerciseItemMatching({
             targetId={targetId}
             itemsTrai={itemsTrai}
             showStudentAnswers={showStudentAnswers}
-            layDapAnCuaHocSinh={layDapAnCuaHocSinh}
+            // layDapAnCuaHocSinh={layDapAnCuaHocSinh}
           />
           {/* VẾ PHẢI */}
           <VePhai itemsPhai={itemsPhai} />
@@ -97,7 +97,7 @@ export default function ExerciseItemMatching({
 const VeTrai = ({
   targetId,
   itemsTrai,
-  layDapAnCuaHocSinh,
+  // layDapAnCuaHocSinh,
   showStudentAnswers,
 }) => {
   return (
@@ -125,11 +125,11 @@ const VeTrai = ({
                           ? "option-item-selected !w-fit"
                           : "option-item !w-fit"
                       }
-                      onClick={layDapAnCuaHocSinh.bind(this, {
-                        idVeTrai: iTrai.idVeTrai,
-                        nhanChon: opt.nhan,
-                        veTrai: iTrai.veTrai,
-                      })}
+                      // onClick={layDapAnCuaHocSinh.bind(this, {
+                      //   idVeTrai: iTrai.idVeTrai,
+                      //   nhanChon: opt.nhan,
+                      //   veTrai: iTrai.veTrai,
+                      // })}
                     >
                       {opt.nhan}
                     </div>

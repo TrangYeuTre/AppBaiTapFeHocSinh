@@ -14,21 +14,6 @@
   @apply pointer-events-none opacity-50 border-4 border-coRed;
 }
 
-/* HOMEWORKSTACK CARD */
-.card-homework-wrapper {
-  @apply rounded-xl border-2 border-coGray5 mx-auto 
-  max-w-4xl w-full px-4  shadow-md mb-[160px]
-  lg:max-2xl:px-0 lg:max-2xl:w-2/3 2xl:w-1/2;
-}
-.card-homework-student-work-wrapper {
-  @apply p-4 flex flex-col gap-4 pb-8;
-}
-.card-homework-textarea {
-  @apply w-full h-32 border-2 border-coGray5 shadow-lg mt-3;
-}
-.card-homework-input {
-  @apply border-coGray5 w-fit shadow-lg mt-3;
-}
 /* TAG */
 .myTag {
   @apply bg-coWhite text-coGray4
@@ -63,7 +48,8 @@
 /* BUTTON */
 /* BUTTON */
 .btn {
-  @apply cursor-pointer text-2xl
+  @apply cursor-pointer 
+  text-base lg:max-2xl:text-2xl
   flex flex-row justify-center items-center
   py-2 px-4 w-full mx-auto border-2 rounded-md
   transition-all uppercase;
@@ -78,15 +64,18 @@
 }
 .btn-ghost {
   @apply border-coGray6 !bg-coGray6 !text-coWhite
-  hover:!bg-coWhite hover:!text-coGray6 !text-lg;
+  hover:!bg-coWhite hover:!text-coGray6 
+  text-sm;
 }
 
 .option-item {
-  @apply py-1 px-3 rounded-md border-2 border-coBlue1 text-coBlue1 bg-coWhite
-   hover:text-coWhite hover:bg-coBlue1 cursor-pointer;
+  @apply py-1 px-3 lg:py-2 lg:px-4
+   rounded-md border-2 border-coBlue1 text-coBlue1 bg-coWhite
+   hover:text-coWhite hover:bg-coBlue1 cursor-pointer shadow-md;
 }
 .option-item-selected {
-  @apply py-1 px-3 rounded-md border-2 border-coBlue1 text-coWhite bg-coBlue1 cursor-pointer;
+  @apply py-1 px-3 lg:py-2 lg:px-4
+   rounded-md border-2 border-coBlue1 text-coWhite bg-coBlue1 cursor-pointer;
 }
 
 /* CÁC PHẦN PHỤ TRONG THẺ RENDER DẠNG BÀI */
@@ -99,4 +88,7 @@
 
 .guide-text {
   @apply italic text-coGray2;
+}
+.error-text {
+  @apply bg-coRed text-coWhite italic text-center;
 }
