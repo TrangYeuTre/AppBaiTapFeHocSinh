@@ -166,7 +166,13 @@ export default function HomeworkActionsBar({
           )}
           {!showProgress && (
             <div className="flex flex-col gap-2 p-3">
-              <button type="button" className="btn btn-main" onClick={() => {}}>
+              <button
+                type="button"
+                className="btn btn-main"
+                onClick={() => {
+                  router.push("/exercises");
+                }}
+              >
                 Xem bài sửa
               </button>
               <SignOutAction />
