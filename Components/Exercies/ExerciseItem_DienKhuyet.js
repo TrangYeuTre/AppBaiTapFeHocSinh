@@ -1,11 +1,7 @@
 import Card from "../UI/Card";
-import Image from "next/image";
-import BlockContentBar from "../UI/BlockContentBar";
 import LoadImageFailMessage from "../UI/LoadImageFailMessage";
 import ImagePreview from "../UI/ImagePreview";
 import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { HwsActions } from "../../store/hwsSlice";
 import Status from "./Status";
 import AutoResizeTextarea from "./AutoHeightTextarea";
 
@@ -19,11 +15,6 @@ export default function ExerciseItemDienKhuyet({
   soLanNop,
   instanceHomeworks,
 }) {
-  const dispatch = useDispatch();
-  const showStudentAnswers = useSelector(
-    (state) => state.hws.showStudentAnswers
-  );
-
   const [homeworkFillEmptyRender, setHomeworkFillEmptyRender] = useState([]);
 
   useEffect(() => {
@@ -38,18 +29,6 @@ export default function ExerciseItemDienKhuyet({
     setHomeworkFillEmptyRender(convertedHomeworkFillEmptyRender);
   }, [datas]);
 
-  // const layDapAnCuaHocSinh = (dataId) => {
-  //   const ele = document.getElementById(`${_id}-${dataId}`);
-  //   const valueGot = ele.value || "";
-  //   dispatch(
-  //     HwsActions.updateAnswersFillEmpty({
-  //       homeworkId: _id,
-  //       homeworkFillEmptyId: dataId,
-  //       answer: valueGot,
-  //       scrollToElementId: `dien-khuyet-${dataId}`,
-  //     })
-  //   );
-  // };
   return homeworkFillEmptyRender.map((item) => {
     return (
       <div
@@ -64,7 +43,6 @@ export default function ExerciseItemDienKhuyet({
             <ImagePreview url={item.imageUrl} />
             <Status tinhTrang={tinhTrang} />
             <hr className="line-white" />
-            {/* <label>Đáp án</label> */}
             <p className="guide-text" id={`dien-khuyet-${item.id}`}>
               Bé hãy điền đáp án vào chỗ trống
             </p>
@@ -73,35 +51,15 @@ export default function ExerciseItemDienKhuyet({
             )}
 
             {item.kieu === "Điền khuyết đầu" && (
-              <DienKhuyetDau
-                _id={_id}
-                item={item}
-                showStudentAnswers={showStudentAnswers}
-              />
+              <DienKhuyetDau _id={_id} item={item} />
             )}
             {item.kieu === "Điền khuyết cuối" && (
-              <DienKhuyetCuoi
-                _id={_id}
-                item={item}
-                showStudentAnswers={showStudentAnswers}
-              />
+              <DienKhuyetCuoi _id={_id} item={item} />
             )}
             {item.kieu === "Điền khuyết giữa" && (
-              <DienKhuyetGiua
-                _id={_id}
-                item={item}
-                showStudentAnswers={showStudentAnswers}
-              />
+              <DienKhuyetGiua _id={_id} item={item} />
             )}
-            {/* <button
-              type="button"
-              className={`btn btn-main ${item.blockContent && "line-through"}`}
-              onClick={layDapAnCuaHocSinh.bind(this, item.id)}
-            >
-              Xác nhận
-            </button> */}
           </div>
-          {item.blockContent && <BlockContentBar />}
         </Card>
         {tinhTrang === "Đã sửa" && <BaiSuaCuaGiaoVien item={item} />}
       </div>
@@ -109,7 +67,7 @@ export default function ExerciseItemDienKhuyet({
   });
 }
 
-const DienKhuyetDau = ({ _id, item, showStudentAnswers }) => {
+const DienKhuyetDau = ({ _id, item }) => {
   return (
     <div className="fill-empty-option">
       <input
@@ -118,14 +76,14 @@ const DienKhuyetDau = ({ _id, item, showStudentAnswers }) => {
         required
         placeholder="Nhập đáp án..."
         minLength={2}
-        defaultValue={showStudentAnswers ? item.content : null}
+        defaultValue={item.content || null}
       />
       <p>{item.ve1}</p>
     </div>
   );
 };
 
-const DienKhuyetGiua = ({ _id, item, showStudentAnswers }) => {
+const DienKhuyetGiua = ({ _id, item }) => {
   return (
     <div className="fill-empty-option">
       <p>{item.ve1}</p>
@@ -135,13 +93,13 @@ const DienKhuyetGiua = ({ _id, item, showStudentAnswers }) => {
         required
         placeholder="Nhập đáp án..."
         minLength={2}
-        defaultValue={showStudentAnswers ? item.content : null}
+        defaultValue={item.content || null}
       />
       <p>{item.ve2}</p>
     </div>
   );
 };
-const DienKhuyetCuoi = ({ _id, item, showStudentAnswers }) => {
+const DienKhuyetCuoi = ({ _id, item }) => {
   return (
     <div className="fill-empty-option">
       <p>{item.ve1}</p>
@@ -151,7 +109,7 @@ const DienKhuyetCuoi = ({ _id, item, showStudentAnswers }) => {
         required
         placeholder="Nhập đáp án..."
         minLength={2}
-        defaultValue={showStudentAnswers ? item.content : null}
+        defaultValue={item.content || null}
       />
     </div>
   );

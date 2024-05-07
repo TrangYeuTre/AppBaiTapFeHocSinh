@@ -1,35 +1,29 @@
 import Card from "../UI/Card";
 import Image from "next/image";
 import { useState, useEffect, useMemo } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { HwsActions } from "../../store/hwsSlice";
 import { checkBlockHomework } from "../../helper/uti";
 import Status from "./Status";
-import BlockContentBar from "../UI/BlockContentBar";
 import AutoResizeTextarea from "./AutoHeightTextarea";
 
 export default function ExerciseItemMatching({
   datas,
   tinhTrang,
   _id,
-  baiTapLonId,
   baiLamCuaHocSinh,
   dapAnCuaGiaoVien,
   data,
   soLanNop,
   instanceHomeworks,
 }) {
-  const dispatch = useDispatch();
-  const showStudentAnswers = useSelector(
-    (state) => state.hws.showStudentAnswers
-  );
-
   const blockContent = useMemo(() => {
     return checkBlockHomework({ soLanNop, tinhTrang });
   }, [soLanNop, tinhTrang]);
 
   const [itemsTrai, setItemsTrai] = useState([]);
   const [itemsPhai, setItemsPhai] = useState([]);
+
+  console.log(itemsTrai);
+  console.log(itemsPhai);
 
   //Tạo một cái target id để cuộn xuống phần tử sau khi update
   const targetId = "matching-" + _id;
@@ -44,28 +38,10 @@ export default function ExerciseItemMatching({
     if (itemsTraiWithStudentWork) setItemsTrai(itemsTraiWithStudentWork);
   }, [datas]);
 
-  // const layDapAnCuaHocSinh = ({ idVeTrai, nhanChon, veTrai }) => {
-  //   dispatch(
-  //     HwsActions.updateAnswersMatching({
-  //       idVeTrai,
-  //       nhanChon,
-  //       veTrai,
-  //       scrollToElementId: `matching-${_id}`,
-  //       homeworkId: _id,
-  //     })
-  //   );
-  // };
-
   return (
     <div className="flex flex-col gap-0">
       <Card plusStyle={`p-0 w-full ${blockContent && "disabled-card"}`}>
         <div className="matching-wrapper">
-          {/* <h3 id={`matching-${_id}`}>Đề bài: {data.deBai || null}</h3> */}
-          {/* <textarea
-            id={`matching-${_id}`}
-            defaultValue={`Đề bài: ${data.deBai || null}`}
-            className="bg-coGray5 font-semibold pointer-events-none p-2 border-none"
-          /> */}
           <AutoResizeTextarea
             id={`matching-${_id}`}
             inputValue={`Đề bài: ${data.deBai || null}`}
@@ -76,16 +52,10 @@ export default function ExerciseItemMatching({
         <hr className="line-white" />
         <div className="matching-grid">
           {/* VẾ TRÁI */}
-          <VeTrai
-            targetId={targetId}
-            itemsTrai={itemsTrai}
-            showStudentAnswers={showStudentAnswers}
-            // layDapAnCuaHocSinh={layDapAnCuaHocSinh}
-          />
+          <VeTrai targetId={targetId} itemsTrai={itemsTrai} />
           {/* VẾ PHẢI */}
           <VePhai itemsPhai={itemsPhai} />
         </div>
-        {blockContent && <BlockContentBar />}
       </Card>
       {tinhTrang === "Đã sửa" && (
         <BaiSuaCuaGiaoVien dapAnCuaGiaoVien={dapAnCuaGiaoVien} />
@@ -94,12 +64,7 @@ export default function ExerciseItemMatching({
   );
 }
 
-const VeTrai = ({
-  targetId,
-  itemsTrai,
-  // layDapAnCuaHocSinh,
-  showStudentAnswers,
-}) => {
+const VeTrai = ({ targetId, itemsTrai }) => {
   return (
     <div className="matching-grid-equal-wrapper" id={targetId}>
       {itemsTrai.length > 0 &&
@@ -121,15 +86,10 @@ const VeTrai = ({
                     <div
                       key={Math.random().toString() + opt.nhan}
                       className={
-                        opt.isSelected && showStudentAnswers
+                        opt.isSelected
                           ? "option-item-selected !w-fit"
                           : "option-item !w-fit"
                       }
-                      // onClick={layDapAnCuaHocSinh.bind(this, {
-                      //   idVeTrai: iTrai.idVeTrai,
-                      //   nhanChon: opt.nhan,
-                      //   veTrai: iTrai.veTrai,
-                      // })}
                     >
                       {opt.nhan}
                     </div>
@@ -158,14 +118,18 @@ const VePhai = ({ itemsPhai }) => {
               <p className="font-semibold">{iPhai.vePhai}</p>
               <div className="matching-grid-right-image-wrapper">
                 {iPhai.hinhPhai && (
-                  <Image
-                    src={iPhai.hinhPhai}
-                    alt="Hình minh họa"
-                    width={120}
-                    height={120}
-                    layout="responsive"
-                    objectFit="cover"
-                  />
+                  <div
+                    className="w-full relative
+                h-[120px] lg:h-[200px]"
+                  >
+                    <Image
+                      src={iPhai.hinhPhai}
+                      alt="Hình minh họa bài tập matching"
+                      fill={true}
+                      objectFit="contain"
+                      objectPosition="center"
+                    />
+                  </div>
                 )}
               </div>
             </div>

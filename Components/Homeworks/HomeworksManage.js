@@ -1,20 +1,12 @@
 import { useLoadHomework } from "../../hooks/useHooks";
 import HomeworkType from "./HomeworkType";
 import CardHomework from "../UI/CardHomework";
-import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
-import { AuthActions } from "../../store/authSlice";
-import { FaSignOutAlt } from "react-icons/fa";
+import SignOutAction from "../UI/SignOutAction";
 
 export default function HomeworksManage({ hocSinh }) {
   const { homeworkData, validSubmit } = useLoadHomework();
   const router = useRouter();
-  const dispatch = useDispatch();
-
-  const signOutHandler = () => {
-    dispatch(AuthActions.clearAuth());
-    router.push("/auth");
-  };
 
   const backToExercises = () => {
     router.replace("/exercises");
@@ -32,13 +24,7 @@ export default function HomeworksManage({ hocSinh }) {
           >
             Xem bài sửa.
           </button>
-          <button
-            type="button"
-            className="btn btn-submit"
-            onClick={signOutHandler}
-          >
-            <FaSignOutAlt /> Đăng xuất
-          </button>
+          <SignOutAction />
         </div>
       </CardHomework>
     );

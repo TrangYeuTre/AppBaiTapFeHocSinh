@@ -4,6 +4,7 @@ import { AuthContext } from "../store/authContext";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import Account from "../classes/Account";
+import staticData from "../data/static.json";
 
 export const useProtect = () => {
   const { token, username, hocSinh } = useSelector((state) => state.auth);
@@ -62,4 +63,13 @@ export const useLoadHomework = () => {
     homeworkOrdinal: loadOrdinalNubmer,
     totalHomeworks: amountHomeworks,
   };
+};
+
+export const useMainternance = () => {
+  const router = useRouter();
+  const MAINTERNANCE = staticData.MAINTERNANCE;
+  useEffect(() => {
+    if (MAINTERNANCE) router.replace("/mainternance");
+  }, [MAINTERNANCE]);
+  return MAINTERNANCE;
 };

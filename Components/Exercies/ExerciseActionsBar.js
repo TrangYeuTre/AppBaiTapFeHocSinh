@@ -1,16 +1,8 @@
 import { useRouter } from "next/router";
-import { AuthActions } from "../../store/authSlice";
-import { FaSignOutAlt } from "react-icons/fa";
-import { useDispatch } from "react-redux";
+import SignOutAction from "../UI/SignOutAction";
 
 export default function ExerciseActionsBar({ isLoading, validSubmit }) {
   const router = useRouter();
-  const dispatch = useDispatch();
-
-  const signOutHandler = () => {
-    dispatch(AuthActions.clearAuth());
-    router.push("/auth");
-  };
 
   const backToHomework = () => {
     router.replace("/homeworks");
@@ -23,13 +15,7 @@ export default function ExerciseActionsBar({ isLoading, validSubmit }) {
         <button type="button" className="btn btn-main" onClick={backToHomework}>
           Trở lại
         </button>
-        <button
-          type="button"
-          className="btn btn-submit"
-          onClick={signOutHandler}
-        >
-          <FaSignOutAlt /> Đăng xuất
-        </button>
+        <SignOutAction />
       </div>
     </section>
   );

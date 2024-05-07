@@ -21,7 +21,6 @@ export default class HomeworksStack {
     };
   }
   createInitHomeworksRender(loadedHomeworks) {
-    console.log(loadedHomeworks);
     if (!loadedHomeworks || loadedHomeworks.length === 0) return this;
 
     for (let i = 0; i < loadedHomeworks.length; i++) {
@@ -57,13 +56,8 @@ export default class HomeworksStack {
       }
     }
 
-    // this.#randomHomeworks();
     this.#makeOrdinalNumbers();
-
     this.#calcAmountHomeworks();
-
-    // console.log("--- bài tập về nhà thành phẩm nè");
-    // console.log(this.homeworks);
 
     return this;
   }
@@ -134,8 +128,6 @@ export default class HomeworksStack {
     return matching;
   }
   #collectTrueFalseData(baiTapVeNhaCon) {
-    // console.log("---> truy data tn");
-    // console.log(baiTapVeNhaCon);
     const trueFalse = new HomeworkStackMatching(
       baiTapVeNhaCon._id,
       null,

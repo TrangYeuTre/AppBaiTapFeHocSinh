@@ -1,14 +1,17 @@
 import { useEffect } from "react";
-import { useProtect, useAxiosInstance } from "../../hooks/useHooks";
+import {
+  useProtect,
+  useAxiosInstance,
+  useMainternance,
+} from "../../hooks/useHooks";
 import { getAvailableHomeworks1Student } from "../../helper/axiosApi";
 import ExerciseManage from "../../Components/Exercies/ExerciseManage";
 import { useDispatch } from "react-redux";
 import { HwsActions } from "../../store/hwsSlice";
-// import { HwsRenderActions } from "../../store/hwsRenderSlice";
 import { useRouter } from "next/router";
-// import HomeworksStack from "../../classes/HomeworksStack";
 
 export default function ExerciesRoute() {
+  useMainternance();
   const dispatch = useDispatch();
   const router = useRouter();
   const validAccount = useProtect();

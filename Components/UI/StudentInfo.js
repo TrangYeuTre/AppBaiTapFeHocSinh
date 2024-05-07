@@ -1,44 +1,15 @@
-import { useSelector, useDispatch } from "react-redux";
-import { HwsActions } from "../../store/hwsSlice";
 import { useState } from "react";
 
 export default function StudentInfo({ username }) {
-  const dispatch = useDispatch();
-  const showStudentAnswers = useSelector(
-    (state) => state.hws.showStudentAnswers
-  );
-
   const [showGuide, setShowGuide] = useState(false);
 
   const showGuildeHandler = () => setShowGuide((preState) => !preState);
-
-  const showHideStudentAnwersHandler = () => {
-    if (showStudentAnswers) {
-      dispatch(HwsActions.hideStudentAnswers());
-    } else {
-      dispatch(HwsActions.showStudentAnswers());
-    }
-  };
 
   return (
     <div className="flex flex-col flex-1 flex-wrap gap-2 border-4 bg-coWhite border-coGreen p-4 rounded-md shadow-xl">
       <p>
         Học sinh: <span className="font-semibold text-coRed">{username}</span>
       </p>
-      <div className="flex flex-row flex-1 gap-3 ">
-        <p>
-          {showStudentAnswers
-            ? "Để làm lại toàn bộ bài tập, ấn nút ->"
-            : "Xem lại bài đã làm của học sinh, ấn nút ->"}
-        </p>
-        <button
-          type="button"
-          className="btn btn-main w-fit mx-0"
-          onClick={showHideStudentAnwersHandler}
-        >
-          {showStudentAnswers ? "Ẩn" : "Xem "}
-        </button>
-      </div>
       <div className="flex flex-row flex-1 gap-3 ">
         <p className="text-coRed italic">Xem hướng dẫn làm bài</p>
         <button

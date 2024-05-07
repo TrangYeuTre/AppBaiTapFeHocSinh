@@ -22,6 +22,7 @@ export default function ExerciseManage({ username, hocSinh }) {
 
   const instanceHomeworks = new Homeworks(homeworks);
   const baiTapVeNhaRender = instanceHomeworks.getBaiTapVeNhaRender();
+  console.log(baiTapVeNhaRender);
 
   const [error, setError] = useState({
     init: true,
@@ -54,7 +55,11 @@ export default function ExerciseManage({ username, hocSinh }) {
   if (!homeworks || homeworks.length === 0)
     return (
       <Card plusStyle="w-1/2">
-        <p>Chưa có bài tập được giao 😎😎😎</p>
+        <div>
+          <p>Chưa có bài tập được giao 😎😎😎</p>
+          <p>Bé hãy trở lại sau nhé.</p>
+          <button></button>
+        </div>
       </Card>
     );
 

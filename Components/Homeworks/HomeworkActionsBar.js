@@ -1,15 +1,15 @@
 import ProgressBar from "./ProgressBar";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
-import { AuthActions } from "../../store/authSlice";
-import { FaSignOutAlt, FaStepBackward } from "react-icons/fa";
+import { FaStepBackward } from "react-icons/fa";
 import { IoSettingsSharp } from "react-icons/io5";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { manipulateWithLocalStorage } from "../../helper/uti";
 import { submitAnswers } from "../../helper/axiosApi";
 import Image from "next/image";
 import Homeworks from "../../classes/Homeworks";
 import { useAxiosInstance } from "../../hooks/useHooks";
+import SignOutAction from "../UI/SignOutAction";
 
 export default function HomeworkActionsBar({
   doAction1,
@@ -19,7 +19,6 @@ export default function HomeworkActionsBar({
   validSubmit,
   hocSinh,
 }) {
-  const dispatch = useDispatch();
   const router = useRouter();
 
   const [showProgress, setShowProgress] = useState(true);
@@ -32,11 +31,6 @@ export default function HomeworkActionsBar({
     code: null,
     message: "",
   });
-
-  const signOutHandler = () => {
-    dispatch(AuthActions.clearAuth());
-    router.push("/auth");
-  };
 
   const submitHomeworksHandler = async () => {
     const statusCode = await submitAnswers({
@@ -138,13 +132,7 @@ export default function HomeworkActionsBar({
               >
                 Xem bài sửa
               </button>
-              <button
-                type="button"
-                className="btn btn-submit"
-                onClick={signOutHandler}
-              >
-                <FaSignOutAlt /> Đăng xuất
-              </button>
+              <SignOutAction />
             </div>
           )}
         </div>
@@ -181,13 +169,7 @@ export default function HomeworkActionsBar({
               <button type="button" className="btn btn-main" onClick={() => {}}>
                 Xem bài sửa
               </button>
-              <button
-                type="button"
-                className="btn btn-submit"
-                onClick={signOutHandler}
-              >
-                <FaSignOutAlt /> Đăng xuất
-              </button>
+              <SignOutAction />
             </div>
           )}
           {!showProgress && (
@@ -218,14 +200,7 @@ export default function HomeworkActionsBar({
               Tải lại
             </button>
           )}
-          {resultMessage.code === 500 && (
-            <button
-              className="btn btn-submit !w-fit !mx-0"
-              onClick={signOutHandler}
-            >
-              Đăng xuất
-            </button>
-          )}
+          {resultMessage.code === 500 && <SignOutAction />}
         </div>
       )}
     </section>

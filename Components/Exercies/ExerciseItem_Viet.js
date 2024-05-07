@@ -1,10 +1,7 @@
 import Card from "../UI/Card";
 import LoadImageFailMessage from "../UI/LoadImageFailMessage";
-import BlockContentBar from "../UI/BlockContentBar";
 import ImagePreview from "../UI/ImagePreview";
 import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { HwsActions } from "../../store/hwsSlice";
 import Status from "./Status";
 import AutoResizeTextarea from "./AutoHeightTextarea";
 
@@ -18,10 +15,6 @@ export default function ExerciseItemViet({
   soLanNop,
   instanceHomeworks,
 }) {
-  const dispatch = useDispatch();
-  const showStudentAnswers = useSelector(
-    (state) => state.hws.showStudentAnswers
-  );
   const [homeworkWrittingRender, setHomeworkWrittingRender] = useState([]);
 
   useEffect(() => {
@@ -46,21 +39,6 @@ export default function ExerciseItemViet({
       });
     setHomeworkWrittingRender(homeworkWrittingRender);
   }, [datas]);
-
-  // const layDapAnCuaHocSinh = (dataId) => {
-  //   const ele = document.getElementById(`${_id}-${dataId}`);
-  //   const valueGot = ele.value || "";
-  //   console.log(_id, dataId);
-  //   return;
-  //   dispatch(
-  //     HwsActions.updateAnswersWriting({
-  //       homeworkId: _id,
-  //       homeworkWrittingId: dataId,
-  //       answer: valueGot,
-  //       scrollToElementId: `viet-${dataId}`,
-  //     })
-  //   );
-  // };
 
   return homeworkWrittingRender.map((item) => {
     return (
@@ -89,17 +67,9 @@ export default function ExerciseItemViet({
               minLength={3}
               disabled={item.imageUrl === "/assets/404-error.png" ? true : null}
               id={`${_id}-${item.id}`}
-              defaultValue={showStudentAnswers ? item.content : null}
+              defaultValue={item.content || null}
             />
-            {/* <button
-              type="button"
-              className={`btn btn-main ${item.blockContent && "line-through"}`}
-              onClick={layDapAnCuaHocSinh.bind(this, item.id)}
-            >
-              Xác nhận
-            </button> */}
           </div>
-          {item.blockContent && <BlockContentBar />}
         </Card>
         {tinhTrang === "Đã sửa" && <BaiSuaCuaGiaoVien item={item} />}
       </div>
