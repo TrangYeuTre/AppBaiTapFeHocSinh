@@ -140,7 +140,7 @@ export default function HomeworkActionsBar({
       {!resultMessage.code && (
         <div className="homework-actions-container-small">
           {showProgress && <ProgressBar />}
-          {showProgress && (
+          {showProgress && !validSubmit && (
             <button
               type="button"
               onClick={() => {
@@ -151,6 +151,14 @@ export default function HomeworkActionsBar({
               }`}
             >
               Tiếp theo →
+            </button>
+          )}
+          {showProgress && validSubmit && (
+            <button
+              onClick={submitHomeworksHandler}
+              className="btn btn-submit  !mx-0 animate-pulse"
+            >
+              Nộp bài
             </button>
           )}
           {showProgress && (
