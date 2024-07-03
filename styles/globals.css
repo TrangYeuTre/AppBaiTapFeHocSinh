@@ -23,6 +23,9 @@ textarea {
   @apply outline-none py-1 px-4 rounded-xl border-4 bg-coWhite border-coWhite
    focus:border-coPink placeholder:text-coGray4 placeholder:text-base box-border;
 }
+.dan-dong-textarea {
+  @apply 2xl:!leading-[2.5rem] !text-justify;
+}
 button {
   @apply disabled:!bg-coGray2 disabled:cursor-not-allowed;
 }

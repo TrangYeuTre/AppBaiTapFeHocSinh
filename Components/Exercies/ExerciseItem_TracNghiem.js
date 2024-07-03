@@ -67,6 +67,7 @@ export default function ExerciseItemTracNghiem({
           {imageUrl && <ImagePreview url={imageUrl} />}
           <Status tinhTrang={tinhTrang} />
           <hr className="line-white" />
+          <h1>Câu hỏi: {data.tenBaiTap}</h1>
           <p className="guide-text">Bé hãy chọn đáp án đúng</p>
           <div className="true-false-options-wrapper">
             {options.length > 0 &&

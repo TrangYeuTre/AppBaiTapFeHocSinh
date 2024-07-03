@@ -2,6 +2,7 @@ import HomeworkStack, {
   HomeworkStackFillEmpty,
   HomeworkStackMatching,
   HomeworkStackWritting,
+  HomeworkStackTrueFalse,
 } from "./HomeworkStack";
 
 export default class HomeworksStack {
@@ -75,6 +76,7 @@ export default class HomeworksStack {
           deBai: baiTapVeNhaCon.data.deBai,
           imageUrl: data.imageUrl,
           tinhTrang: baiTapVeNhaCon.tinhTrang,
+          tenBaiTap: baiTapVeNhaCon.data.tenBaiTap,
         },
         "viet",
         data.id
@@ -95,6 +97,7 @@ export default class HomeworksStack {
         baiTapVeNhaCon.soLanNop,
         {
           deBai: baiTapVeNhaCon.data.deBai,
+          tenBaiTap: baiTapVeNhaCon.data.tenBaiTap,
           imageUrl: data.imageUrl,
           tinhTrang: baiTapVeNhaCon.tinhTrang,
           kieu: data.kieu,
@@ -118,6 +121,7 @@ export default class HomeworksStack {
       baiTapVeNhaCon.soLanNop,
       {
         deBai: baiTapVeNhaCon.data.deBai,
+        tenBaiTap: baiTapVeNhaCon.data.tenBaiTap,
         tinhTrang: baiTapVeNhaCon.tinhTrang,
         itemsPhai: baiTapVeNhaCon.data.matching.datas.itemsPhai,
         itemsTrai: baiTapVeNhaCon.data.matching.datas.itemsTrai,
@@ -128,7 +132,8 @@ export default class HomeworksStack {
     return matching;
   }
   #collectTrueFalseData(baiTapVeNhaCon) {
-    const trueFalse = new HomeworkStackMatching(
+    console.log(baiTapVeNhaCon);
+    const trueFalse = new HomeworkStackTrueFalse(
       baiTapVeNhaCon._id,
       null,
       baiTapVeNhaCon.data.nguoiSuaBaiTap,
@@ -137,11 +142,13 @@ export default class HomeworksStack {
       baiTapVeNhaCon.soLanNop,
       {
         deBai: baiTapVeNhaCon.data.deBai,
+        tenBaiTap: baiTapVeNhaCon.data.tenBaiTap,
         tinhTrang: baiTapVeNhaCon.tinhTrang,
         options: baiTapVeNhaCon.data.tracNghiem.datas,
         imageUrl: baiTapVeNhaCon.data.tracNghiem.imageUrl,
       },
-      "tracNghiem"
+      "tracNghiem",
+      baiTapVeNhaCon.data.tracNghiem.cauHoi
     );
     return trueFalse;
   }

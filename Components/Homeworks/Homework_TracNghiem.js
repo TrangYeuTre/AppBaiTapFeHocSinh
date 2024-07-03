@@ -17,7 +17,8 @@ export default function HomeworkTypeTracNghiem({
   validSubmit,
   hocSinh,
 }) {
-  const { renderDatas } = homeworkData;
+  const { renderDatas, cauHoi } = homeworkData;
+  console.log(homeworkData);
   const dispatch = useDispatch();
   const updatingStore = useSelector((state) => state.hws.updatingStore);
   const blockHomework = useMemo(() => {
@@ -123,6 +124,10 @@ export default function HomeworkTypeTracNghiem({
           <hr className="line-gray" />
 
           <div className="card-homework-student-work-wrapper">
+            {cauHoi && (
+              <h1 className="text-coRed">Câu hỏi: {renderDatas.tenBaiTap}</h1>
+            )}
+
             <p className="guide-text">Bé hãy chọn đáp án đúng</p>
             {localError && (
               <p

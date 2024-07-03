@@ -24,6 +24,7 @@ module.exports = {
       coGreen: "#508D69",
       coGreen2: "#CDFADB",
       coGreen3: "#2cb67d",
+      coYellow: "#FFF8DB"
     },
     extend: {},
   },

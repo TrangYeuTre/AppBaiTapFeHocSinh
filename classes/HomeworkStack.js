@@ -79,7 +79,8 @@ export class HomeworkStackTrueFalse extends HomeworkStack {
     ketQua,
     soLanNop,
     renderDatas = {},
-    type = "tracNghiem"
+    type = "tracNghiem",
+    cauHoi
   ) {
     super(
       idBaiTapVeNhaCon,
@@ -91,6 +92,7 @@ export class HomeworkStackTrueFalse extends HomeworkStack {
       renderDatas
     );
     this.type = type;
+    this.cauHoi = cauHoi;
   }
 }
 export class HomeworkStackMatching extends HomeworkStack {
