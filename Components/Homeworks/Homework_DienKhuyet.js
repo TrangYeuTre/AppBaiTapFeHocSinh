@@ -1,4 +1,3 @@
-import Card from "../UI/Card";
 import CardHomework from "../UI/CardHomework";
 import HomeworkActionsBar from "./HomeworkActionsBar";
 import LoadImageFailMessage from "../UI/LoadImageFailMessage";

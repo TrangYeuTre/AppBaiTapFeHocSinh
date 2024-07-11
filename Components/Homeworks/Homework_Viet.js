@@ -114,7 +114,11 @@ export default function HomeworkTypeViet({
           <hr className="line-gray" />
 
           <div className="card-homework-student-work-wrapper">
-            <p className="guide-text">Bé hãy điền đáp án vào chỗ trống</p>
+            <p className="guide-text">
+              {renderDatas.cauHoi
+                ? `Câu hỏi: ${renderDatas.cauHoi}`
+                : "Bé hãy điền đáp án vào chỗ trống"}
+            </p>
             {localError && (
               <p
                 id={`local-error-message-writting-${homeworkData.idBaiTapViet}`}

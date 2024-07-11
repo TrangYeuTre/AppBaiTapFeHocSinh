@@ -12,6 +12,8 @@ export default function ImagePreview({ url }) {
         fill={true}
         objectFit="contain"
         objectPosition="center"
+        placeholder="blur"
+        blurDataURL="/assets/loading.gif"
       />
       <div
         className="absolute bottom-0 w-full opacity-80

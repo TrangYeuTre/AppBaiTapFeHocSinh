@@ -75,6 +75,7 @@ export default class HomeworksStack {
         {
           deBai: baiTapVeNhaCon.data.deBai,
           imageUrl: data.imageUrl,
+          cauHoi: data.cauHoi,
           tinhTrang: baiTapVeNhaCon.tinhTrang,
           tenBaiTap: baiTapVeNhaCon.data.tenBaiTap,
         },

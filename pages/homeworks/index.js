@@ -46,7 +46,6 @@ const doFetchExs = async ({
     axiosInstance,
     router,
   });
-  console.log(homeworks);
   const newHomeworksRender = new HomeworksStack({})
     .createInitHomeworksRender(homeworks)
     .getCoreData();
