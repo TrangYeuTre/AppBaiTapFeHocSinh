@@ -114,7 +114,12 @@ export default function HomeworkTypeViet({
           <hr className="line-gray" />
 
           <div className="card-homework-student-work-wrapper">
-            <p className="guide-text">
+            <p
+              className={`guide-text ${
+                renderDatas.cauHoi &&
+                "text-coWhite font-semibold p-2 bg-coRed rounded-md"
+              }`}
+            >
               {renderDatas.cauHoi
                 ? `Câu hỏi: ${renderDatas.cauHoi}`
                 : "Bé hãy điền đáp án vào chỗ trống"}

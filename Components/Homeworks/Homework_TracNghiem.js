@@ -125,7 +125,9 @@ export default function HomeworkTypeTracNghiem({
 
           <div className="card-homework-student-work-wrapper">
             {cauHoi && (
-              <h1 className="text-coRed">Câu hỏi: {renderDatas.tenBaiTap}</h1>
+              <h1 className="text-coWhite font-semibold p-2 bg-coRed rounded-md">
+                Câu hỏi: {renderDatas.tenBaiTap}
+              </h1>
             )}
 
             <p className="guide-text">Bé hãy chọn đáp án đúng</p>
