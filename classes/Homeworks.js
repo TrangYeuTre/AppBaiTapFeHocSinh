@@ -417,8 +417,6 @@ export default class Homeworks {
       );
       return cloneItemsTrai;
     }
-    console.log(baiLamCuaHocSinh);
-    console.log(cloneItemsTrai);
     baiLamCuaHocSinh.forEach((item) => {
       const { id: idVeTrai, content } = item;
       const targetItemTrai = cloneItemsTrai.find(

@@ -7,12 +7,8 @@ import Modal from "../../Components/modal/Modal";
 import NotiUpdatingStore from "../UI/NotiUpdatingStore";
 import ExerciseActionsBar from "./ExerciseActionsBar";
 import { useAxiosInstance } from "../../hooks/useHooks";
-import { useState, useEffect } from "react";
-import { submitAnswers } from "../../helper/axiosApi";
-import { scrollToElementId } from "../../helper/uti";
-import { useSelector, useDispatch } from "react-redux";
-import { useRouter } from "next/router";
-import { HwsActions } from "../../store/hwsSlice";
+import { useState } from "react";
+import { useSelector } from "react-redux";
 
 export default function ExerciseManage({ username, hocSinh }) {
   const homeworks = useSelector((state) => state.hws.hws);
@@ -22,7 +18,6 @@ export default function ExerciseManage({ username, hocSinh }) {
 
   const instanceHomeworks = new Homeworks(homeworks);
   const baiTapVeNhaRender = instanceHomeworks.getBaiTapVeNhaRender();
-  console.log(baiTapVeNhaRender);
 
   const [error, setError] = useState({
     init: true,

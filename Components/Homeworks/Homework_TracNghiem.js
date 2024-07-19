@@ -18,7 +18,6 @@ export default function HomeworkTypeTracNghiem({
   hocSinh,
 }) {
   const { renderDatas, cauHoi } = homeworkData;
-  console.log(homeworkData);
   const dispatch = useDispatch();
   const updatingStore = useSelector((state) => state.hws.updatingStore);
   const blockHomework = useMemo(() => {

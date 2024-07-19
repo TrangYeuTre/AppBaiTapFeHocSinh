@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from "react";
+import { useMemo } from "react";
 import ExerciseItemViet from "./ExerciseItem_Viet";
 import ExerciseItemTracNghiem from "./ExerciseItem_TracNghiem";
 import ExerciseItemDienKhuyet from "./ExerciseItem_DienKhuyet";

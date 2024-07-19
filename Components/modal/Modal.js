@@ -1,5 +1,5 @@
 import ReactDOM from "react-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { HwsActions } from "../../store/hwsSlice";
 
 export default function Modal({ children }) {

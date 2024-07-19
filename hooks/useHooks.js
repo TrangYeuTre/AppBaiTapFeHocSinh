@@ -1,6 +1,5 @@
 import { useRouter } from "next/router";
-import { useContext, useEffect, useMemo, useRef } from "react";
-import { AuthContext } from "../store/authContext";
+import { useEffect } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import Account from "../classes/Account";
@@ -19,7 +18,6 @@ export const useProtect = () => {
 
   const validAccount = new Account(username, hocSinh, token);
   return validAccount;
-  // return { username, hocSinh, token };
 };
 
 export const useAxiosInstance = (token) => {

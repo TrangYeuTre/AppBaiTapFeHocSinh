@@ -22,9 +22,6 @@ export default function ExerciseItemMatching({
   const [itemsTrai, setItemsTrai] = useState([]);
   const [itemsPhai, setItemsPhai] = useState([]);
 
-  console.log(itemsTrai);
-  console.log(itemsPhai);
-
   //Tạo một cái target id để cuộn xuống phần tử sau khi update
   const targetId = "matching-" + _id;
 

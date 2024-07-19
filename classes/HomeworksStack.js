@@ -133,7 +133,6 @@ export default class HomeworksStack {
     return matching;
   }
   #collectTrueFalseData(baiTapVeNhaCon) {
-    console.log(baiTapVeNhaCon);
     const trueFalse = new HomeworkStackTrueFalse(
       baiTapVeNhaCon._id,
       null,

@@ -54,6 +54,5 @@ export function manipulateWithLocalStorage({
         }
       }
   }
-  console.log();
   if (order === "get") return result;
 }

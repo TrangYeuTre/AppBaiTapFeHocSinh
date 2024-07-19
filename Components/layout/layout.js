@@ -1,5 +1,3 @@
-import { Fragment } from "react";
-import Header from "./Header";
 
 export default function Layout({ children }) {
   const preventRightClick = (e) => {
