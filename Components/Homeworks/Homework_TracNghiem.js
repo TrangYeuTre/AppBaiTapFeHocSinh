@@ -1,16 +1,20 @@
-import Card from "../UI/Card";
 import CardHomework from "../UI/CardHomework";
 import HomeworkActionsBar from "./HomeworkActionsBar";
-import LoadImageFailMessage from "../UI/LoadImageFailMessage";
 import BlockContentBar from "../UI/BlockContentBar";
-import ImagePreview from "../UI/ImagePreview";
-import { useState, useEffect, useMemo, act } from "react";
+// import ImagePreview from "../UI/ImagePreview";
+import { useState, useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { HwsActions } from "../../store/hwsSlice";
 import { HwsRenderActions } from "../../store/hwsRenderSlice";
 import { manipulateWithLocalStorage } from "../../helper/uti";
 import Status from "./Status";
 import AutoResizeTextarea from "./AutoHeightTextarea";
+import dynamic from "next/dynamic";
+
+const ImagePreview = dynamic(() => import("../UI/ImagePreview"), {
+  loading: () => <p>Tải hình...</p>, // This will be shown while the component is loading
+  ssr: false, // This disables server-side rendering for the component
+});
 
 export default function HomeworkTypeTracNghiem({
   homeworkData,
@@ -119,6 +123,7 @@ export default function HomeworkTypeTracNghiem({
           <hr className="line-gray" />
 
           {renderDatas.imageUrl && <ImagePreview url={renderDatas.imageUrl} />}
+
           <Status tinhTrang={renderDatas.tinhTrang} />
           <hr className="line-gray" />
 

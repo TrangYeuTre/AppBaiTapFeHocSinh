@@ -4,7 +4,7 @@ import { useState } from "react";
 export default function ImagePreview({ url }) {
   const [isLoading, setIsLoading] = useState(true);
 
-  const stopLoading = () => setIsLoading(false);
+  const setImageLoaded = () => setIsLoading(false);
 
   return (
     <div
@@ -16,9 +16,18 @@ export default function ImagePreview({ url }) {
         src={url}
         alt="Hình minh họa bài tập"
         fill={true}
-        objectFit="contain"
-        objectPosition="center"
-        onLoad={stopLoading}
+        onLoad={setImageLoaded}
+        style={{
+          objectFit: "contain",
+          objectPosition: "center",
+          placeholder: "blur", // Sử dụng placeholder blur của next/image
+          blurDataURL: "/assets/404.png", // Đường dẫn đến ảnh placeholder nhỏ
+        }}
+        // objectFit="contain"
+        // objectPosition="center"
+        // onLoadingComplete={setImageLoaded}
+        // placeholder="blur" // Sử dụng placeholder blur của next/image
+        // blurDataURL="/assets/404.png" // Đường dẫn đến ảnh placeholder nhỏ
       />
       <div
         className="absolute bottom-0 w-full opacity-80
@@ -26,10 +35,11 @@ export default function ImagePreview({ url }) {
       >
         <Image
           src="/assets/watermark.png"
-          fill={true}
-          objectFit="contain"
-          objectPosition="center"
           alt="Logo Cô Trang"
+          fill={true}
+          style={{ objectFit: "contain", objectPosition: "center" }}
+          // objectFit="contain"
+          // objectPosition="center"
         />
       </div>
     </div>

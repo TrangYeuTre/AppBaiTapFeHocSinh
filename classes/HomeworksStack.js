@@ -5,6 +5,7 @@ import HomeworkStack, {
   HomeworkStackTrueFalse,
 } from "./HomeworkStack";
 
+
 export default class HomeworksStack {
   constructor({ homeworks = [], amountHomeworks = 0, loadOrdinalNubmer = 1 }) {
     this.homeworks = homeworks;
