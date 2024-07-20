@@ -36,7 +36,7 @@ export const signIn = async ({
     }
     setError("");
   } catch (err) {
-    if (err) {
+    if (err && err.response) {
       devErrorMessage(err.response.data || "Thông tin đăng nhập không đúng.");
 
       setError(
