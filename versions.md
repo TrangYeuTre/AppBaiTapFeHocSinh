@@ -11,3 +11,5 @@
 # VERSION 1.0.2
 
 - Xem lại khi load một bài tập mới, xử lý load một thông báo / ảnh thông báo đang load ảnh trước khi ảnh chính được load. Vị trí component sửa: UI / ImagePreview ✅
+
+- Xư lý thêm giới hạn số lần đăng nhập sai của user bằng express-rate-limit
