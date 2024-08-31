@@ -1,0 +1,7 @@
+.product-title-center {
+  @apply font-semibold text-2xl text-center;
+}
+.product-title-left {
+  @apply font-semibold text-2xl text-left 
+  pl-3 border-l-4 border-coBlue1;
+}

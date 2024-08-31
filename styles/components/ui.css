@@ -92,3 +92,21 @@
 .error-text {
   @apply bg-coRed text-coWhite italic text-center;
 }
+
+.items-picker-wrapper {
+  @apply p-4 rounded-lg bg-coWhite
+  flex flex-row flex-wrap gap-4;
+}
+
+.item-tag {
+  @apply flex flex-row  shrink-0 gap-2 transition-all text-base
+  items-center px-3 py-2 rounded-lg cursor-pointer
+  text-coBlue2 border-2 border-coBlue2
+  hover:shadow-md hover:bg-coBlue2 hover:text-coWhite;
+}
+.item-tag-active {
+  @apply bg-coBlue2 text-coWhite
+  flex flex-row  shrink-0 gap-2 transition-all
+  items-center px-3 py-2 rounded-lg cursor-pointer
+  border-2 hover:shadow-md;
+}

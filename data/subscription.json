@@ -1,0 +1,150 @@
+{
+  "categories": [
+    {
+      "active": true,
+      "isSelected": false,
+      "_id": "item-1",
+      "name": "Điền khuyết vần",
+      "query": { "field": "maSo", "value": "tv4.van" },
+      "route": "/dien-khuyet-van",
+      "datas": [
+        {
+          "isSelected": false,
+          "_id": "item-1-1",
+          "name": "ai ay ây",
+          "query": { "field": "noiDungMucTieu", "value": "ai ay ây" }
+        },
+        {
+          "isSelected": false,
+          "_id": "item-1-2",
+          "name": "ao au âu",
+          "query": { "field": "noiDungMucTieu", "value": "ao au âu" }
+        },
+        {
+          "isSelected": false,
+          "_id": "item-1-3",
+          "name": "oi ôi ơi",
+          "query": { "field": "noiDungMucTieu", "value": "oi ôi ơi" }
+        },
+        {
+          "isSelected": false,
+          "_id": "item-1-4",
+          "name": "on ôn ơn",
+          "query": { "field": "noiDungMucTieu", "value": "on ôn ơn" }
+        },
+        {
+          "isSelected": false,
+          "_id": "item-1-5",
+          "name": "an ăn ân",
+          "query": { "field": "noiDungMucTieu", "value": "an ăn ân" }
+        },
+        {
+          "isSelected": false,
+          "_id": "item-1-6",
+          "name": "en ên in un",
+          "query": { "field": "noiDungMucTieu", "value": "oi ôi ơi" }
+        },
+        {
+          "isSelected": false,
+          "_id": "item-1-7",
+          "name": "am ăm âm",
+          "query": { "field": "noiDungMucTieu", "value": "am ăm âm" }
+        },
+        {
+          "isSelected": false,
+          "_id": "item-1-8",
+          "name": "om ôm ơm",
+          "query": { "field": "noiDungMucTieu", "value": "om ôm ơm" }
+        },
+        {
+          "isSelected": false,
+          "_id": "item-1-9",
+          "name": "em êm im um",
+          "query": { "field": "noiDungMucTieu", "value": "em êm im um" }
+        },
+        {
+          "isSelected": false,
+          "_id": "item-1-10",
+          "name": "ap ăp âp",
+          "query": { "field": "noiDungMucTieu", "value": "ap ăp âp" }
+        },
+        {
+          "isSelected": false,
+          "_id": "item-1-11",
+          "name": "ep êp",
+          "query": { "field": "noiDungMucTieu", "value": "ep êp" }
+        }
+      ]
+    },
+    {
+      "active": true,
+      "isSelected": false,
+      "_id": "item-2",
+      "name": "Điền khuyết âm đầu",
+      "query": { "field": "maSo", "value": "tv4.amdau" },
+      "route": "/dien-khuyet-am-dau",
+      "datas": [
+        {
+          "isSelected": false,
+          "_id": "item-2-1",
+          "name": "c-k",
+          "query": { "field": "noiDungMucTieu", "value": "c-k" }
+        },
+        {
+          "isSelected": false,
+          "_id": "item-2-2",
+          "name": "g-gh",
+          "query": { "field": "noiDungMucTieu", "value": "g-gh" }
+        },
+        {
+          "isSelected": false,
+          "_id": "item-2-3",
+          "name": "ng-ngh",
+          "query": { "field": "noiDungMucTieu", "value": "ng-ngh" }
+        },
+        {
+          "isSelected": false,
+          "_id": "item-2-4",
+          "name": "s-x",
+          "query": { "field": "noiDungMucTieu", "value": "s-x" }
+        },
+        {
+          "isSelected": false,
+          "_id": "item-2-5",
+          "name": "ch-tr",
+          "query": { "field": "noiDungMucTieu", "value": "ch-tr" }
+        },
+        {
+          "isSelected": false,
+          "_id": "item-2-6",
+          "name": "r-gi-d",
+          "query": { "field": "noiDungMucTieu", "value": "ep êp" }
+        },
+        {
+          "isSelected": false,
+          "_id": "item-2-7",
+          "name": "ch-kh",
+          "query": { "field": "noiDungMucTieu", "value": "ch-kh" }
+        }
+      ]
+    },
+    {
+      "active": false,
+      "isSelected": false,
+      "_id": "item-3",
+      "name": "Đọc hiểu câu",
+      "query": { "field": "maSo", "value": "d1." },
+      "route": "/doc-hieu-cau",
+      "datas": []
+    },
+    {
+      "active": false,
+      "isSelected": false,
+      "_id": "item-4",
+      "name": "Đọc hiểu văn bản",
+      "query": { "field": "maSo", "value": "dh1." },
+      "route": "/doc-hieu-van-ban",
+      "datas": []
+    }
+  ]
+}

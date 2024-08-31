@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import Account from "../classes/Account";
@@ -70,4 +70,21 @@ export const useMainternance = () => {
     if (MAINTERNANCE) router.replace("/mainternance");
   }, [MAINTERNANCE]);
   return MAINTERNANCE;
+};
+
+export const useLocalNotification = () => {
+  const [localNoti, setLocalNoti] = useState({ status: null, message: "" });
+  const doSetLocalNotification = ({ status, message, showtime }) => {
+    setLocalNoti((preState) => {
+      return { ...preState, status: status, message: message };
+    });
+    if (showtime)
+      setTimeout(() => {
+        clearLocalNotification();
+      }, +showtime);
+  };
+  const clearLocalNotification = () =>
+    setLocalNoti({ status: null, message: "" });
+
+  return { localNoti, doSetLocalNotification, clearLocalNotification };
 };

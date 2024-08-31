@@ -1,3 +1,7 @@
 .login-card {
   @apply flex flex-col gap-4 mt-6 py-4 bg-coBlue3;
 }
+.form-sub-action {
+  @apply text-coBlue1 hover:animate-pulse transition-all
+  mt-3 text-center cursor-pointer;
+}

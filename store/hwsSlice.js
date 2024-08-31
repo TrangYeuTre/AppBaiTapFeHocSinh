@@ -3,9 +3,6 @@ import { createSlice } from "@reduxjs/toolkit";
 const initState = {
   hws: [],
   updatingStore: false,
-  //TODO: ổn rồi thì xóa nè
-  // showStudentAnswers: true,
-  // recentElementConfirmId: "",
 };
 
 const HwsSlice = createSlice({
@@ -135,46 +132,8 @@ const HwsSlice = createSlice({
       state.hws = cloneHomeworks;
       state.updatingStore = false;
     },
-
-    // //TODO: ổn rồi thì xóa nè
-    // scrollToSubmitErrorMessage(state) {
-    //   state.recentElementConfirmId = "local-submit-homework-error-message";
-    // },
-    // stopUpdatingStore(state) {
-    //   state.updatingStore = false;
-    // },
   },
 });
-
-// const findMainHomework = (homeworks, homeworkId) => {
-//   let result = {};
-//   if (!homeworks || homeworks.length === 0 || !homeworkId) return result;
-//   const mainHomework = homeworks.find((hw) => hw._id === homeworkId);
-//   if (mainHomework) result = mainHomework;
-//   return result;
-// };
-// const findSubHomework = (baiTapVeNha, homeworkTypeId) => {
-//   let result = {};
-//   if (!baiTapVeNha || baiTapVeNha.length === 0 || !homeworkTypeId)
-//     return result;
-//   const subHomework = baiTapVeNha.find((btvn) => btvn._id === homeworkTypeId);
-//   if (subHomework) result = subHomework;
-//   return result;
-// };
-// const validSubHomework = (homework, type) => {
-//   if (!homework || !type) return false;
-//   return homework.data[type].active;
-// };
-// const findStudentWork = (baiLamCuaHocSinh, homeworkTypeId) => {
-//   let result = {};
-//   if (!baiLamCuaHocSinh || baiLamCuaHocSinh.length === 0 || !homeworkTypeId)
-//     return result;
-//   const targetBaiLamCuaHocSinh = baiLamCuaHocSinh.find(
-//     (btvn) => btvn.id === homeworkTypeId
-//   );
-//   if (targetBaiLamCuaHocSinh) result = targetBaiLamCuaHocSinh;
-//   return result;
-// };
 
 export const HwsActions = HwsSlice.actions;
 

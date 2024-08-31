@@ -7,6 +7,7 @@
 @import "./components/exercises.css";
 @import "./components/auth.css";
 @import "./components/homeworks.css";
+@import "./components/products.css";
 
 html {
   @apply box-border;
