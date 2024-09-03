@@ -1,5 +1,10 @@
 import LoadExercises from "../../../Components/Products/Exercises";
+import SubscriptionProtect from "../../../Components/auth/SubscriptionProtect";
 
 export default function LoadExercisesRoute() {
-  return <LoadExercises />;
+  return (
+    <SubscriptionProtect>
+      <LoadExercises />
+    </SubscriptionProtect>
+  );
 }

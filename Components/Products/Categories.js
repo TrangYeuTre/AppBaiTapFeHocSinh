@@ -50,7 +50,7 @@ export default function ProductCategories() {
         {picked.cate && picked.child && (
           <>
             <hr />
-            <button type="submit" className="btn btn-submit">
+            <button type="submit" className="btn-shape btn-shape-submit">
               Tải bài tập
             </button>
           </>

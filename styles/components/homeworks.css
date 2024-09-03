@@ -20,7 +20,7 @@
   @apply w-full h-32 border-2 border-coGray5 shadow-lg mt-3;
 }
 .card-homework-input {
-  @apply border-coGray5 w-fit shadow-lg mt-3;
+  @apply border-coGray5 w-fit shadow-lg mt-3 max-w-28;
 }
 
 .homework-actions-wrapper {

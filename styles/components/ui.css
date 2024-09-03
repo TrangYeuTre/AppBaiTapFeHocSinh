@@ -54,6 +54,26 @@
   py-2 px-4 w-full mx-auto border-2 rounded-md
   transition-all uppercase;
 }
+.btn-shape {
+  @apply cursor-pointer 
+  text-base lg:max-2xl:text-2xl 2xl:text-3xl font-semibold
+  flex flex-row justify-center items-center
+  py-4 px-16 w-full mx-auto border-2 border-b-8 rounded-2xl
+  transition-all uppercase;
+}
+.btn-shape-main {
+  @apply border-coBlue1 text-coBlue1
+  hover:bg-coCyan;
+}
+.btn-shape-submit {
+  @apply border-coPink text-coPink
+  hover:bg-coPink2;
+}
+.btn-shape-ghost {
+  @apply border-coGray2 text-coGray2
+  hover:bg-coGray6;
+}
+
 .btn-submit {
   @apply border-coPink !bg-coPink !text-coWhite
   hover:!bg-coWhite hover:!text-coPink;

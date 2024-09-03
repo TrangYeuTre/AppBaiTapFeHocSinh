@@ -34,3 +34,13 @@ button {
 a {
   @apply text-xl italic underline text-coBlue1 hover:text-coPink;
 }
+
+/* Warter mark chéo text */
+/* Thêm vào tệp styles.css hoặc trực tiếp trong một thẻ <style> */
+/* Custom CSS for watermark */
+.bg-watermark {
+  position: relative;
+  overflow: hidden;
+  background: var(--watermark) repeat;
+  background-size: 200px 100px; /* Điều chỉnh kích thước nền để kiểm soát sự lặp lại */
+}

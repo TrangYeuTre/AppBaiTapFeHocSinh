@@ -2,3 +2,7 @@
   @apply mx-auto max-w-4xl w-full px-4
   lg:max-2xl:px-0 lg:max-2xl:w-2/3 2xl:w-1/2;
 }
+/* #image-exercise-preview {
+  @apply bg-[url("/assets/test.webp")] bg-no-repeat
+  bg-top bg-cover w-[500px] h-[300px];
+} */

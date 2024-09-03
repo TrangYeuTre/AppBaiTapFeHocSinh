@@ -2,7 +2,8 @@ import CardHomework from "../UI/CardHomework";
 import SubcriptionProtect from "../auth/SubscriptionProtect";
 import Loading from "../UI/Loading";
 import { useRouter } from "next/router";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { SubscriptionAuthActions } from "../../store/subscriptionSlice";
 import Subscription from "../../classes/Subscription";
 import { useAxiosInstance } from "../../hooks/useHooks";
 import { useState, useEffect } from "react";
@@ -12,11 +13,13 @@ import ClassifyExercises from "./ClassifyExercises";
 export default function LoadExercises() {
   //
   const router = useRouter();
+  const dispatch = useDispatch();
   const { main, child } = router.query;
   const mainQuery = main ? JSON.parse(main) : {};
   const childQuery = child ? JSON.parse(child) : {};
 
   const { username, token } = useSelector((state) => state.subscriptionAuth);
+
   const axiosInstance = useAxiosInstance(token);
 
   const [subscriptionInstance, setSubscriptionInstance] = useState(
@@ -44,16 +47,20 @@ export default function LoadExercises() {
     }
   };
 
-  // const giaLapToiBaiTapTiepTheo = () => {
-  //   const updatedSubscriptionInstance =
-  //     subscriptionInstance.increaseExerciseIndex();
-  //   setSubscriptionInstance(
-  //     new Subscription({ ...updatedSubscriptionInstance })
-  //   );
-  // };
+  const goToNextExercise = () => {
+    const updatedSubscriptionInstance =
+      subscriptionInstance.increaseExerciseIndex();
+    setSubscriptionInstance(
+      new Subscription({ ...updatedSubscriptionInstance })
+    );
+  };
+
+  const quitExercisePackage = () => router.replace("/products");
 
   useEffect(() => {
     loadExercises();
+    //Ở đây phải reset bài làm của học sinh trên slice
+    dispatch(SubscriptionAuthActions.resetStudentWork());
   }, []);
 
   const emptyExercises = subscriptionInstance.isEmptyExercises();
@@ -63,27 +70,30 @@ export default function LoadExercises() {
   return (
     <SubcriptionProtect>
       <CardHomework>
-        {isFetching && <Loading />}
-        {emptyExercises && (
-          <LoadExercisesFailHint loadExercises={loadExercises} />
-        )}
-        {!emptyExercises && (
-          <>
-            TODO:here , đang dừng ở đây
-            <ClassifyExercises exerciseData={exerciseData} />
-            {/* <p>
-              stt: {renderExercise.ordinal}-{renderExercise.tenBaiTap}-{" "}
-              {renderExercise.maSo}
-            </p>
+        <div className="relative">
+          <div className="absolute top-0 right-0">
             <button
-              className="btn btn-main"
               type="button"
-              onClick={giaLapToiBaiTapTiepTheo}
+              onClick={quitExercisePackage}
+              className="btn btn-ghost !w-fit"
             >
-              Tăng
-            </button> */}
-          </>
-        )}
+              x
+            </button>
+          </div>
+          {isFetching && <Loading />}
+          {emptyExercises && (
+            <LoadExercisesFailHint loadExercises={loadExercises} />
+          )}
+          {!emptyExercises && (
+            <>
+              <ClassifyExercises
+                exerciseData={exerciseData}
+                subscriptionInstance={subscriptionInstance}
+                goToNextExercise={goToNextExercise}
+              />
+            </>
+          )}
+        </div>
       </CardHomework>
     </SubcriptionProtect>
   );

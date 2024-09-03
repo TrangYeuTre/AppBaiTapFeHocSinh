@@ -9,7 +9,6 @@ export default class Subscription {
   constructor({ username, token, exercises = [], loadedExerciseIndex = 0 }) {
     this.username = username;
     this.token = token;
-    // this.failExercises = failExercises;
     this.exercises = exercises;
     this.loadedExerciseIndex = loadedExerciseIndex;
   }
@@ -24,6 +23,14 @@ export default class Subscription {
     });
     this.exercises = response.data.data.data;
     return this;
+  }
+
+  //Cập nhật thành tích
+  async updateArchivements({ axiosInstance, dataSubmit }) {
+    if (!axiosInstance) return;
+    const fetchUrl = API_HOCSINH + "/subscriptionAuth/archivements";
+    const response = await axiosInstance.put(fetchUrl, dataSubmit);
+    return response.status;
   }
 
   increaseExerciseIndex() {
@@ -42,5 +49,9 @@ export default class Subscription {
   getExerciseByCurrentIndex() {
     if (this.exercises.length === 0) return {};
     return this.exercises[this.loadedExerciseIndex];
+  }
+
+  getCurrentExerciseIndex() {
+    return this.loadedExerciseIndex;
   }
 }

@@ -102,4 +102,28 @@ Mô tả nào:
   - ~~FE: sửa lại logic chính xác để query, tức là key chính xác cần query~~
   - ~~BE: ưu tiên làm trước đám trên, build api lấy bài tập nào~~
   - ~~xong api lấy bài tập rồi, trở lại FE và ráp vào xem ok không~~
-  - đang dừng ở phân loại bài tập để render dạng bài tập tương ứng
+  - Trong từng comp classify từng dạng bài
+    - tạo 4 class tương ứng với 4 dạng bài, lấy data render, xử lý load ảnh, xử lý lấy kết quả học sinh và so sánh để trả về kết quả
+    - dạng điền khuyết
+      - ~~xử lý render~~
+      - ~~lấy đáp án~~
+      - ~~so sánh đáp án trả kết quả: sửa lại: bài tập trên db phần gợi ý phải có đủ phần không dấu và có dấu đúng~~
+      - Ok load bìa, làm bài, check kết quả ok hết rồi -> giờ xử lý: làm xong bài cuối cùng thì logic trong class Subscription như thế nào? ~~Ném màn hình chúc mừng, rồi diều hướng về trang chọn bài.~~
+        - ~~Phân mức chúc mừng~~
+          - 0-3: Bé hãy cố gắng hơn vào lần sau nhé.
+          - 4-6: Bé làm tốt lắm, hãy cố gắng hơn vào lần sau nhé.
+          - 7-8: Bé làm rất tốt.
+          - 9-10: Bé thật xuất sắc.
+        - Thêm logic cập nhật kết quả cho user: gồm thành tích 10 lần làm gần nhất và cập nhật các bài tập sai.
+          - ~~Check lại ở slice mảng kết quả bài tập làm sai đã~~
+          - ~~Thêm api trên BE~~
+          - ~~Ráp vào FE hoàn thành thôi~~
+      - Lưu thành tích: 1 thanh ngang gồm các mục: stt, ngày, nội dung mục tiêu, thành tích và trong db chỉ lưu 10 thành tích gần nhất. TODO: *cả nùi việc bên dưới đây*
+        - ~~Api cập nhật thành tích~~ 
+        - ~~Bổ sung thanh bottom options: đăng xuất, xem thành tích làm bài, củng cố kiến thức~~
+        - ~~Build ráp logic đăng xuất vào nút~~
+        - ~~Build route / thành tích để xem thành tích 10 lần gần nhất~~
+        - ~~Build api lấy thành tích và ráp vào render~~
+        - Build route cung-co-kien-thuc
+        - Build api lấy bài tập làm sai ngẫu nhiên để trả về cho làm
+      - Thêm mục: ôn tập các bài chưa đúng. Về logic 1 bài sai cần được làm lại đúng 3 lần thì mới đẩy nó ra.
