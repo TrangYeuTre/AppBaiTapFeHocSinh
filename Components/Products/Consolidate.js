@@ -10,13 +10,9 @@ import { useState, useEffect } from "react";
 import LoadExercisesFailHint from "./LoadExercisesFailHint";
 import ClassifyExercises from "./ClassifyExercises";
 
-export default function LoadExercises() {
-  //
+export default function ConsolidateExercises() {
   const router = useRouter();
   const dispatch = useDispatch();
-  const { main, child } = router.query;
-  const mainQuery = main ? JSON.parse(main) : {};
-  const childQuery = child ? JSON.parse(child) : {};
 
   const { username, token } = useSelector((state) => state.subscriptionAuth);
 
@@ -32,10 +28,8 @@ export default function LoadExercises() {
     try {
       setIsFetching(true);
       const updatedSubscriptionInstance =
-        await subscriptionInstance.loadExercises({
+        await subscriptionInstance.loadRedoExercises({
           axiosInstance,
-          mainQuery,
-          childQuery,
         });
       setSubscriptionInstance(
         new Subscription({ ...updatedSubscriptionInstance })
@@ -66,8 +60,6 @@ export default function LoadExercises() {
   const emptyExercises = subscriptionInstance.isEmptyExercises();
 
   const exerciseData = subscriptionInstance.getExerciseByCurrentIndex();
-
-  console.log(subscriptionInstance.exercises);
 
   return (
     <SubcriptionProtect>

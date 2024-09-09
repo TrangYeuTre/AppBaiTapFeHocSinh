@@ -21,6 +21,20 @@ export default class Subscription {
       main: mainQuery,
       child: childQuery,
     });
+    //FIXME: tạm thời loại 2 dạng viết, matching vì chưa làm, làm rồi thì bỏ bước này
+    const temporary = response.data.data.data.filter(
+      (item) => item.phanLoai !== "viet" && item.phanLoai !== "matching"
+    );
+    this.exercises = temporary;
+    // this.exercises = response.data.data.data;
+    return this;
+  }
+
+  //Fetching load bài tập theo query
+  async loadRedoExercises({ axiosInstance }) {
+    if (!axiosInstance) return;
+    const fetchUrl = API_HOCSINH + "/subscriptionAuth/redoExercises";
+    const response = await axiosInstance.get(fetchUrl);
     this.exercises = response.data.data.data;
     return this;
   }
@@ -29,6 +43,14 @@ export default class Subscription {
   async updateArchivements({ axiosInstance, dataSubmit }) {
     if (!axiosInstance) return;
     const fetchUrl = API_HOCSINH + "/subscriptionAuth/archivements";
+    const response = await axiosInstance.put(fetchUrl, dataSubmit);
+    return response.status;
+  }
+
+  //Cập nhật bài tập củng cố
+  async updateRedoExercises({ axiosInstance, dataSubmit }) {
+    if (!axiosInstance) return;
+    const fetchUrl = API_HOCSINH + "/subscriptionAuth/redoExercises";
     const response = await axiosInstance.put(fetchUrl, dataSubmit);
     return response.status;
   }
@@ -53,5 +75,9 @@ export default class Subscription {
 
   getCurrentExerciseIndex() {
     return this.loadedExerciseIndex;
+  }
+
+  getExercisesLength() {
+    return this.exercises.length;
   }
 }

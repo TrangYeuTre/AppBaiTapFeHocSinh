@@ -118,12 +118,61 @@ Mô tả nào:
           - ~~Check lại ở slice mảng kết quả bài tập làm sai đã~~
           - ~~Thêm api trên BE~~
           - ~~Ráp vào FE hoàn thành thôi~~
-      - Lưu thành tích: 1 thanh ngang gồm các mục: stt, ngày, nội dung mục tiêu, thành tích và trong db chỉ lưu 10 thành tích gần nhất. TODO: *cả nùi việc bên dưới đây*
-        - ~~Api cập nhật thành tích~~ 
+      - Lưu thành tích: 1 thanh ngang gồm các mục: stt, ngày, nội dung mục tiêu, thành tích và trong db chỉ lưu 10 thành tích gần nhất. TODO: _cả nùi việc bên dưới đây_
+        - ~~Api cập nhật thành tích~~
         - ~~Bổ sung thanh bottom options: đăng xuất, xem thành tích làm bài, củng cố kiến thức~~
         - ~~Build ráp logic đăng xuất vào nút~~
         - ~~Build route / thành tích để xem thành tích 10 lần gần nhất~~
         - ~~Build api lấy thành tích và ráp vào render~~
-        - Build route cung-co-kien-thuc
-        - Build api lấy bài tập làm sai ngẫu nhiên để trả về cho làm
+        - ~~Build api lấy bài tập làm sai ngẫu nhiên để trả về cho làm~~
+        - Build route cung-co-kien-thuc, logic load bài FE luôn
+          - **Vấn đề**: component Congratulation sẽ bị dùng chung với lúc nộp bài thông thường và nộp bài trong mục củng cố -> dùng router query url có products thì submit lên nọp bài thông thường, có consolidate thì submit lên api xử lý mark lại bài đúng trong mảng bài sai :D
       - Thêm mục: ôn tập các bài chưa đúng. Về logic 1 bài sai cần được làm lại đúng 3 lần thì mới đẩy nó ra.
+        - ~~Build api lấy mảng ids submit lên, mỗi id này dò trong wrongExercises, nếu trùng thì tăng lên một số, nếu số này bằng 3 rồi thì bỏ nó ra khỏi wrongExercises~~
+        - ~~Ok, ráp vào FE hoàn thiện nào luôn~~
+  - Ok, hiện tại mới làm ok dạng điền khuyết
+    - ~~Trong chọn bài tạp, phần staticData -> bổ sung đk để query thằng đọc hiểu đoạn~~
+    - ~~Việc đầu tiên là vào component dạng điền khuyết -> rút gọn code lại, tách được comp đê tái sử dụng cho các dạng khác~~
+    - ~~Tiếp đến là build cho dạng trắc nghiệm - cụ thể là đọc hiểu đoạn~~
+    - ~~Logic chấm điểm: sửa lại theo phần trăm vì 1 set bài có thể không đến 10~~
+    - ~~sửa lại toàn bộ câu trúc bài tập mã dh1 cho đồng bộ~~
+      - 4.DH3.Mũ bảo hiểm - done
+      - 1.dh3. Rùa con tìm nhà - done
+      - 2.DH3.Tôi là HS lớp một -done
+      - 3.DH3. Chợ hoa ngày tết ở HN - done
+      - 5.DH3.Khu rừng kì lạ dưới đáy biển - done
+      - 6.DH3.TiengDan - done
+      - 7.DH3.Bài đọc cho gà trống -dône
+      - 8.DH3.Cuốn sách của em - done
+      - 9.DH3.Lính cứu hỏa -done
+      - 10.DH3.Bác trống trường - done
+      - 11.DH3.Chú sóc ngoan - done
+      - 12.DH3.Loài chim của biển cả - done
+      - 13.DH3.Ruộng bậc thang ở Sapa - done
+      - 14.DH3.Những cánh cò - done
+      - 15.DH3.Chúa tể rừng xanh -> các bài về sau đã làm rồi. - done
+    - ~~Trở lại app học sinh, bổ sung các mục chọn bài cho dh1 và test hét thôi nào~~
+    - ~~Vào static bổ sung bài tập mã d1~~
+  - **Pass qua dạng viết và matching -> sau này bổ sung**
+
+# VERSION 2.1.0
+
+  - Đã xong app cơ bản rồi: giải quyết được cho dạng bài đièn khuyết và trắc nghiệm cho các mã d1, dh1, tv4.van, t4.amdau
+  - Tiếp đến là clone route /products -> /demo ---> đây sẽ là phiên bản demo cho người dùng dùng thử trước khi mua nè.
+  - Những thứ cần phải cân nhắc:
+    - Tất nhiên là khong cần middleware bảo vệ
+    - Ném về cho client một app react với full 1 cục data cho một gói bài tập demo cố định
+    - Về mặt giao diện thì sẽ trả về 4 mục chính là bốn dạng bài tập để client chọn -> khi cọn một dạng vẫn load full các mục con -> nhưng: chỉ load 1 bài tập con, các mục còn lại sẽ có kí hiệu bị disabled đi.
+  - FIXME: xem lại một số bài tập cũ của từng dạng hình vẫn còn là url google -> nên lỗi load -> sửa lại data cho chúng và chuyển về url firebase
+  - Vậy ta sẽ : TODO:
+    - Build api demo riêng: trong api này chỉ định luôn số bài tập cố đinh sẽ được trả về khi req
+    - Trả về data cố định sau:
+      - Điền khuyết vần - ao au âu - TV4.van.06
+      - Điền khuyết âm đầu - c-k - TV4.amdau.02
+      - Đọc hiểu câu - 3.DH3.Chợ hoa ngày tết ở HN - D1.07, D1.08, D1.09
+      - Đọc hiêu văn bản - 2.DH3.Tôi là HS lớp một - DH1.06, DH1.07, DH1.08 
+    - route này vẫn cho render thanh bottom menu bên dưới nhưng khóa hết tính năng: thành tích, củng cố kiến thức, đăng xuất -> thay bằng đăng kí (chỉ trong demo)
+    - Thanh bottom phải bổ sung một nút nữa là : "Thông tin" gồm các data:
+      - Version
+      - Số lượng bài tập của từng mục -> showcase
+  

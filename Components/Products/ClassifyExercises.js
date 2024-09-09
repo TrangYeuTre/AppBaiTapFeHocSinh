@@ -1,4 +1,5 @@
 import ClassifyDienKhuyet from "./Classify_DienKhuyet";
+import ClassisfyTracNghiem from "./Classify_TracNghiem";
 
 export default function ClassifyExercises({
   exerciseData,
@@ -6,9 +7,18 @@ export default function ClassifyExercises({
   subscriptionInstance,
 }) {
   const { phanLoai } = exerciseData;
+
   if (phanLoai === "dienKhuyet")
     return (
       <ClassifyDienKhuyet
+        exerciseData={exerciseData}
+        goToNextExercise={goToNextExercise}
+        subscriptionInstance={subscriptionInstance}
+      />
+    );
+  if (phanLoai === "tracNghiem")
+    return (
+      <ClassisfyTracNghiem
         exerciseData={exerciseData}
         goToNextExercise={goToNextExercise}
         subscriptionInstance={subscriptionInstance}

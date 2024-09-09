@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initState = {
   token: "",
   username: "",
-  studentWork: { rightAnswer: 0, wrongAnswers: [] },
+  studentWork: { rightAnswer: 0, wrongAnswers: [], rightAnswers: [] },
 };
 
 const SubscriptionAuthSlice = createSlice({
@@ -21,7 +21,11 @@ const SubscriptionAuthSlice = createSlice({
     clearAuth(state) {
       state.token = "";
       state.username = "";
-      state.studentWork = { rightAnswer: 0, wrongAnswers: [] };
+      state.studentWork = {
+        rightAnswer: 0,
+        wrongAnswers: [],
+        rightAnswers: [],
+      };
       localStorage.removeItem("token");
       localStorage.removeItem("username");
     },
@@ -35,8 +39,19 @@ const SubscriptionAuthSlice = createSlice({
         return;
       state.studentWork.wrongAnswers.push(id);
     },
+    saveRightAnswer(state, action) {
+      const id = action.payload;
+      if (!id || state.studentWork.rightAnswers.find((item) => item === id))
+        return;
+      state.studentWork.rightAnswers.push(id);
+    },
+
     resetStudentWork(state) {
-      state.studentWork = { rightAnswer: 0, wrongAnswers: [] };
+      state.studentWork = {
+        rightAnswer: 0,
+        wrongAnswers: [],
+        rightAnswers: [],
+      };
     },
   },
 });

@@ -65,6 +65,11 @@
   @apply border-coBlue1 text-coBlue1
   hover:bg-coCyan;
 }
+.btn-shape-main-active {
+  @apply border-coBlue1 text-coBlue1
+  bg-coBlue3;
+}
+
 .btn-shape-submit {
   @apply border-coPink text-coPink
   hover:bg-coPink2;

@@ -8,7 +8,6 @@ export default class ImageLoader {
     if (!this.src) return "";
     try {
       this.loadable = await this.#isImageValidAsync(this.src);
-      // console.log(await this.#isImageValidAsync(this.src));
     } catch (err) {
       console.log(err);
       this.loadable = false;
@@ -30,30 +29,19 @@ export default class ImageLoader {
       return false;
     }
 
-    // Tạo một đối tượng Image mới
-    const image = new Image();
+    // Tạo một Promise để kiểm tra hình ảnh
+    return new Promise((resolve) => {
+      const image = new Image();
 
-    // Xử lý sự kiện onload để kiểm tra xem hình ảnh có tải thành công hay không
-    image.onload = () => {
-      return true;
-    };
-
-    // Xử lý sự kiện onerror để báo lỗi nếu hình ảnh không tải được
-    image.onerror = () => {
-      return false;
-    };
-
-    // Thiết lập URL cho hình ảnh và tải nó
-    image.src = imageURL;
-
-    // Sử dụng await để đợi hình ảnh tải xong
-    const result = new Promise((resolve, reject) => {
+      // Xử lý khi hình ảnh tải thành công
       image.onload = () => resolve(true);
-      image.onerror = () => reject(false);
-    });
 
-    // Trả về kết quả
-    return result;
+      // Xử lý khi không tải được hình ảnh
+      image.onerror = () => resolve(false);
+
+      // Thiết lập URL cho hình ảnh và tải nó
+      image.src = imageURL;
+    });
   }
 
   #checkIs404Src() {

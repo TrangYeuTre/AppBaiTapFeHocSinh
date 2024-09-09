@@ -135,7 +135,188 @@
       "name": "Đọc hiểu câu",
       "query": { "field": "maSo", "value": "d1." },
       "route": "/doc-hieu-cau",
-      "datas": []
+      "datas": [
+        {
+          "isSelected": false,
+          "_id": "item-3-1",
+          "name": "1.DH3. Rùa con tìm nhà",
+          "query": {
+            "field": "tenBaiTap",
+            "value": "1.DH3. Rùa con tìm nhà"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "item-3-2",
+          "name": "2.DH3.Tôi là HS lớp một",
+          "query": {
+            "field": "tenBaiTap",
+            "value": "2.DH3.Tôi là HS lớp một"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "item-3-3",
+          "name": "3.DH3. Chợ hoa ngày tết ở HN",
+          "query": {
+            "field": "tenBaiTap",
+            "value": "3.DH3. Chợ hoa ngày tết ở HN"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "item-3-4",
+          "name": "4.DH3.Mũ bảo hiểm",
+          "query": {
+            "field": "tenBaiTap",
+            "value": "4.DH3.Mũ bảo hiểm"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "item-3-5",
+          "name": "5.DH3.Khu rừng kì lạ dưới đáy biển",
+          "query": {
+            "field": "tenBaiTap",
+            "value": "5.DH3.Khu rừng kì lạ dưới đáy biển"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "item-3-6",
+          "name": "6.DH3.Tiếng đàn",
+          "query": {
+            "field": "tenBaiTap",
+            "value": "6.DH3.Tiếng đàn"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "item-3-7",
+          "name": "7.DH3.Bài đọc cho gà trống",
+          "query": {
+            "field": "tenBaiTap",
+            "value": "7.DH3.Bài đọc cho gà trống"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "item-3-8",
+          "name": "8.DH3.Cuốn sách của em",
+          "query": {
+            "field": "tenBaiTap",
+            "value": "8.DH3.Cuốn sách của em"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "item-3-9",
+          "name": "9.DH3.Lính cứu hỏa",
+          "query": {
+            "field": "tenBaiTap",
+            "value": "9.DH3.Lính cứu hỏa"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "item-3-10",
+          "name": "10.DH3.Bác trống trường",
+          "query": {
+            "field": "tenBaiTap",
+            "value": "10.DH3.Bác trống trường"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "item-3-11",
+          "name": "11.DH3.Chú sóc ngoan",
+          "query": {
+            "field": "tenBaiTap",
+            "value": "11.DH3.Chú sóc ngoan"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "item-3-12",
+          "name": "12.DH3.Loài chim của biển cả",
+          "query": {
+            "field": "tenBaiTap",
+            "value": "12.DH3.Loài chim của biển cả"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "item-3-13",
+          "name": "13.DH3.Ruộng bậc thang ở Sapa",
+          "query": {
+            "field": "tenBaiTap",
+            "value": "13.DH3.Ruộng bậc thang ở Sapa"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "item-3-14",
+          "name": "14.DH3.Những cánh cò",
+          "query": {
+            "field": "tenBaiTap",
+            "value": "14.DH3.Những cánh cò"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "item-3-15",
+          "name": "15.DH3.Chúa tể rừng xanh",
+          "query": {
+            "field": "tenBaiTap",
+            "value": "15.DH3.Chúa tể rừng xanh"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "item-3-17",
+          "name": "17.DH3.Ngày mới bắt đầu",
+          "query": {
+            "field": "tenBaiTap",
+            "value": "17.DH3.Ngày mới bắt đầu"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "item-3-18",
+          "name": "18.DH3.Anh hùng biển cả",
+          "query": {
+            "field": "tenBaiTap",
+            "value": "18.DH3.Anh hùng biển cả"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "item-3-19",
+          "name": "19.DH3.Chữ A và những người bạn",
+          "query": {
+            "field": "tenBaiTap",
+            "value": "19.DH3.Chữ A và những người bạn"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "item-3-21",
+          "name": "21.DH3.Du lịch biển Việt Nam",
+          "query": {
+            "field": "tenBaiTap",
+            "value": "21.DH3.Du lịch biển Việt Nam"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "item-3-22",
+          "name": "22.DH3.Gấu trắng là chúa tò mò",
+          "query": {
+            "field": "tenBaiTap",
+            "value": "22.DH3.Gấu trắng là chúa tò mò"
+          }
+        }
+      ]
     },
     {
       "active": false,
@@ -144,7 +325,197 @@
       "name": "Đọc hiểu văn bản",
       "query": { "field": "maSo", "value": "dh1." },
       "route": "/doc-hieu-van-ban",
-      "datas": []
+      "datas": [
+        {
+          "isSelected": false,
+          "_id": "item-4-1",
+          "name": "1.DH3. Rùa con tìm nhà",
+          "query": {
+            "field": "noiDungMucTieu",
+            "value": "1.DH3. Rùa con tìm nhà"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "item-4-2",
+          "name": "2.DH3.Tôi là HS lớp một",
+          "query": {
+            "field": "noiDungMucTieu",
+            "value": "2.DH3.Tôi là HS lớp một"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "item-4-3",
+          "name": "3.DH3. Chợ hoa ngày tết ở HN",
+          "query": {
+            "field": "noiDungMucTieu",
+            "value": "3.DH3. Chợ hoa ngày tết ở HN"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "item-4-4",
+          "name": "4.DH3.Mũ bảo hiểm",
+          "query": {
+            "field": "noiDungMucTieu",
+            "value": "4.DH3.Mũ bảo hiểm"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "item-4-5",
+          "name": "5.DH3.Khu rừng kì lạ dưới đáy biển",
+          "query": {
+            "field": "tenBaiTap",
+            "value": "5.DH3.Khu rừng kì lạ dưới đáy biển"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "item-4-6",
+          "name": "6.DH3.Tiếng đàn",
+          "query": {
+            "field": "tenBaiTap",
+            "value": "6.DH3.Tiếng đàn"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "item-4-7",
+          "name": "7.DH3.Bài đọc cho gà trống",
+          "query": {
+            "field": "tenBaiTap",
+            "value": "7.DH3.Bài đọc cho gà trống"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "item-4-8",
+          "name": "8.DH3.Cuốn sách của em",
+          "query": {
+            "field": "tenBaiTap",
+            "value": "8.DH3.Cuốn sách của em"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "item-4-9",
+          "name": "9.DH3.Lính cứu hỏa",
+          "query": {
+            "field": "tenBaiTap",
+            "value": "9.DH3.Lính cứu hỏa"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "item-4-10",
+          "name": "10.DH3.Bác trống trường",
+          "query": {
+            "field": "tenBaiTap",
+            "value": "10.DH3.Bác trống trường"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "item-4-11",
+          "name": "11.DH3.Chú sóc ngoan",
+          "query": {
+            "field": "tenBaiTap",
+            "value": "11.DH3.Chú sóc ngoan"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "item-4-12",
+          "name": "12.DH3.Loài chim của biển cả",
+          "query": {
+            "field": "tenBaiTap",
+            "value": "12.DH3.Loài chim của biển cả"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "item-4-13",
+          "name": "13.DH3.Ruộng bậc thang ở Sapa",
+          "query": {
+            "field": "tenBaiTap",
+            "value": "13.DH3.Ruộng bậc thang ở Sapa"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "item-4-14",
+          "name": "14.DH3.Những cánh cò",
+          "query": {
+            "field": "tenBaiTap",
+            "value": "14.DH3.Những cánh cò"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "item-4-15",
+          "name": "15.DH3.Chúa tể rừng xanh",
+          "query": {
+            "field": "tenBaiTap",
+            "value": "15.DH3.Chúa tể rừng xanh"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "item-4-17",
+          "name": "17.DH3.Ngày mới bắt đầu",
+          "query": {
+            "field": "tenBaiTap",
+            "value": "17.DH3.Ngày mới bắt đầu"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "item-4-18",
+          "name": "18.DH3.Anh hùng biển cả",
+          "query": {
+            "field": "tenBaiTap",
+            "value": "18.DH3.Anh hùng biển cả"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "item-4-19",
+          "name": "19.DH3.Chữ A và những người bạn",
+          "query": {
+            "field": "tenBaiTap",
+            "value": "19.DH3.Chữ A và những người bạn"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "item-4-20",
+          "name": "20.DH3.Đất nước chúng mình",
+          "query": {
+            "field": "tenBaiTap",
+            "value": "20.DH3.Đất nước chúng mình"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "item-4-21",
+          "name": "21.DH3.Du lịch biển Việt Nam",
+          "query": {
+            "field": "tenBaiTap",
+            "value": "21.DH3.Du lịch biển Việt Nam"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "item-4-22",
+          "name": "22.DH3.Gấu trắng là chúa tò mò",
+          "query": {
+            "field": "noiDungMucTieu",
+            "value": "22.DH3.Gấu trắng là chúa tò mò"
+          }
+        }
+      ]
     }
   ]
 }

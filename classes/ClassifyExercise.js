@@ -101,3 +101,43 @@ export class DienKhuyetExercise extends ClassifyExercise {
     return answer;
   }
 }
+
+export class TracNghiemExercise extends ClassifyExercise {
+  constructor({ _id, ordinal, deBai, renderData, tenBaiTap, maSo }) {
+    super(_id, ordinal, deBai);
+    this.maSo;
+    this.renderData = renderData;
+    const layCauHoiLamTenBaiTap = maSo.toLowerCase().includes("dh1.");
+    this.cauHoi = layCauHoiLamTenBaiTap
+      ? tenBaiTap
+      : "Bé hãy chọn một đáp án dưới đây";
+    this.inputId = renderData.id;
+    //Ngay khi khởi tạo class, lấy obj renderData đẻ xử lý lấy ra những thứ cần
+    this.imageUrl = renderData.imageUrl;
+    //Xử lý nội dung câu hỏi tùy theo dạng điền khuyết
+    this.options = renderData.datas.map((item) => {
+      return { id: item.id, content: item.content, isSelected: false };
+    });
+    this.rightOption = renderData.datas.find((item) => item.isAnswer).id;
+  }
+  async initLoadImage() {
+    const image = new ImageLoader(this.imageUrl);
+    const checkedImageUrl = await image.checkLoadableAndGetFinalImageSrc();
+    this.imageUrl = checkedImageUrl;
+    return this;
+  }
+  getOptions() {
+    return this.options;
+  }
+  getResult(choosenOptionId) {
+    if (choosenOptionId === this.rightOption) {
+      return { result: true, message: "Đúng rồi." };
+    } else {
+      return {
+        result: false,
+        message: this.options.find((opt) => opt.id === this.rightOption)
+          .content,
+      };
+    }
+  }
+}
