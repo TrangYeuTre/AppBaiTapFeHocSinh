@@ -30,6 +30,25 @@ export default class Subscription {
     return this;
   }
 
+  //Fetching load bài tập demo
+  async loadDemoExercises({ axios, mainQuery, childQuery }) {
+    console.log("Chạy load demo chứ");
+    if (!axios) return;
+    const fetchUrl = API_HOCSINH + "/demo/exercises";
+    console.log(fetchUrl);
+    const response = await axios.post(fetchUrl, {
+      main: mainQuery,
+      child: childQuery,
+    });
+    //FIXME: tạm thời loại 2 dạng viết, matching vì chưa làm, làm rồi thì bỏ bước này
+    const temporary = response.data.data.data.filter(
+      (item) => item.phanLoai !== "viet" && item.phanLoai !== "matching"
+    );
+    this.exercises = temporary;
+    // this.exercises = response.data.data.data;
+    return this;
+  }
+
   //Fetching load bài tập theo query
   async loadRedoExercises({ axiosInstance }) {
     if (!axiosInstance) return;

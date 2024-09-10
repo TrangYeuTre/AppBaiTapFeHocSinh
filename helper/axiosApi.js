@@ -288,3 +288,10 @@ export const resetPassword = async ({
   }
 };
 
+//Lấy app infos
+
+export const getAppInfos = async ({ axios }) => {
+  const fetchUrl = API_HOCSINH + "/demo/about";
+  const response = await axios.get(fetchUrl);
+  return response;
+};

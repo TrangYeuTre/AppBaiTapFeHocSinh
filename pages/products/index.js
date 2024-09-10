@@ -8,8 +8,8 @@ export default function ProductRoute() {
       <ProductCategories />
       <BottomMenu
         navigations={[
-          { name: "Xem thành tích", route: "/subscription/archivements" },
-          { name: "Củng cố kiến thức", route: "/products/consolidate" },
+          { name: "🌟 Xem thành tích", route: "/subscription/archivements" },
+          { name: "✏️ Củng cố kiến thức", route: "/products/consolidate" },
         ]}
       />
     </SubscriptionProtect>

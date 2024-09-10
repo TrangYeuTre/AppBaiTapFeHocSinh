@@ -157,10 +157,10 @@
         {
           "isSelected": false,
           "_id": "item-3-3",
-          "name": "3.DH3. Chợ hoa ngày tết ở HN",
+          "name": "3.DH3.Chợ hoa ngày tết ở HN",
           "query": {
             "field": "tenBaiTap",
-            "value": "3.DH3. Chợ hoa ngày tết ở HN"
+            "value": "3.DH3.Chợ hoa ngày tết ở HN"
           }
         },
         {

@@ -31,6 +31,10 @@ button {
   @apply disabled:!bg-coGray2 disabled:cursor-not-allowed;
 }
 
+h1 {
+  @apply text-3xl font-bold;
+}
+
 a {
   @apply text-xl italic underline text-coBlue1 hover:text-coPink;
 }

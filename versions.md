@@ -157,22 +157,44 @@ Mô tả nào:
 
 # VERSION 2.1.0
 
-  - Đã xong app cơ bản rồi: giải quyết được cho dạng bài đièn khuyết và trắc nghiệm cho các mã d1, dh1, tv4.van, t4.amdau
-  - Tiếp đến là clone route /products -> /demo ---> đây sẽ là phiên bản demo cho người dùng dùng thử trước khi mua nè.
-  - Những thứ cần phải cân nhắc:
-    - Tất nhiên là khong cần middleware bảo vệ
-    - Ném về cho client một app react với full 1 cục data cho một gói bài tập demo cố định
-    - Về mặt giao diện thì sẽ trả về 4 mục chính là bốn dạng bài tập để client chọn -> khi cọn một dạng vẫn load full các mục con -> nhưng: chỉ load 1 bài tập con, các mục còn lại sẽ có kí hiệu bị disabled đi.
-  - FIXME: xem lại một số bài tập cũ của từng dạng hình vẫn còn là url google -> nên lỗi load -> sửa lại data cho chúng và chuyển về url firebase
-  - Vậy ta sẽ : TODO:
-    - Build api demo riêng: trong api này chỉ định luôn số bài tập cố đinh sẽ được trả về khi req
-    - Trả về data cố định sau:
-      - Điền khuyết vần - ao au âu - TV4.van.06
-      - Điền khuyết âm đầu - c-k - TV4.amdau.02
-      - Đọc hiểu câu - 3.DH3.Chợ hoa ngày tết ở HN - D1.07, D1.08, D1.09
-      - Đọc hiêu văn bản - 2.DH3.Tôi là HS lớp một - DH1.06, DH1.07, DH1.08 
-    - route này vẫn cho render thanh bottom menu bên dưới nhưng khóa hết tính năng: thành tích, củng cố kiến thức, đăng xuất -> thay bằng đăng kí (chỉ trong demo)
-    - Thanh bottom phải bổ sung một nút nữa là : "Thông tin" gồm các data:
-      - Version
-      - Số lượng bài tập của từng mục -> showcase
-  
+- Đã xong app cơ bản rồi: giải quyết được cho dạng bài đièn khuyết và trắc nghiệm cho các mã d1, dh1, tv4.van, t4.amdau
+- Tiếp đến là clone route /products -> /demo ---> đây sẽ là phiên bản demo cho người dùng dùng thử trước khi mua nè.
+- Những thứ cần phải cân nhắc:
+  - Tất nhiên là khong cần middleware bảo vệ
+  - Ném về cho client một app react với full 1 cục data cho một gói bài tập demo cố định
+  - Về mặt giao diện thì sẽ trả về 4 mục chính là bốn dạng bài tập để client chọn -> khi cọn một dạng vẫn load full các mục con -> nhưng: chỉ load 1 bài tập con, các mục còn lại sẽ có kí hiệu bị disabled đi.
+- FIXME: xem lại một số bài tập cũ của từng dạng hình vẫn còn là url google -> nên lỗi load -> sửa lại data cho chúng và chuyển về url firebase
+- Vậy ta sẽ : TODO:
+  - Build api demo riêng: trong api này chỉ định luôn số bài tập cố đinh sẽ được trả về khi req
+  - ~~Trả về data cố định sau:~~
+    - Điền khuyết vần - ao au âu - TV4.van.06
+    - Điền khuyết âm đầu - c-k - TV4.amdau.02
+    - Đọc hiểu câu - 3.DH3.Chợ hoa ngày tết ở HN - D1.07, D1.08, D1.09
+    - Đọc hiêu văn bản - 2.DH3.Tôi là HS lớp một - DH1.06, DH1.07, DH1.08
+  - route này vẫn cho render thanh bottom menu bên dưới nhưng khóa hết tính năng: thành tích, củng cố kiến thức, đăng xuất -> thay bằng đăng kí (chỉ trong demo)
+  - Thanh bottom phải bổ sung một nút nữa là : "Thông tin" gồm các data:
+    - Version
+    - Số lượng bài tập của từng mục -> showcase
+    - -> vậy là phải có một api lấy thông tin thống kê trả về -> nhớ là phải limit để chống spam
+
+## DO IT
+
+- Copy và sửa lại giao diẹn products -> demo
+- ~~Build api riêng cho thằng demo~~
+  - thiết lập luôn trên đầu api này thằng limit : mỗi người thử chỉ được gởi tối đa **20 request trong 10 phút**
+  - api load bài tập: như mô tả chỉ load một số bài cho từng đề mục. done
+  - Tới trang cuối cùng, bỏ logic fetch lưu thành tích đê, chỉ chuyển về trang chọn bài của demo thôi.
+- ~~Xử lý trang bắt lỗi giới hạn truy cập khi load bài.~~
+- Tính năng xem thông tin app:
+  - ~~Giao diện xem thông tin: done~~
+    - Phiên bản: phiên bản app
+    - Thông tin bài tập: tên mục lớn là dạng tiêu đề, các item con sẽ là một thanh full width với 2 cột: tên - số lượng bài
+  - ~~api: 1 api riêng để thống kê, nằm trong route demo để kiểm soát rate-limit luôn - done~~
+  - ~~Ráp UI và api lại~~
+- ~~Trang liên hệ~~
+- ~~Bổ sung icon cho đẹp~~
+- ~~App đang dùng chung cho học sinh giao bài về nhà và học sinh mua app -> đầu index load giao diện chọn phiên bản nào.~~
+
+- Làm repsonsive cho phone
+  - Làm cho phần product trước
+  - Sau đó áp dụng về demo

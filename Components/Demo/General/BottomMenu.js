@@ -1,7 +1,6 @@
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 import { SubscriptionAuthActions } from "../../../store/subscriptionSlice";
-import { FaSignOutAlt } from "react-icons/fa";
 
 export default function BottomMenu({ navigations }) {
   const dispatch = useDispatch();
@@ -34,13 +33,6 @@ export default function BottomMenu({ navigations }) {
               {item.name}
             </button>
           ))}
-        <button
-          className="btn-shape btn-shape-ghost w-fit"
-          type="button"
-          onClick={signOutHandler}
-        >
-          <FaSignOutAlt className="mx-2" /> Đăng xuất
-        </button>
       </div>
     </section>
   );

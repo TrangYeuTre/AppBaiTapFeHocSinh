@@ -78,6 +78,22 @@
   @apply border-coGray2 text-coGray2
   hover:bg-coGray6;
 }
+.btn-shape-try {
+  @apply border-coGreen text-coGreen
+  hover:bg-coGreen2;
+}
+.btn-shape-disabled {
+  @apply bg-coGray5 border-coGray2
+  cursor-not-allowed;
+}
+.btn-shape-back {
+  @apply cursor-pointer 
+  text-base lg:max-2xl:text-xl 2xl:text-2xl font-semibold
+  flex flex-row justify-center items-center no-underline
+  py-1 px-4 w-fit border-2 border-b-4 rounded-l-3xl
+  transition-all border-coGray2 text-coGray2
+  hover:bg-coGray6 absolute top-2 right-2;
+}
 
 .btn-submit {
   @apply border-coPink !bg-coPink !text-coWhite
@@ -134,4 +150,9 @@
   flex flex-row  shrink-0 gap-2 transition-all
   items-center px-3 py-2 rounded-lg cursor-pointer
   border-2 hover:shadow-md;
+}
+.item-tag-disabled {
+  @apply flex flex-row  shrink-0 gap-2 text-base
+  items-center px-3 py-2 rounded-lg cursor-not-allowed
+  text-coGray3 border-2 border-coGray3 bg-coGray6;
 }

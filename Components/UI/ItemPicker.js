@@ -26,18 +26,34 @@ export default function ItemPicker({ itemsIn, itemOut }) {
 
   if (!items || items.length === 0) return null;
 
+  console.log(items);
+
   return (
     <div>
       <div className="items-picker-wrapper">
-        {items.map((item) => (
-          <div
-            key={item._id}
-            onClick={pickItemHandler.bind(null, item._id)}
-            className={!item.isSelected ? "item-tag" : "item-tag-active"}
-          >
-            <FaTag /> {item.name}
-          </div>
-        ))}
+        {items.map((item) => {
+          let tagStyle = "item-tag";
+          if (item.active) {
+            if (item.isSelected) tagStyle = "item-tag-active";
+          } else {
+            tagStyle = "item-tag-disabled";
+          }
+          return (
+            <div
+              key={item._id}
+              onClick={
+                item.active
+                  ? pickItemHandler.bind(null, item._id)
+                  : () => {
+                      return null;
+                    }
+              }
+              className={tagStyle}
+            >
+              <FaTag /> {item.name}
+            </div>
+          );
+        })}
       </div>
     </div>
   );
