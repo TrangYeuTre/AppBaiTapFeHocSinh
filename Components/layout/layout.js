@@ -1,7 +1,7 @@
-
 export default function Layout({ children }) {
   const preventRightClick = (e) => {
-    e.preventDefault();
+    //TẮT tạm FIXME:
+    // e.preventDefault();
   };
   return (
     <div onContextMenu={preventRightClick}>

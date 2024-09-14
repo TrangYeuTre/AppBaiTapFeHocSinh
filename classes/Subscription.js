@@ -32,10 +32,8 @@ export default class Subscription {
 
   //Fetching load bài tập demo
   async loadDemoExercises({ axios, mainQuery, childQuery }) {
-    console.log("Chạy load demo chứ");
     if (!axios) return;
     const fetchUrl = API_HOCSINH + "/demo/exercises";
-    console.log(fetchUrl);
     const response = await axios.post(fetchUrl, {
       main: mainQuery,
       child: childQuery,
@@ -45,7 +43,6 @@ export default class Subscription {
       (item) => item.phanLoai !== "viet" && item.phanLoai !== "matching"
     );
     this.exercises = temporary;
-    // this.exercises = response.data.data.data;
     return this;
   }
 
@@ -76,7 +73,6 @@ export default class Subscription {
 
   increaseExerciseIndex() {
     if (this.loadedExerciseIndex === this.exercises.length - 1) {
-      console.log("Bài cuối rồi.");
       return this;
     }
     this.loadedExerciseIndex++;

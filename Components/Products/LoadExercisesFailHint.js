@@ -1,18 +1,17 @@
 import Link from "next/link";
+import LocalNotification from "../UI/LocalNotification";
 
-export default function LoadExercisesFailHint({ loadExercises }) {
+export default function LoadExercisesFailHint({ loadExercises, localNoti }) {
   return (
-    <p className="text-center my-4 italic text-coGray2">
-      Nếu không tải được vui lòng thực hiện một trong hai bước sau: <br />-{" "}
+    <div className="p-6">
+      <LocalNotification localNoti={localNoti} />
       <button
         type="button"
         onClick={loadExercises}
-        className="btn btn-submit !w-fit"
+        className="btn-shape btn-shape-submit !w-fit"
       >
         Bấm vào đây để tải lại
       </button>
-      - <br />
-      <Link href="/products">Bấm vào đây để trở lại trang chọn bài tập.</Link>
-    </p>
+    </div>
   );
 }

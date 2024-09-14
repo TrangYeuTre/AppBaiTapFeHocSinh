@@ -3,6 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const initState = {
   token: "",
   username: "",
+  isExpired: true,
+  expirySubscriptionTime: "",
   studentWork: { rightAnswer: 0, wrongAnswers: [], rightAnswers: [] },
 };
 
@@ -11,9 +13,16 @@ const SubscriptionAuthSlice = createSlice({
   initialState: initState,
   reducers: {
     setAuth(state, action) {
-      const { token, username } = action.payload;
+      const {
+        token = "",
+        username = "",
+        isExpired = true,
+        expirySubscriptionTime = "",
+      } = action.payload;
       state.token = token;
       state.username = username;
+      state.isExpired = isExpired;
+      state.expirySubscriptionTime = expirySubscriptionTime;
       //Lưu local
       localStorage.setItem("token", token);
       localStorage.setItem("username", username);
@@ -21,6 +30,8 @@ const SubscriptionAuthSlice = createSlice({
     clearAuth(state) {
       state.token = "";
       state.username = "";
+      state.isExpired = true;
+      state.expirySubscriptionTime = "";
       state.studentWork = {
         rightAnswer: 0,
         wrongAnswers: [],

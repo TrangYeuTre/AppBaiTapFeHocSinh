@@ -5,10 +5,11 @@ import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
 import { SubscriptionAuthActions } from "../../store/subscriptionSlice";
 import Subscription from "../../classes/Subscription";
-import { useAxiosInstance } from "../../hooks/useHooks";
+import { useAxiosInstance, useLocalNotification } from "../../hooks/useHooks";
 import { useState, useEffect } from "react";
 import LoadExercisesFailHint from "./LoadExercisesFailHint";
 import ClassifyExercises from "./ClassifyExercises";
+import LocalNotification from "../UI/LocalNotification";
 
 export default function ConsolidateExercises() {
   const router = useRouter();
@@ -17,6 +18,8 @@ export default function ConsolidateExercises() {
   const { username, token } = useSelector((state) => state.subscriptionAuth);
 
   const axiosInstance = useAxiosInstance(token);
+  const { localNoti, doSetLocalNotification, clearLocalNotification } =
+    useLocalNotification();
 
   const [subscriptionInstance, setSubscriptionInstance] = useState(
     new Subscription({ username, token })
@@ -36,6 +39,10 @@ export default function ConsolidateExercises() {
       );
     } catch (err) {
       console.log(err);
+      doSetLocalNotification({
+        status: err.response.status,
+        message: err.response.data.data.message,
+      });
     } finally {
       setIsFetching(false);
     }
@@ -76,7 +83,10 @@ export default function ConsolidateExercises() {
           </div>
           {isFetching && <Loading />}
           {emptyExercises && (
-            <LoadExercisesFailHint loadExercises={loadExercises} />
+            <LoadExercisesFailHint
+              loadExercises={loadExercises}
+              localNoti={localNoti}
+            />
           )}
           {!emptyExercises && (
             <>

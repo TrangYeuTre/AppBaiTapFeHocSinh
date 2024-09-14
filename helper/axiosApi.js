@@ -123,14 +123,16 @@ export const subscriptionSignup = async ({
         SubscriptionAuthActions.setAuth({
           token: response.data.data.data.token,
           username: response.data.data.data.username,
+          isExpired: response.data.data.data.isExpired,
         })
       );
-      if (router) router.push("/products");
+      if (router) router.push("/auth/wellcome");
     } else {
       dispatch(SubscriptionAuthActions.clearAuth());
     }
     clearLocalNotification();
   } catch (err) {
+    console.log(err);
     if (err && err.response) {
       devErrorMessage(
         err.response.data || "Lỗi đăng kí mới tài khoản subscription."
@@ -164,6 +166,9 @@ export const subscriptionSignin = async ({
         SubscriptionAuthActions.setAuth({
           token: response.data.data.data.token,
           username: response.data.data.data.username,
+          isExpired: response.data.data.data.isExpired,
+          expirySubscriptionTime:
+            response.data.data.data.expirySubscriptionTime,
         })
       );
       if (router) router.push("/products");
@@ -294,4 +299,30 @@ export const getAppInfos = async ({ axios }) => {
   const fetchUrl = API_HOCSINH + "/demo/about";
   const response = await axios.get(fetchUrl);
   return response;
+};
+
+export const getInfosUserAldreadyLoggedIn = async (axiosInstance) => {
+  try {
+    const fetchUrl =
+      API_HOCSINH +
+      "/subscriptionAuth/check-valid-token-user-aldready-loggedIn";
+    const response = await axiosInstance.get(fetchUrl);
+
+    const {
+      username = "",
+      token = "",
+      isExpired = true,
+      expirySubscriptionTime = "",
+    } = response.data.data.data;
+
+    return { username, token, isExpired, expirySubscriptionTime };
+  } catch (err) {
+    console.log(err);
+    return {
+      username: "",
+      token: "",
+      isExpired: true,
+      expirySubscriptionTime: "",
+    };
+  }
 };

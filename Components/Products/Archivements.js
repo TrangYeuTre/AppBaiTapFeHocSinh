@@ -1,4 +1,3 @@
-import BottomMenu from "./General/BottomMenu";
 import CardHomework from "../UI/CardHomework";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
@@ -60,39 +59,34 @@ export default function Archivements() {
 
   return (
     <>
-      <CardHomework>
-        {isFetching && <Loading />}
-        {!isFetching && (
-          <div
-            className="flex flex-col gap-4 justify-center items-center
-    text-4xl py-4"
-          >
-            <p>
+      {isFetching && <Loading />}
+
+      {!isFetching && (
+        <CardHomework>
+          <div className="archivement-wrapper">
+            <h1>
               Thành tích tài khoản:{" "}
               <span className="uppercase font-bold text-coGreen">
                 {archivementData.username}
               </span>
-            </p>
-            <hr className="border-2 w-full border-dashed border-coBlue1 opacity-60" />
-            <ul className="w-full">
+            </h1>
+            <hr className="!w-full !my-0" />
+            <ul className="w-full px-2">
               {archivementsWithIconAward.map((archivement) => (
-                <li
-                  className="grid grid-cols-5 w-full !text-2xl border-b-2
-              border-dashed border-coBlue1"
-                >
-                  <div className="col-span-1 my-2 flex justify-center items-center">
+                <li className="archivement-item-wrapper">
+                  <div className="archivement-item-1slot">
                     {formatDateFillInput(archivement.time)}
                   </div>
-                  <div className="col-span-2 my-2 flex justify-center items-center">
+                  <div className="archivement-item-2slot">
                     {archivement.noiDungMucTieu}
                   </div>
-                  <div className="col-span-1 my-2 flex justify-center items-center">
-                    <span className="font-bold text-3xl text-coGreen mr-1">
+                  <div className="archivement-item-1slot">
+                    <span className="font-bold text-coGreen mr-1">
                       {archivement.thanhTich}
                     </span>
                     / {archivement.tongSoBai}
                   </div>
-                  <div className="col-span-1 my-2 flex justify-center items-center">
+                  <div className="archivement-item-1slot">
                     <Image
                       alt="award icon"
                       src={archivement.awardImageUrl}
@@ -104,15 +98,8 @@ export default function Archivements() {
               ))}
             </ul>
           </div>
-        )}
-      </CardHomework>
-
-      <BottomMenu
-        navigations={[
-          { name: "👜 Chọn bài tập", route: "/products" },
-          { name: "✏️ Củng cố kiến thức", route: "/products/consolidate" },
-        ]}
-      />
+        </CardHomework>
+      )}
     </>
   );
 }

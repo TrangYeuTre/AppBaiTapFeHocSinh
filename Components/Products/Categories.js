@@ -35,9 +35,17 @@ export default function ProductCategories() {
     );
   };
 
+  useEffect(() => {
+    const scrollToActionElement = document.getElementById(
+      "picked-cate-scroll-to"
+    );
+    if (scrollToActionElement)
+      scrollToActionElement.scrollIntoView({ behavior: "smooth" });
+  }, [picked.child]);
+
   return (
     <CardHomework>
-      <form className="flex flex-col gap-4 p-4" onSubmit={loadExerciseHandler}>
+      <form className="card-homework-content" onSubmit={loadExerciseHandler}>
         <h2 className="product-title-left">Chọn chuyên đề</h2>
         <ItemPicker itemsIn={mainCates} itemOut={pickMainCate} />
         {picked.cate && (
@@ -50,7 +58,11 @@ export default function ProductCategories() {
         {picked.cate && picked.child && (
           <>
             <hr />
-            <button type="submit" className="btn-shape btn-shape-submit">
+            <button
+              id="picked-cate-scroll-to"
+              type="submit"
+              className="btn-shape btn-shape-submit"
+            >
               Tải bài tập
             </button>
           </>

@@ -1,16 +1,33 @@
 import ProductCategories from "../../Components/Demo/Categories";
-import BottomMenu from "../../Components/Demo/General/BottomMenu";
+import BottomMenu from "../../Components/Products/General/BottomMenu";
 
 export default function DemoRoute() {
   return (
     <>
       <ProductCategories />
       <BottomMenu
+        noSignOutIcon={true}
         navigations={[
-          { name: "🌟 Xem thành tích", route: "" },
-          { name: "✏️ Củng cố kiến thức", route: "" },
-          { name: "📚 Thông tin", route: "/about" },
-          { name: "📞 Liên hệ", route: "/contact" },
+          {
+            name: "Xem thành tích",
+            route: "",
+            icon: "/assets/icons/medal.svg",
+          },
+          {
+            name: "Củng cố kiến thức",
+            route: "",
+            icon: "/assets/icons/lamp.svg",
+          },
+          {
+            name: "Thông tin",
+            route: "/about",
+            icon: "/assets/icons/infos.svg",
+          },
+          {
+            name: "Liên hệ",
+            route: "/contact",
+            icon: "/assets/icons/contact.svg",
+          },
         ]}
       />
     </>

@@ -10,6 +10,7 @@ export function isValidImageUrl(url) {
 }
 
 export function scrollToElementId(elementId) {
+  if (!elementId) return;
   setTimeout(() => {
     const ele = document.getElementById(elementId);
     if (ele) ele.scrollIntoView({ behavior: "smooth" });
@@ -155,4 +156,14 @@ export const formatDateFillInput = (date) => {
   if (day.toString().length === 1) day = `0${day}`;
 
   return `${time.getFullYear()}-${month}-${day}`;
+};
+
+export const formatDateView = (date) => {
+  const time = new Date(date);
+  let month = time.getMonth() + 1;
+  if (month.toString().length === 1) month = `0${month}`;
+  let day = time.getDate();
+  if (day.toString().length === 1) day = `0${day}`;
+
+  return `${day} / ${month} / ${time.getFullYear()}`;
 };

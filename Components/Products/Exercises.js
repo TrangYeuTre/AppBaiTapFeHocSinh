@@ -9,9 +9,9 @@ import { useAxiosInstance } from "../../hooks/useHooks";
 import { useState, useEffect } from "react";
 import LoadExercisesFailHint from "./LoadExercisesFailHint";
 import ClassifyExercises from "./ClassifyExercises";
+import QuitExerciseBar from "./General/QuitExerciseBar";
 
 export default function LoadExercises() {
-  //
   const router = useRouter();
   const dispatch = useDispatch();
   const { main, child } = router.query;
@@ -55,8 +55,6 @@ export default function LoadExercises() {
     );
   };
 
-  const quitExercisePackage = () => router.replace("/products");
-
   useEffect(() => {
     loadExercises();
     //Ở đây phải reset bài làm của học sinh trên slice
@@ -67,36 +65,27 @@ export default function LoadExercises() {
 
   const exerciseData = subscriptionInstance.getExerciseByCurrentIndex();
 
-  console.log(subscriptionInstance.exercises);
-
   return (
     <SubcriptionProtect>
-      <CardHomework>
-        <div className="relative">
-          <div className="absolute top-0 right-0">
-            <button
-              type="button"
-              onClick={quitExercisePackage}
-              className="btn btn-ghost !w-fit"
-            >
-              x
-            </button>
-          </div>
-          {isFetching && <Loading />}
-          {emptyExercises && (
-            <LoadExercisesFailHint loadExercises={loadExercises} />
-          )}
-          {!emptyExercises && (
-            <>
+      {isFetching && <Loading />}
+      {!isFetching && (
+        <CardHomework>
+          <div className="relative">
+            <QuitExerciseBar isDemo={false} />
+
+            {emptyExercises && (
+              <LoadExercisesFailHint loadExercises={loadExercises} />
+            )}
+            {!emptyExercises && (
               <ClassifyExercises
                 exerciseData={exerciseData}
                 subscriptionInstance={subscriptionInstance}
                 goToNextExercise={goToNextExercise}
               />
-            </>
-          )}
-        </div>
-      </CardHomework>
+            )}
+          </div>
+        </CardHomework>
+      )}
     </SubcriptionProtect>
   );
 }

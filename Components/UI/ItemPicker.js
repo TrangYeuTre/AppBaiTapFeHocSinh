@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { FaTag } from "react-icons/fa";
+import { FaBook } from "react-icons/fa";
 
 export default function ItemPicker({ itemsIn, itemOut }) {
   //Đầu vào itemsIn phải có dạng [{name:"abc",_id:"id", isSelected:boolean}]
@@ -26,8 +27,6 @@ export default function ItemPicker({ itemsIn, itemOut }) {
 
   if (!items || items.length === 0) return null;
 
-  console.log(items);
-
   return (
     <div>
       <div className="items-picker-wrapper">
@@ -50,7 +49,8 @@ export default function ItemPicker({ itemsIn, itemOut }) {
               }
               className={tagStyle}
             >
-              <FaTag /> {item.name}
+              <FaBook />{" "}
+              <p className="pl-2 border-l-2 border-coWhite">{item.name}</p>
             </div>
           );
         })}

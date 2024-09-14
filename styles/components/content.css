@@ -2,7 +2,35 @@
   @apply mx-auto max-w-4xl w-full px-4
   lg:max-2xl:px-0 lg:max-2xl:w-2/3 2xl:w-1/2;
 }
-/* #image-exercise-preview {
-  @apply bg-[url("/assets/test.webp")] bg-no-repeat
-  bg-top bg-cover w-[500px] h-[300px];
-} */
+.bottom-menu-wrapper {
+  @apply fixed bottom-0 left-0 w-full
+  border-t-4 border-coGray2 bg-coWhite
+  p-4 lg:p-8;
+}
+.bottom-menu-content {
+  @apply flex flex-row flex-wrap
+  justify-center gap-4;
+}
+
+.archivement-wrapper {
+  @apply flex flex-col gap-4 justify-center items-center
+  py-4 w-full;
+}
+.archivement-item-wrapper {
+  @apply grid grid-cols-5 w-full border-b-2
+  border-dashed border-coBlue1;
+}
+.archivement-item-1slot {
+  @apply col-span-1 my-2 flex justify-center items-center;
+}
+.archivement-item-2slot {
+  @apply col-span-2 my-2 flex justify-center items-center;
+}
+
+.setting-list {
+  @apply flex flex-col gap-6 items-start justify-start !w-full;
+}
+.setting-control {
+  @apply flex flex-row items-center justify-between
+  p-4 rounded-xl bg-coGray7 w-full;
+}

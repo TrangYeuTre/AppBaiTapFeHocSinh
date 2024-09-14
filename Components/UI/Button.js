@@ -4,8 +4,7 @@ export default function Button({ children, onAction, plusStyle }) {
       onClick={() => {
         onAction();
       }}
-      className={`flex flex-1 flex-row items-center justify-center py-1 px-4 rounded-xl text-xl
-       text-coWhite bg-coPink hover:opacity-80 ${plusStyle}`}
+      className={`btn-shape btn-shape-submit !my-6 ${plusStyle}`}
     >
       {children}
     </button>

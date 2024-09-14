@@ -1,7 +1,15 @@
 .product-title-center {
-  @apply font-semibold text-2xl text-center;
+  @apply font-semibold text-center;
 }
 .product-title-left {
-  @apply font-semibold text-2xl text-left 
-  pl-3 border-l-4 border-coBlue1;
+  @apply font-semibold text-left border-coBlue1
+  pl-2 border-l-2 lg:pl-4 lg:border-l-4;
+}
+
+.classify-trac-ngiem-options-wrapper {
+  @apply flex flex-row flex-wrap shrink-0 gap-4 p-4;
+}
+.classify-trac-ngiem-option {
+  @apply text-base lg:text-lg 2xl:text-xl
+  !px-2 lg:!px-4 !w-fit;
 }

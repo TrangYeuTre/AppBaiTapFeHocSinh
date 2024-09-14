@@ -36,14 +36,12 @@ const HwsSlice = createSlice({
 
         if (baiLam) {
           baiLam.content = content;
-          console.log("cập nhật nè");
         } else {
           baiLamCuaHocSinh.push({
             type: "dienKhuyet",
             id: idBaiTapDienKhuyet,
             content: content,
           });
-          console.log("Thêm mới nè");
         }
       }
 

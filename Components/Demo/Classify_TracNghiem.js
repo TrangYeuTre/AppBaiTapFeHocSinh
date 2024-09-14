@@ -5,11 +5,11 @@ import { SubscriptionAuthActions } from "../../store/subscriptionSlice";
 import { useLocalNotification } from "../../hooks/useHooks";
 import LocalNotification from "../UI/LocalNotification";
 import AutoResizeTextarea from "../Homeworks/AutoHeightTextarea";
-import Loading from "../UI/Loading";
 import ImagePreview from "../UI/ImagePreview";
 import Congratulation from "./General/Congratulation";
 import RightAnswerNoti from "./General/RightAnswerNoti";
 import WrongAnswerNoti from "./General/WrongAnswerNoti";
+import { scrollToElementId } from "../../helper/uti";
 
 export default function ClassifyTracNghiem({
   exerciseData,
@@ -26,7 +26,7 @@ export default function ClassifyTracNghiem({
     useLocalNotification();
 
   const dispatch = useDispatch();
-
+  scrollToElementId("#1");
   useEffect(() => {
     //1. Xử lý tạo data render
     createInitData();
@@ -84,6 +84,7 @@ export default function ClassifyTracNghiem({
     setDapAn((preState) => {
       return { ...preState, ...da };
     });
+    scrollToElementId("#2");
   };
 
   const goToNextExerciseHandler = (e) => {
@@ -108,34 +109,34 @@ export default function ClassifyTracNghiem({
   const showExerciseContent =
     !congratulation && !initLoadData && tracNghiemData;
 
-  console.log(tracNghiemData);
-
   return (
     <>
-      {showInitLoadData && <Loading />}
+      {showInitLoadData && (
+        <p className="text-coGreen text-center italic">Đang xử lý dữ liệu...</p>
+      )}
       {showExerciseContent && (
-        <>
+        <div id="#1">
           <AutoResizeTextarea
             inputValue={`Đề bài: ${tracNghiemData.deBai || null}`}
             ordinalNumber={tracNghiemData.ordinal || ""}
           />
 
-          <hr className="line-gray" />
+          <hr />
           {tracNghiemData.imageUrl && (
             <ImagePreview url={tracNghiemData.imageUrl} />
           )}
 
-          <hr className="line-gray" />
+          <hr />
           <form
             className="card-homework-student-work-wrapper"
             onSubmit={!checked ? checkResult : goToNextExerciseHandler}
           >
             <p className="guide-text">{tracNghiemData.cauHoi}</p>
-            <ul className="flex flex-row flex-wrap gap-4 p-4">
+            <ul className="classify-trac-ngiem-options-wrapper">
               {options.map((opt) => (
                 <li
                   key={opt.id}
-                  className={`btn-shape flex-1 !px-4 !text-lg ${
+                  className={`btn-shape classify-trac-ngiem-option !min-w-10 lg:!min-w-16 ${
                     opt.isSelected ? "btn-shape-main-active" : "btn-shape-ghost"
                   }`}
                   onClick={chooseAnswer.bind(this, opt.id)}
@@ -150,11 +151,15 @@ export default function ClassifyTracNghiem({
 
             <LocalNotification localNoti={localNoti} />
 
-            <button type="submit" className="btn-shape btn-shape-main mt-10">
+            <button
+              id="#2"
+              type="submit"
+              className="btn-shape btn-shape-main mt-10"
+            >
               {!checked ? "Kiểm tra" : "Câu tiếp theo"}
             </button>
           </form>
-        </>
+        </div>
       )}
       {congratulation && (
         <Congratulation

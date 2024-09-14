@@ -5,8 +5,8 @@ export default function InitChooseApp() {
   return (
     <Card>
       <h1 className="text-center uppercase">Vui lòng chọn phiên bản app</h1>
-      <hr className="border-2 border-dashed my-8" />
-      <div className="grid grid-cols-3 p-8 gap-8">
+      <hr className="border-2 border-dashed my-4 lg:my-8" />
+      <div className="p-4 flex flex-col gap-4 lg:grid lg:grid-cols-3 lg:gap-8 lg:p-8">
         <Link
           href="/demo"
           className="btn-shape btn-shape-try col-span-1 no-underline"

@@ -3,11 +3,11 @@ import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { SubscriptionAuthActions } from "../../store/subscriptionSlice";
 import AutoResizeTextarea from "../Homeworks/AutoHeightTextarea";
-import Loading from "../UI/Loading";
 import ImagePreview from "../UI/ImagePreview";
 import Congratulation from "./General/Congratulation";
 import RightAnswerNoti from "./General/RightAnswerNoti";
 import WrongAnswerNoti from "./General/WrongAnswerNoti";
+import { scrollToElementId } from "../../helper/uti";
 
 export default function ClassifyDienKhuyet({
   exerciseData,
@@ -28,6 +28,7 @@ export default function ClassifyDienKhuyet({
   }, [exerciseData]);
 
   useEffect(() => {
+    scrollToElementId("#1");
     //2. Xong hết thì focus vào input cho tiện điền giá trị
     if (dienKhuyetData) {
       dienKhuyetData.initClearAndFocusInput(
@@ -66,6 +67,7 @@ export default function ClassifyDienKhuyet({
     setDapAn((preState) => {
       return { ...preState, ...da };
     });
+    scrollToElementId("#2");
   };
 
   const goToNextExerciseHandler = (e) => {
@@ -92,17 +94,20 @@ export default function ClassifyDienKhuyet({
 
   return (
     <>
-      {showInitLoadData && <Loading />}
+      {/* {showInitLoadData && <Loading />} */}
+      {showInitLoadData && (
+        <p className="text-coGreen text-center italic">Đang xử lý dữ liệu...</p>
+      )}
       {showExerciseContent && (
-        <>
+        <div id="#1">
           <AutoResizeTextarea
             inputValue={`Đề bài: ${dienKhuyetData.deBai || null}`}
             ordinalNumber={dienKhuyetData.ordinal || ""}
           />
 
-          <hr className="line-gray" />
+          <hr />
           <ImagePreview url={dienKhuyetData.imageUrl} />
-          <hr className="line-gray" />
+          <hr />
           <form
             className="card-homework-student-work-wrapper"
             onSubmit={!checked ? checkResult : goToNextExerciseHandler}
@@ -113,11 +118,15 @@ export default function ClassifyDienKhuyet({
 
             {checked && !showRightNoti && <WrongAnswerNoti dapAn={dapAn} />}
 
-            <button type="submit" className="btn-shape btn-shape-main mt-10">
+            <button
+              id="#2"
+              type="submit"
+              className="btn-shape btn-shape-main mt-10"
+            >
               {!checked ? "Kiểm tra" : "Câu tiếp theo"}
             </button>
           </form>
-        </>
+        </div>
       )}
       {congratulation && (
         <Congratulation

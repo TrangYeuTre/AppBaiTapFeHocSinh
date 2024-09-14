@@ -8,19 +8,23 @@
 }
 /* HOMEWORKSTACK CARD */
 .card-homework-wrapper {
-  @apply rounded-xl border-2 border-coGray5 mx-auto 
-  max-w-4xl  px-4  shadow-md mb-[160px]
-  lg:px-0 h-fit min-h-[80vh]
-  w-full lg:w-2/3 2xl:w-3/4;
+  @apply rounded-xl border-2 border-coGray5 mx-auto max-w-4xl
+  shadow-md mb-[160px] h-fit min-h-[80vh]
+  w-[95%] lg:max-2xl:w-3/4 2xl:w-2/3;
 }
-.card-homework-student-work-wrapper {
-  @apply p-4 flex flex-col gap-4 pb-8;
+.card-homework-content {
+  @apply flex flex-col gap-4 p-4
+  lg:p-8 lg:gap-8;
 }
 .card-homework-textarea {
   @apply w-full h-32 border-2 border-coGray5 shadow-lg mt-3;
 }
 .card-homework-input {
   @apply border-coGray5 w-fit shadow-lg mt-3 max-w-28;
+}
+
+.card-homework-student-work-wrapper {
+  @apply p-4 flex flex-col gap-4 pb-8;
 }
 
 .homework-actions-wrapper {

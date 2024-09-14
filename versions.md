@@ -38,20 +38,8 @@ Nghi@biab0t91
     - ~~api signUp~~
     - ~~build ui form đăng kí~~
     - ~~ráp vào test lên api luôn~~
-  - signIn here
-    - ~~ui from đăng nhập~~
-    - logic khi đăng nhập
-      - ~~đầu tiên là xác thực username và password xem có đúng không?~~
-      - ~~sau đó xác thực có đúng thiết bị đang gởi request lên app không ? -> khi không phải ta sẽ trả về {token,username} và thông báo tài khoản này đang đăng nhập trên một thiết bị khác.~~
-      - ~~Để dùng tiếp vui lòng bấm vào đây để xác thực thoát khỏi tài khoản và đăng nhập lại.~~
-      - ~~Build api xóa thiết bị khỏi tài khoản nào~~
-      - ~~Ráp vào ui -> sau đó reload lai trang đăng nhập + khi bấm nút đăng xuất khỏi thiết bị cũ thì thêm vào logic xóa mẹ datas ở localStorage đi để xóa thông tin đăng nhập hiện tại luôn.~~
-      - **Quan trọng**: phải pass qua được bước password và username để xác minh đúng đó là người dùng hợp lệ rồi mới kiểm tra đến dùng trên 1 thiết bị -> việc này hạn chế người dùng ảo liên tục gởi req không hợp lệ để phá.
-      - FIXME:
-        - giả sử ta đăng nhập thành công trên web macos
-        - sau đó dùng postman logout rồi đăng nhập trên postman
-        - lúc này trên web còn lưu thông tin đăng nhập trong localstorage nên nó vẫn duy trì đăng nhập
-        - về sau khi đã có api của route /products, lúc này khi gởi request kềm token (token này đã hết xài được) -> xử lý ném lỗi về và trả lại trang login với thông báo "tài khoản của bạn vừa đăng nhập trên một thiết bị khác".
+  - signIn here - ~~ui from đăng nhập~~ - logic khi đăng nhập - ~~đầu tiên là xác thực username và password xem có đúng không?~~ - ~~sau đó xác thực có đúng thiết bị đang gởi request lên app không ? -> khi không phải ta sẽ trả về {token,username} và thông báo tài khoản này đang đăng nhập trên một thiết bị khác.~~ - ~~Để dùng tiếp vui lòng bấm vào đây để xác thực thoát khỏi tài khoản và đăng nhập lại.~~ - ~~Build api xóa thiết bị khỏi tài khoản nào~~ - ~~Ráp vào ui -> sau đó reload lai trang đăng nhập + khi bấm nút đăng xuất khỏi thiết bị cũ thì thêm vào logic xóa mẹ datas ở localStorage đi để xóa thông tin đăng nhập hiện tại luôn.~~ - **Quan trọng**: phải pass qua được bước password và username để xác minh đúng đó là người dùng hợp lệ rồi mới kiểm tra đến dùng trên 1 thiết bị -> việc này hạn chế người dùng ảo liên tục gởi req không hợp lệ để phá.
+    ◊ - giả sử ta đăng nhập thành công trên web macos - sau đó dùng postman logout rồi đăng nhập trên postman - lúc này trên web còn lưu thông tin đăng nhập trong localstorage nên nó vẫn duy trì đăng nhập - về sau khi đã có api của route /products, lúc này khi gởi request kềm token (token này đã hết xài được) -> xử lý ném lỗi về và trả lại trang login với thông báo "tài khoản của bạn vừa đăng nhập trên một thiết bị khác".
   - changePassword.
     - ~~NGuyên lý: tạo 2 route api: - 1 là forgotPassword: để gởi yêu cầu quên mật khẩu, kiểm tra nếu cung cấp đúng email thì BE sẽ tạo một token dạng encrypted (có thời hạn)-> gởi về mail khách 1 link để đến trang đổi password - 2 là resetPassword: route với logic đổi password mới. - ~~thêm prop resetPasswordToken và resetPasswordTokenExpired, changePassswordAt~~ - Build logic cho api forgotPassword - Đầu tiên phải thiết lập logic và cài đặt để gởi email - Logic tạo token trong link reset email và gởi mail thôi nào. - Build logic cho
     - ~~Thêm trong UI login phần quên password (dùng state chuyển thôi)~~
@@ -118,7 +106,7 @@ Mô tả nào:
           - ~~Check lại ở slice mảng kết quả bài tập làm sai đã~~
           - ~~Thêm api trên BE~~
           - ~~Ráp vào FE hoàn thành thôi~~
-      - Lưu thành tích: 1 thanh ngang gồm các mục: stt, ngày, nội dung mục tiêu, thành tích và trong db chỉ lưu 10 thành tích gần nhất. TODO: _cả nùi việc bên dưới đây_
+      - Lưu thành tích: 1 thanh ngang gồm các mục: stt, ngày, nội dung mục tiêu, thành tích và trong db chỉ lưu 10 thành tích gần nhất. T
         - ~~Api cập nhật thành tích~~
         - ~~Bổ sung thanh bottom options: đăng xuất, xem thành tích làm bài, củng cố kiến thức~~
         - ~~Build ráp logic đăng xuất vào nút~~
@@ -163,8 +151,7 @@ Mô tả nào:
   - Tất nhiên là khong cần middleware bảo vệ
   - Ném về cho client một app react với full 1 cục data cho một gói bài tập demo cố định
   - Về mặt giao diện thì sẽ trả về 4 mục chính là bốn dạng bài tập để client chọn -> khi cọn một dạng vẫn load full các mục con -> nhưng: chỉ load 1 bài tập con, các mục còn lại sẽ có kí hiệu bị disabled đi.
-- FIXME: xem lại một số bài tập cũ của từng dạng hình vẫn còn là url google -> nên lỗi load -> sửa lại data cho chúng và chuyển về url firebase
-- Vậy ta sẽ : TODO:
+- Vậy ta sẽ :
   - Build api demo riêng: trong api này chỉ định luôn số bài tập cố đinh sẽ được trả về khi req
   - ~~Trả về data cố định sau:~~
     - Điền khuyết vần - ao au âu - TV4.van.06
@@ -196,5 +183,81 @@ Mô tả nào:
 - ~~App đang dùng chung cho học sinh giao bài về nhà và học sinh mua app -> đầu index load giao diện chọn phiên bản nào.~~
 
 - Làm repsonsive cho phone
+
   - Làm cho phần product trước
+    - ~~AUth form - done~~
+    - ~~Bottom menu~~
+    - ~~Áp hết icon vào bottom menu nào.~~
+    - ~~Cái CardHomeword để render nội dung~~
+    - ~~Xử lý cho component Categories~~
+      - ~~ItemPicker~~
+    - ~~COmp: products load bài tập => comp LoadExercise~~\
+    - ~~BỔ sung: trong comp Categories, sau khi chọn xong thằng child cate thì croll xuống nút bấm để tăng trải nhiệm (products and demo)~~
+    - ~~Component ClassifyExercise: ĐIèn khueyets và trắc nghiệm: options trắc nghiệm chỉnh breakpoint xíu~~
+    - ~~Component CHúc mừng~~
+    - ~~COmponent Thành tích~~
   - Sau đó áp dụng về demo
+    - ~~Comp thông tin phiên bản~~
+    - ~~Sửa lại cái nút back responsive~~
+  - ~~Ở products: thanh bottom menu phần đăng xuất nên đổi lại thành setting -> tạo một page setting để bỏ những thứ cần vào như: đăng xuất, xem phiên bản app, liên hệ~~
+
+  ~~Trong setting: thêm dòng tài khoản và ngày hết hạn đối với product~~
+
+  - Trong schema phải thêm một prop hết hạn
+  - Lúc đăng nhập phải bổ sung logic check ngày hết hạn của tài khoản subscription
+  - PHải thêm một api cho việc kích hoạt tài khoản pro.
+  - Quan trọng đây: api protectAuth phải được tích hợp logic kiểm tra tài khoản đã đăng kí chưa -> vì api này là api chính để kiểm tra mỗi request của subscription.
+
+- ~~Rà soát limit cho các api quan trọng.~~
+  - ~~Nên tạo một CB để xuất ra limit với các mục tiêu cụ thể: gởi quá nhiều yêu cầu trong một thời gian ngắn, giớ hạn gởi số yêu cầu trong một ngày.~~
+
+~~Đầu tiên là sửa lại api khi user đăng nhập, bổ sung check ngày hết hạn đẻ xem có phải user đó đã mua không~~
+~~Nếu user đó chưa mua thì điều hướng họ về trang thông báo là để dùng app thì phải mua, và một nút điều hướng đến bản demo để trải nghiệm~~
+
+- ~~Bổ sung trong api login logic check ngày hết hạn của tk~~
+
+  - ~~Trong response data, bổ sung thêm prop isExpired -> prop này khi xử lý ở FE sẽ điều hướng đến đâu~~
+  - ~~Trong axiosInstance chưa kèm prop isExpired~~
+  - ~~Đòng thời trong api,signup và signin -> trong token nén luôn thông tin isExpired đã xử lý ở trên -> như vậy khi reques trong tokne sẽ có luông thông tin isExpired này hay không đẻ xử lý bước ở dưới.~~
+  - ~~Trong protect middlewawr: decoded ra thông tin isExpired này~~
+  - ~~Khi này trong các api của products kiểm kiểm tra thêm một bước là isExpired này, còn trong demo (thì không cần vì tk nào cũng có thể truy cập thằng này.)~~
+
+- ~~trong trang settings của user đã đăng kí, hiển thị thông tin tên user name, ngày hết hạn đăng kí gói tháng.~~
+
+  - ~~trong logic signin, trả về thêm ngày hết hạn gói nữa -> mới set vào slice để mà dùng render được ba.~~
+
+- TODO: Bổ sung quy định khi thanh toán (tìm hiểu mấy trang bán hàng như devideShop)
+- FIXME: trong apiHocSinh, myOrigins nên chỉ để https để bảo mật token jwt trong req. Ngoài ra hỏi chatGpt để chueyern hướng các http sang https
+- ~~bài trắc nghiệm, đặt min width cho options chọn để nó view đẹp hơn khi responsive~~
+- ~~trong email gởi reset password -> bổ sung thông báo: link có thời hạn 10 phút~~
+- Dọn dẹp code, tối ưu hóa thôi nào
+  - ~~API học sinh trước~~ done
+  - FE nào: thử các trường hợp lỗi để catch lỗi và render ra ui thông báo cho client thử.
+    ~~lỗi khi 2 tài khoản chung 1 email, gởi yêu cầu thay đổi password sẽ bị sại~~
+    -> ~~email cũng phải là duy nhất vì nó là email để quản lý thanh toán này nọ của client~~
+    -> ~~sửa lại schema, api sign up.~~
+  - ~~Xóa console.log không cần thiét nào~~
+- ~~Trong giao diện mobile, khi bấm kiểm tra xong thì nút Tiếp theo bị trôi -> scroll đến nó ngay~~
+- ~~trong trang login, bổ sung useEffect lấy data đăng nhập từ local để fill vào slice -> để người dùng khi thoát app mà không đăng xuất và muốn trở lại app thì pass qua được bước đăng nhập
+  - Tại SubscriptionProtect chính là nơi xử lý chính sẽ điều hướng về đâu
+  - Về mặt lý thuyết: ta sẽ lấy token từ localStorage -> gởi một api check token lần nữa -> decode token này ra sẽ được username, isExpired -> kiểm tra 2 thằng này hợp lệ hay không -. hợp lệ thì trả về thông tin xác thực tài khoản -> lấy thông tin này set lại vào auth trong slice~~
+- ~~thằng lấy bài tập củng cố lại lỗi gì rồi done~~
+
+- Thêm tính năng refresh token với nguyên lý như sau:
+
+  - Nguyên lý:
+    - Route signin: sẽ trả vè cho client 2 token, token và refreshToken. Token dùng cho logic xác thực client là tài khoản loại nào, refreshToken dùng để đính kèm tạo token mới.
+    - TOken sẽ có hạn trong 30 phút, refreshToken sẽ có hạn trong 7 ngày
+    - Tại route signIn sẽ có một useEffect lây token từ slice redux về ,nếu không có value thì bốc từ localStorage để lấy token fetch lên api kiểm tra. _Ý nghĩa: nếu client đăng nhập rồi và quay lại route /subscription thì đọc được token từ slice và sẽ pass được useEffect này, nhưng nếu người dùng đong browser và mởi lại sau đó thì token trong slice sẽ mất, lúc này cần bốc token từ localStorage ra và gởi fetch để kiểm tra lại và cấp lại token này_.
+      🌟🌟🌟- **Trường hợp giả sử:**
+      - Giả sử user tháng hợp lệ đã đăng nhập thành công và có thể truy cập mọi trang ở FE
+      - Khi user này thoát browser, sau đó trở lại nhưng không truy cập trang /subscription đầu tiên mà họ truy cập thẳng route /subscriptions/archivements
+      - **Suy luận**: route archivements này auto gởi 1 fetch để truy cập resource trên api, theo code của mình thì trong req này sẽ có một axiosInstance được tạo bởi useAxiosInstance(token) -> mà tham số token này lại được lấy từ slice về -> và theo logic thì do người dùng vào thẳng route này khi truy cập lại nên token=null -> như vậy sẽ bị lỗi ngay.
+      - **NHƯNG:** ở FE, mọi route cần quyền hạn đều được bọc bởi compo SubscriptionProtect -> mà trong comp này có logic nếu đọc token từ slice rỗng sẽ bốc từ local ra và gởi fetch để cấp lại token cho đùng và set lại token cho Slice -> nên nó fix được và app chạy ngon.
+    - Vậy ta sẽ bổ sung logic gởi cả reresh token này tại compo SubscriptionProtect này.
+  - Làm thôi nào: TODO: (mò cái cookie trước rồi làm thằng này sau)
+    - Đầu tiên backup git mấy cái trước đã ngon nghẻ rồi.
+    - _LƯu ý:_ đối với api signUp: ta không cần gởi về refreshTOken vì cơ bản user này chưa có quyền vào app
+    - Quan trọng đây: refreshToken nên được bảo mật, mà localStorage thì bá tánh ai vào lấy cũng được mà cái jwt thì rất dễ bị decode -> giải pháp: lưu token trong cookies
+
+- Test cookie: build một api test thử với postman, sau đó build một /route trên FE nextjs để test với api này để hiểu cơ chế hoạt động của cookie trên be và fe đã rồi mới ứng dụng.

@@ -10,14 +10,12 @@
 @import "./components/products.css";
 
 html {
-  @apply box-border;
-}
-body,
-body > * {
-  @apply text-base lg:max-2xl:text-xl 2xl:text-2xl;
+  @apply box-border transition-all
+  text-base lg:max-2xl:text-xl 2xl:text-2xl;
 }
 label {
-  @apply italic text-coGray2;
+  @apply italic text-coGray2
+  text-base lg:max-2xl:text-lg 2xl:text-xl;
 }
 input,
 textarea {
@@ -31,12 +29,14 @@ button {
   @apply disabled:!bg-coGray2 disabled:cursor-not-allowed;
 }
 
-h1 {
-  @apply text-3xl font-bold;
+a {
+  @apply italic underline text-coBlue1 hover:text-coPink
+  text-base lg:max-2xl:text-lg 2xl:text-xl;
 }
 
-a {
-  @apply text-xl italic underline text-coBlue1 hover:text-coPink;
+hr {
+  @apply border-[1px] border-dashed border-coGray2 !opacity-20
+  my-2 lg:my-4 2xl:my-8;
 }
 
 /* Warter mark chéo text */

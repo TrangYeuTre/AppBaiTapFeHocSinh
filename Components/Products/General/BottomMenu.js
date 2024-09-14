@@ -1,24 +1,11 @@
-import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
-import { SubscriptionAuthActions } from "../../../store/subscriptionSlice";
-import { FaSignOutAlt } from "react-icons/fa";
+import Image from "next/image";
 
 export default function BottomMenu({ navigations }) {
-  const dispatch = useDispatch();
   const router = useRouter();
-  const signOutHandler = () => dispatch(SubscriptionAuthActions.clearAuth());
-  //   const goToArchivement = () => router.replace("/subscription/archivements");
-  //   const goToReDo = () => {};
   return (
-    <section
-      className="p-8 border-t-4
-    border-coGray2 absolute bottom-0 left-0
-    w-full"
-    >
-      <div
-        className="flex flex-row flex-wrap 
-    justify-center gap-2"
-      >
+    <section className="bottom-menu-wrapper">
+      <div className="bottom-menu-content">
         {navigations &&
           navigations.map((item) => (
             <button
@@ -31,16 +18,20 @@ export default function BottomMenu({ navigations }) {
                 router.replace(item.route);
               }}
             >
-              {item.name}
+              <div className="icon-wrapper">
+                {item.icon && (
+                  <Image
+                    alt="bottom menu icon"
+                    src={item.icon}
+                    fill
+                    className="object-cover"
+                  />
+                )}
+              </div>
+
+              <p className="button-title-responsive">{item.name}</p>
             </button>
           ))}
-        <button
-          className="btn-shape btn-shape-ghost w-fit"
-          type="button"
-          onClick={signOutHandler}
-        >
-          <FaSignOutAlt className="mx-2" /> Đăng xuất
-        </button>
       </div>
     </section>
   );

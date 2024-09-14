@@ -7,8 +7,10 @@ import {
   useAxiosInstance,
 } from "../../../hooks/useHooks";
 import LocalNotification from "../../UI/LocalNotification";
+import { scrollToElementId } from "../../../helper/uti";
 
 export default function Congratulation({ exerciseData, subscriptionInstance }) {
+  scrollToElementId("#1");
   const subscriptionAuth = useSelector((state) => state.subscriptionAuth);
   const studentWork = subscriptionAuth.studentWork;
   const token = subscriptionAuth.token;
@@ -137,6 +139,7 @@ export default function Congratulation({ exerciseData, subscriptionInstance }) {
 
   return (
     <form
+      id="#1"
       className="flex flex-col gap-4 justify-center items-center
     text-4xl p-4"
       onSubmit={isSubmitingConsolidate ? submitConsolidate : submitArchivements}

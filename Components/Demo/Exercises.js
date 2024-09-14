@@ -71,8 +71,6 @@ export default function LoadExercises() {
 
   const exerciseData = subscriptionInstance.getExerciseByCurrentIndex();
 
-  console.log(subscriptionInstance.exercises);
-
   return (
     <CardHomework>
       <div className="relative">
