@@ -18,12 +18,14 @@ export default function LoadExercises() {
   const mainQuery = main ? JSON.parse(main) : {};
   const childQuery = child ? JSON.parse(child) : {};
 
-  const { username, token } = useSelector((state) => state.subscriptionAuth);
+  const { username, isExpired } = useSelector(
+    (state) => state.subscriptionAuth
+  );
 
-  const axiosInstance = useAxiosInstance(token);
+  const axiosInstance = useAxiosInstance();
 
   const [subscriptionInstance, setSubscriptionInstance] = useState(
-    new Subscription({ username, token })
+    new Subscription({ username, isExpired })
   );
   const [isFetching, setIsFetching] = useState(false);
 

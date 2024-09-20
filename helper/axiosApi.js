@@ -121,7 +121,7 @@ export const subscriptionSignup = async ({
     if (response.data) {
       dispatch(
         SubscriptionAuthActions.setAuth({
-          token: response.data.data.data.token,
+          // token: response.data.data.data.token,
           username: response.data.data.data.username,
           isExpired: response.data.data.data.isExpired,
         })
@@ -156,22 +156,28 @@ export const subscriptionSignin = async ({
   clearLocalNotification,
 }) => {
   const fetchUrl = API_HOCSINH + "/subscriptionAuth/signIn";
+  const axiosInstance = axios.create({ timeout: 5000, withCredentials: true });
   try {
-    const response = await axios.post(fetchUrl, {
+    const response = await axiosInstance.post(fetchUrl, {
       username,
       password,
     });
+
     if (response.data) {
       dispatch(
         SubscriptionAuthActions.setAuth({
-          token: response.data.data.data.token,
           username: response.data.data.data.username,
           isExpired: response.data.data.data.isExpired,
           expirySubscriptionTime:
             response.data.data.data.expirySubscriptionTime,
         })
       );
-      if (router) router.push("/products");
+      if (response.data.data.data.isExpired) {
+        router.replace("/auth/wellcome");
+      } else {
+        router.replace("/products");
+      }
+      // if (router) router.push("/products");
     } else {
       dispatch(SubscriptionAuthActions.clearAuth());
     }
@@ -181,10 +187,13 @@ export const subscriptionSignin = async ({
       devErrorMessage(
         err.response.data || "Lỗi đăng nhập tài khoản subscription."
       );
-      doSetLocalNotification({
-        status: err.response.status,
-        message: err.response.data.data.message || "Lỗi đăng kí mới tài khoản",
-      });
+      if (err.response.status === 429)
+        doSetLocalNotification({ status: 429, message: err.response.data });
+      if (err.response.data.data)
+        doSetLocalNotification({
+          status: err.response.status,
+          message: err.response.data.data.message || "Lỗi đăng nhập.",
+        });
       //Check nếu lỗi 403 thì kích hoạt tính năng đăng xuất khỏi thiết bị cũ
       if (err.response && err.response.status === 403) {
         setLoggedInDevice(true);
@@ -192,6 +201,21 @@ export const subscriptionSignin = async ({
         setLoggedInDevice(false);
       }
     }
+  }
+};
+
+export const subscriptionSignOut = async ({
+  axiosInstance,
+  dispatch,
+  router,
+  SubscriptionAuthActions,
+}) => {
+  try {
+    await axiosInstance.get(API_HOCSINH + "/subscriptionAuth/signOut");
+    dispatch(SubscriptionAuthActions.clearAuth());
+    router.replace("/subscription");
+  } catch (err) {
+    console.log(err);
   }
 };
 
@@ -310,12 +334,14 @@ export const getInfosUserAldreadyLoggedIn = async (axiosInstance) => {
 
     const {
       username = "",
-      token = "",
+      // token = "",
       isExpired = true,
       expirySubscriptionTime = "",
     } = response.data.data.data;
 
-    return { username, token, isExpired, expirySubscriptionTime };
+    console.log(username, isExpired, expirySubscriptionTime);
+
+    return { username, isExpired, expirySubscriptionTime };
   } catch (err) {
     console.log(err);
     return {

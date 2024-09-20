@@ -21,13 +21,25 @@ export const useProtect = () => {
 };
 
 export const useAxiosInstance = (token) => {
-  const instance = axios.create({
-    timeout: 5000,
-    headers: {
-      Authorization: "Bearer " + token,
-      "Content-Type": "application/json",
-    },
-  });
+  let instance;
+  if (token) {
+    //Lấy token từ local thì dùng thằng này
+    instance = axios.create({
+      timeout: 5000,
+      headers: {
+        Authorization: "Bearer " + token,
+        "Content-Type": "application/json",
+      },
+    });
+  } else {
+    console.log("axiosInstance tạo để chơi với cookies");
+    //Không cần token, gởi req với token bảo mật trong cookie
+    instance = axios.create({
+      timeout: 5000,
+      withCredentials: true,
+    });
+  }
+
   return instance;
 };
 

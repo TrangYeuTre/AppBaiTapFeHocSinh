@@ -1,5 +1,6 @@
 export default function LocalNotification({ localNoti }) {
-  const { status, message } = localNoti;
+  if (!localNoti) return null;
+  const { status = 0, message = "" } = localNoti;
 
   let notiStyle = `animate-pulse my-3 text-coBlue1 text-center`;
   if (status >= 200 && status < 300) notiStyle = notiStyle + " !text-coGreen";

@@ -13,8 +13,7 @@ export default function Congratulation({ exerciseData, subscriptionInstance }) {
   scrollToElementId("#1");
   const subscriptionAuth = useSelector((state) => state.subscriptionAuth);
   const studentWork = subscriptionAuth.studentWork;
-  const token = subscriptionAuth.token;
-  const axiosInstance = useAxiosInstance(token);
+  const axiosInstance = useAxiosInstance();
 
   const totalExercises = subscriptionInstance.getExercisesLength() || 0;
 

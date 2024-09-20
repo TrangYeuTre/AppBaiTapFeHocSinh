@@ -14,39 +14,38 @@ import { useAxiosInstance } from "../../hooks/useHooks";
 export default function SubscriptionRoute() {
   useMainternance();
   const router = useRouter();
+  const axiosInstance = useAxiosInstance();
   const dispatch = useDispatch();
-  const token = useSelector((state) => state.subscriptionAuth.token);
+  const { isExpired, username } = useSelector(
+    (state) => state.subscriptionAuth
+  );
 
   //SIde effect nếu không có token từ slice, moi từ local ra fetch lên api check token local
   useEffect(() => {
+    console.log("chạy chứ");
     const doFetch = async () => {
-      const tokenFromLocal = localStorage.getItem("token");
-      if (!tokenFromLocal) {
-        return;
-      }
-      const axiosInstance = useAxiosInstance(tokenFromLocal);
-
+      console.log("--- chạy fetch kiểm tra đã login chưa ngay form login");
       const {
-        username,
-        token: checkedToken,
-        isExpired,
+        username: checkedUsername,
+        isExpired: checkedIsExpired,
         expirySubscriptionTime,
       } = await getInfosUserAldreadyLoggedIn(axiosInstance);
-      if (checkedToken) {
+
+      if (!checkedIsExpired) {
         dispatch(
           SubscriptionAuthActions.setAuth({
-            username,
-            token: checkedToken,
-            isExpired,
+            username: checkedUsername,
+            isExpired: checkedIsExpired,
             expirySubscriptionTime,
           })
         );
+        router.replace("/products");
       } else {
         dispatch(SubscriptionAuthActions.clearAuth());
       }
     };
-    if (!token) doFetch();
-  }, [token]);
+    if (isExpired && !username) doFetch();
+  }, []);
 
-  return !token ? <SubscriptionAuth /> : null;
+  return isExpired ? <SubscriptionAuth /> : null;
 }

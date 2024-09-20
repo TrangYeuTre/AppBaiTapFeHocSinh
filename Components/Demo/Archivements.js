@@ -12,8 +12,7 @@ export default function Archivements() {
   const [archivementData, setArchivementData] = useState({});
   const [isFetching, setIsFetching] = useState(false);
 
-  const token = useSelector((state) => state.subscriptionAuth.token);
-  const axiosInstance = useAxiosInstance(token);
+  const axiosInstance = useAxiosInstance();
 
   useEffect(() => {
     getUserArchivements(axiosInstance);
@@ -77,6 +76,7 @@ export default function Archivements() {
             <ul className="w-full">
               {archivementsWithIconAward.map((archivement) => (
                 <li
+                  key={Math.random()}
                   className="grid grid-cols-5 w-full !text-2xl border-b-2
               border-dashed border-coBlue1"
                 >

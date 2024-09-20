@@ -6,13 +6,13 @@ import { formatDateFillInput } from "../../helper/uti";
 import staticData from "../../data/static.json";
 import Image from "next/image";
 import Loading from "../UI/Loading";
+import axios from "axios";
 
 export default function Archivements() {
   const [archivementData, setArchivementData] = useState({});
   const [isFetching, setIsFetching] = useState(false);
 
-  const token = useSelector((state) => state.subscriptionAuth.token);
-  const axiosInstance = useAxiosInstance(token);
+  const axiosInstance = useAxiosInstance();
 
   useEffect(() => {
     getUserArchivements(axiosInstance);

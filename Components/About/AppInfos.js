@@ -10,8 +10,8 @@ import Link from "next/link";
 import { useSelector } from "react-redux";
 
 export default function AppInfos() {
-  const { token, username } = useSelector((state) => state.subscriptionAuth);
-  const backTo = token ? "/products" : "/demo";
+  const { isExpired } = useSelector((state) => state.subscriptionAuth);
+  const backTo = !isExpired ? "/products" : "/demo";
 
   const [isFetching, setIsFetching] = useState(false);
   const { localNoti, doSetLocalNotification, clearLocalNotification } =

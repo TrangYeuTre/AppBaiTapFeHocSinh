@@ -1,9 +1,9 @@
 .product-title-center {
-  @apply font-semibold text-center;
+  @apply font-semibold text-center uppercase;
 }
 .product-title-left {
   @apply font-semibold text-left border-coBlue1
-  pl-2 border-l-2 lg:pl-4 lg:border-l-4;
+  pl-2 border-l-2 lg:pl-4 lg:border-l-4 uppercase;
 }
 
 .classify-trac-ngiem-options-wrapper {

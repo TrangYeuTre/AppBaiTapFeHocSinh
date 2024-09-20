@@ -6,9 +6,14 @@ const API_HOCSINH =
     : staticData.API_HOCSINH;
 
 export default class Subscription {
-  constructor({ username, token, exercises = [], loadedExerciseIndex = 0 }) {
+  constructor({
+    username,
+    isExpired = true,
+    exercises = [],
+    loadedExerciseIndex = 0,
+  }) {
     this.username = username;
-    this.token = token;
+    this.isExpired = isExpired;
     this.exercises = exercises;
     this.loadedExerciseIndex = loadedExerciseIndex;
   }

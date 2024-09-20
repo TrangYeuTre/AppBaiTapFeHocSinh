@@ -1,24 +1,37 @@
 import CardHomework from "../UI/CardHomework";
 import { SubscriptionAuthActions } from "../../store/subscriptionSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { FaSignOutAlt, FaBookmark, FaFacebookMessenger } from "react-icons/fa";
-import Link from "next/link";
 import { useRouter } from "next/router";
+import { useAxiosInstance } from "../../hooks/useHooks";
+import {
+  FaSignOutAlt,
+  FaBookmark,
+  FaFacebookMessenger,
+  FaMoneyBill,
+} from "react-icons/fa";
+import Link from "next/link";
 import { formatDateView } from "../../helper/uti";
+import { subscriptionSignOut } from "../../helper/axiosApi";
 
 export default function Settings() {
   const dispatch = useDispatch();
   const router = useRouter();
-  const signOutHandler = () => {
-    dispatch(SubscriptionAuthActions.clearAuth());
-    router.replace("/subscription");
+  const axiosInstance = useAxiosInstance();
+
+  const signOutHandler = async () => {
+    await subscriptionSignOut({
+      axiosInstance,
+      dispatch,
+      router,
+      SubscriptionAuthActions,
+    });
   };
-  const { token, username, expirySubscriptionTime } = useSelector(
+  const { username, expirySubscriptionTime, isExpired } = useSelector(
     (state) => state.subscriptionAuth
   );
 
   const goBack = () => {
-    if (token) {
+    if (!isExpired) {
       router.replace("/products");
     } else {
       router.replace("/demo");
@@ -72,6 +85,15 @@ export default function Settings() {
               href="/contact"
             >
               <FaFacebookMessenger size={30} /> Liên hệ
+            </Link>
+          </li>
+          <li className="setting-control">
+            <label className="product-title-left">Thanh toán</label>
+            <Link
+              className="btn-shape btn-shape-main w-fit !mx-0 !p-2 no-underline"
+              href="/payment"
+            >
+              <FaMoneyBill size={30} /> Thanh toán
             </Link>
           </li>
         </ul>

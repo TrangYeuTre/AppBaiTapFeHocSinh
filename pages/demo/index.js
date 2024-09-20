@@ -28,6 +28,11 @@ export default function DemoRoute() {
             route: "/contact",
             icon: "/assets/icons/contact.svg",
           },
+          {
+            name: "Thanh toán",
+            route: "/payment",
+            icon: "/assets/icons/pen.svg",
+          },
         ]}
       />
     </>

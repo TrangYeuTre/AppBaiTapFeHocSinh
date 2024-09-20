@@ -1,6 +1,4 @@
-import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
-import { SubscriptionAuthActions } from "../../../store/subscriptionSlice";
 
 export default function BottomMenu({ navigations }) {
   const router = useRouter();

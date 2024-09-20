@@ -13,16 +13,10 @@ export default function Congratulation({ exerciseData, subscriptionInstance }) {
   scrollToElementId("#1");
   const subscriptionAuth = useSelector((state) => state.subscriptionAuth);
   const studentWork = subscriptionAuth.studentWork;
-  const token = subscriptionAuth.token;
-  const axiosInstance = useAxiosInstance(token);
 
   const totalExercises = subscriptionInstance.getExercisesLength() || 0;
 
   const router = useRouter();
-  const [isFetching, setIsFetching] = useState(false);
-
-  //Biến quyết định submit cập nhật thành tích / cập nhật củng cố
-  const isSubmitingConsolidate = router.asPath.includes("consolidate");
 
   const { localNoti, doSetLocalNotification, clearLocalNotification } =
     useLocalNotification();

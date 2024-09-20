@@ -119,14 +119,11 @@ export default function SubscriptionAuth() {
     }
   };
 
+  //Effect render trang signup nếu có param trên url
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    const username = localStorage.getItem("username");
-    if (token && username) {
-      dispatch(SubscriptionAuthActions.setAuth({ token, username }));
-      router.replace("/products");
-    }
-  }, []);
+    const { query } = router;
+    if (query.signUp) switchForm("signUp");
+  }, [router]);
 
   return (
     <section className="content-wrapper">

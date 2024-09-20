@@ -226,7 +226,6 @@ Mô tả nào:
 
   - ~~trong logic signin, trả về thêm ngày hết hạn gói nữa -> mới set vào slice để mà dùng render được ba.~~
 
-- TODO: Bổ sung quy định khi thanh toán (tìm hiểu mấy trang bán hàng như devideShop)
 - FIXME: trong apiHocSinh, myOrigins nên chỉ để https để bảo mật token jwt trong req. Ngoài ra hỏi chatGpt để chueyern hướng các http sang https
 - ~~bài trắc nghiệm, đặt min width cho options chọn để nó view đẹp hơn khi responsive~~
 - ~~trong email gởi reset password -> bổ sung thông báo: link có thời hạn 10 phút~~
@@ -255,9 +254,32 @@ Mô tả nào:
       - **Suy luận**: route archivements này auto gởi 1 fetch để truy cập resource trên api, theo code của mình thì trong req này sẽ có một axiosInstance được tạo bởi useAxiosInstance(token) -> mà tham số token này lại được lấy từ slice về -> và theo logic thì do người dùng vào thẳng route này khi truy cập lại nên token=null -> như vậy sẽ bị lỗi ngay.
       - **NHƯNG:** ở FE, mọi route cần quyền hạn đều được bọc bởi compo SubscriptionProtect -> mà trong comp này có logic nếu đọc token từ slice rỗng sẽ bốc từ local ra và gởi fetch để cấp lại token cho đùng và set lại token cho Slice -> nên nó fix được và app chạy ngon.
     - Vậy ta sẽ bổ sung logic gởi cả reresh token này tại compo SubscriptionProtect này.
-  - Làm thôi nào: TODO: (mò cái cookie trước rồi làm thằng này sau)
-    - Đầu tiên backup git mấy cái trước đã ngon nghẻ rồi.
+  - Làm thôi nào:(mò cái cookie trước rồi làm thằng này sau)
+    - ~~Đầu tiên backup git mấy cái trước đã ngon nghẻ rồi.~~
     - _LƯu ý:_ đối với api signUp: ta không cần gởi về refreshTOken vì cơ bản user này chưa có quyền vào app
     - Quan trọng đây: refreshToken nên được bảo mật, mà localStorage thì bá tánh ai vào lấy cũng được mà cái jwt thì rất dễ bị decode -> giải pháp: lưu token trong cookies
+    - ~~Trong signIn, thay vì gởi token về, set trong cookie thôi~~
+    - ~~Sau đó ở FE, sưa lại useAxiosInstance, nếu không có tham số thì config nó lại thành dạng credentials cho cookie auto đính kèm~~
+    - ~~Trong signOut -> clear thằng cookie đi~~
+    - ~~Chỉnh logic trong signIn nào - dùng cookies, không dùng token trong slice nữa~~
+    - ~~Tìm useAxiosInstance(token) -> sửa lại thành không tham số hết để dùng token đính trong cookie khi req~~
+    - ~~Route chọn phiên bản âp, sửa icon lại cho đẹp nào, nhìn chuối quá.~~
+    - ~~Class subscription, bỏ token đi, thay bằng isExpired~~
 
-- Test cookie: build một api test thử với postman, sau đó build một /route trên FE nextjs để test với api này để hiểu cơ chế hoạt động của cookie trên be và fe đã rồi mới ứng dụng.
+- ~~Test cookie: build một api test thử với postman, sau đó build một /route trên FE nextjs để test với api này để hiểu cơ chế hoạt động của cookie trên be và fe đã rồi mới ứng dụng.~~
+
+  - ~~Test api vơi postman~~
+  - ~~Test với 1 comp trên FE~~
+
+- ~~Trong demo/ chính thức -> setting -> payment~~
+  - ~~Thêm một mục dưới menu là đăng kí gia hạn~~
+    - ~~Khung giá / 1 tháng~~
+    - ~~Lời nhắc: nếu chưa đăng kí tài khoản vui lòng click vào đây để đk trước~~
+      - ~~Thông tin thanh toán sẽ được gởi về email đã đăng kí tài khoản. Nếu chưa có tk, vui lòng đăng kí tại đây.~~
+        - ~~Đổi lại trang login, thêm điều kiện: query trên url nếu có form="signup" thì set thằng state đẻ render ra form signup.~~
+    - ~~Đầu tiên là chính sách: có nút ẩn / hiện.~~
+    - ~~Thông tin chuyển khoản (tạo qr code luôn cho tiện)~~
+    - ~~Nội dung chuyển khoản: email-appbtcotrang~~
+    - ~~Sau khi ck thành công, vui lòng nhắn với Nghĩa fb + zalo để kích hoạt tài khoản.~~
+    - ~~Thêm điều hướng: demo thì thêm một nút dưới bottomMenu, products thì thêm một mục trong settings~~
+- TODO: Ok xong cái token trong cookie rồi, giờ xử lý thêm cái refresh token cũng trả về trong cookie
