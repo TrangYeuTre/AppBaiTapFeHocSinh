@@ -1,3 +1,5 @@
+FIXME: Thằng này deploy trên vercel nhé.
+
 # 1.0.1
 
 - Lỗi: khi render đề bài là đoạn văn bản đài thì nó không auto fix chiều cao để hiển thị hết cái đề. ✅
