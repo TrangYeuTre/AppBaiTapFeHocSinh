@@ -34,9 +34,4 @@ const doFetchExs = async ({ hocSinh, axiosInstance, dispatch, router }) => {
     router,
   });
   dispatch(HwsActions.setHws(homeworks));
-  //Test
-  // const newHomeworksRender = new HomeworksStack({}).createInitHomeworksRender(
-  //   homeworks
-  // );
-  // dispatch(HwsRenderActions.setHomeworksRender(newHomeworksRender));
 };

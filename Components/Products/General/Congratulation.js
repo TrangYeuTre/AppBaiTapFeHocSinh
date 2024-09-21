@@ -1,13 +1,13 @@
+import Image from "next/image";
+import LocalNotification from "../../UI/LocalNotification";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import Image from "next/image";
 import {
   useLocalNotification,
   useAxiosInstance,
 } from "../../../hooks/useHooks";
-import LocalNotification from "../../UI/LocalNotification";
-import { scrollToElementId } from "../../../helper/uti";
+import { scrollToElementId, devErrorMessage } from "../../../helper/uti";
 
 export default function Congratulation({ exerciseData, subscriptionInstance }) {
   scrollToElementId("#1");
@@ -96,7 +96,10 @@ export default function Congratulation({ exerciseData, subscriptionInstance }) {
         }, 2000);
       }
     } catch (err) {
-      console.log(err);
+      devErrorMessage({
+        err,
+        from: "/Components/Products/General/Congratulation.js",
+      });
     } finally {
       setIsFetching(false);
     }
@@ -130,7 +133,10 @@ export default function Congratulation({ exerciseData, subscriptionInstance }) {
         }, 2000);
       }
     } catch (err) {
-      console.log(err);
+      devErrorMessage({
+        err,
+        from: "/Components/Products/General/Congratulation.js",
+      });
     } finally {
       setIsFetching(false);
     }

@@ -252,12 +252,12 @@ Mô tả nào:
       - Giả sử user tháng hợp lệ đã đăng nhập thành công và có thể truy cập mọi trang ở FE
       - Khi user này thoát browser, sau đó trở lại nhưng không truy cập trang /subscription đầu tiên mà họ truy cập thẳng route /subscriptions/archivements
       - **Suy luận**: route archivements này auto gởi 1 fetch để truy cập resource trên api, theo code của mình thì trong req này sẽ có một axiosInstance được tạo bởi useAxiosInstance(token) -> mà tham số token này lại được lấy từ slice về -> và theo logic thì do người dùng vào thẳng route này khi truy cập lại nên token=null -> như vậy sẽ bị lỗi ngay.
-      - **NHƯNG:** ở FE, mọi route cần quyền hạn đều được bọc bởi compo SubscriptionProtect -> mà trong comp này có logic nếu đọc token từ slice rỗng sẽ bốc từ local ra và gởi fetch để cấp lại token cho đùng và set lại token cho Slice -> nên nó fix được và app chạy ngon.
+      - **NHƯNG:** ở FE, mọi route cần quyền hạn đều được bọc bởi compo SubscriptionProtect -> mà trong comp này có logic nếu đọc token từ slice rỗng sẽ bốc từ local ra và gởi fetch để cấp lại token cho đùng và set lại token cho Slice -> nên nó fix được và app chạy ngon. -> và ta không nên lưu token trong local -> do đó phải lấy token từ cookie
     - Vậy ta sẽ bổ sung logic gởi cả reresh token này tại compo SubscriptionProtect này.
   - Làm thôi nào:(mò cái cookie trước rồi làm thằng này sau)
     - ~~Đầu tiên backup git mấy cái trước đã ngon nghẻ rồi.~~
     - _LƯu ý:_ đối với api signUp: ta không cần gởi về refreshTOken vì cơ bản user này chưa có quyền vào app
-    - Quan trọng đây: refreshToken nên được bảo mật, mà localStorage thì bá tánh ai vào lấy cũng được mà cái jwt thì rất dễ bị decode -> giải pháp: lưu token trong cookies
+    - **Quan trọng đây: refreshToken nên được bảo mật, mà localStorage thì bá tánh ai vào lấy cũng được mà cái jwt thì rất dễ bị decode -> giải pháp: lưu token trong cookies**
     - ~~Trong signIn, thay vì gởi token về, set trong cookie thôi~~
     - ~~Sau đó ở FE, sưa lại useAxiosInstance, nếu không có tham số thì config nó lại thành dạng credentials cho cookie auto đính kèm~~
     - ~~Trong signOut -> clear thằng cookie đi~~
@@ -283,3 +283,38 @@ Mô tả nào:
     - ~~Sau khi ck thành công, vui lòng nhắn với Nghĩa fb + zalo để kích hoạt tài khoản.~~
     - ~~Thêm điều hướng: demo thì thêm một nút dưới bottomMenu, products thì thêm một mục trong settings~~
 - TODO: Ok xong cái token trong cookie rồi, giờ xử lý thêm cái refresh token cũng trả về trong cookie
+  - Đầu tiên là lên api signIn, trong logic: trả về thêm một token refresh với hạn 7 ngày,
+  - Cũng tỏng api này ta sẽ kiểm tra: token chính đã hết hạn chưa, nếu chưa thì pass cái cấp refreshToken.
+  - Nếu token chính hết hạn, kiểm tra refresh token đã hết hạn chưa, nếu hết hạn luôn thì trả về lỗi và bắt login lại, nếu chưa hết hạn thì tạo một cặp tokens mới và gởi về.
+  - Cặp thời hạn ta sẽ cho là: 1h và 6d cho token chíng và token refresh.
+  - LÀM NÈ:
+    - ~~đổi biến môi trường cho 2 thằng thời hạn token~~
+    - ~~Lên signIn tạo thêm refresh tôken ,trả về cookies, test trên postman xem ok không đã~~
+    - ~~Test trên browser xem nó có trả về 2 tokens không.~~
+    - ~~Ok, lấy cặp token từ middleware protection~~
+    - ~~Đầu tiên là kiểm tra token chính hết hạn chưa~~
+    - ~~Token chính hết hạn -> kiểm tra rToken hết hạn chưua~~
+    - ~~rTOken chưa hết hạn -> cấp lại cặp token mới~~
+    - ~~rToken hết hạn -> ném về lỗi bắt đăng nhập lại~~.
+    - ~~XOng thì giảm thời gian của các biến môi trường lại để test xem nó có work không.~~
+  - Mọi fetch tài nguyên ở FE, khi gặp code 403 thì phải clear auth và redirect nó về login
+    - ~~Như vậy, các code trả về ở mid protection phải chuyển về 403 trước~~
+    - Trở lại FE, vào comp protection để xử lý effect rediret về -> Không phải comp protection ở FE chỉ check lần đầu xem user có token trong cookies còn hợp lệ hay không
+    - Muốn check token hết hạn phải check từng cb fetch lấy tài ngueyen, check những component có chạy fetch lấy data
+      - ~~Check archivement~~
+      - ~~Check load bài tập chính: LoadExcercises của products~~
+      - ~~Check load bài củng cố~~
+- Check lại các vấn đề nhỏ sau đẻ hoàn thiện 2.1.0, vì cơ bản tính năng ok rồi
+
+  - ~~Thời hạn token chỉnh lại.~~
+  - ~~Xóa mọi token hay thông tin đính kèm token trong body request, vì dùng token trong cookie rồi.~~
+  - ~~rate limit chỉnh lại cho thằng chính~~
+  - ~~check mấy cái TODO, FIXME~~
+  - ~~xóa console.log không càn thiết~~
+  - ~~Thêm thắt những thứ cần ignore khi lên git~~
+  - ~~Tạo một mid trên app.js đẻ ghi log lại vào file, sau này lên xem biết lỗi gì từ client xài mà fix lỗi.~~
+  - ~~Áp toàn bộ console.log chỉ chạy cho thằng developer ở FE, lên Production thì không.~~
+
+- ~~Ok chạy build sản phẩm cuối thôi nào.~~
+
+- backup git và deploy thôi nào.

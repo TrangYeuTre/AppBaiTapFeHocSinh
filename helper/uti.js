@@ -23,10 +23,12 @@ export function checkBlockHomework({ soLanNop, tinhTrang }) {
   return blockHomework;
 }
 
-export function devErrorMessage(message) {
+export function devErrorMessage({ err = {}, message = "", from = "" }) {
   const showLog = process.env.NODE_ENV === "development";
   if (showLog) {
-    console.log(message);
+    console.log("🛑 ---> Lỗi từ file: " + from);
+    if (message) console.log(message);
+    if (Object.keys(err).length > 0) console.log(err);
   }
 }
 
@@ -166,4 +168,16 @@ export const formatDateView = (date) => {
   if (day.toString().length === 1) day = `0${day}`;
 
   return `${day} / ${month} / ${time.getFullYear()}`;
+};
+
+export const checkErrorAndRedirectLogin = ({ err, router }) => {
+  let message = "";
+  const { response = {} } = err;
+  const { status = null } = response;
+  const { data = {} } = response;
+  if (Object.keys(data).length > 0 && data.data)
+    message = data.data.message || "";
+  setTimeout(() => {
+    if (status === 401 || status === 403) router.reload();
+  }, 1000);
 };

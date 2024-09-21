@@ -32,7 +32,6 @@ export const useAxiosInstance = (token) => {
       },
     });
   } else {
-    console.log("axiosInstance tạo để chơi với cookies");
     //Không cần token, gởi req với token bảo mật trong cookie
     instance = axios.create({
       timeout: 5000,

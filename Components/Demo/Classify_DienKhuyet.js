@@ -1,13 +1,13 @@
-import { DienKhuyetExercise } from "../../classes/ClassifyExercise";
-import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { SubscriptionAuthActions } from "../../store/subscriptionSlice";
 import AutoResizeTextarea from "../Homeworks/AutoHeightTextarea";
 import ImagePreview from "../UI/ImagePreview";
 import Congratulation from "./General/Congratulation";
 import RightAnswerNoti from "./General/RightAnswerNoti";
 import WrongAnswerNoti from "./General/WrongAnswerNoti";
-import { scrollToElementId } from "../../helper/uti";
+import { DienKhuyetExercise } from "../../classes/ClassifyExercise";
+import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { SubscriptionAuthActions } from "../../store/subscriptionSlice";
+import { scrollToElementId, devErrorMessage } from "../../helper/uti";
 
 export default function ClassifyDienKhuyet({
   exerciseData,
@@ -48,7 +48,10 @@ export default function ClassifyDienKhuyet({
       await dkData.initLoadImage();
       setDienKhuyetData(dkData);
     } catch (err) {
-      console.log(err);
+      devErrorMessage({
+        err,
+        from: "/Components/Demo/Classify_DienKhuyet.js",
+      });
     } finally {
       setInitLoadData(false);
     }

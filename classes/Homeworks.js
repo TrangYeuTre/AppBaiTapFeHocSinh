@@ -143,7 +143,10 @@ export default class Homeworks {
 
   findHomeworkById(id) {
     if (!id || this.homeworks.length === 0) {
-      devErrorMessage("Không tìm thấy bài tập chính về nhà theo id.");
+      devErrorMessage({
+        message: "Không tìm thấy bài tập chính về nhà theo id.",
+        from: "classes/Homeworks.js",
+      });
       return;
     }
     const homework = this.homeworks[0].baiTapVeNha.find(
@@ -153,7 +156,10 @@ export default class Homeworks {
   }
   findSubHomeworkWrittingById(id) {
     if (!id || this.homeworks.length === 0) {
-      devErrorMessage("Không tìm thấy bài tập con về nhà theo id.");
+      devErrorMessage({
+        message: "Không tìm thấy bài tập con về nhà theo id.",
+        from: "classes/Homeworks.js",
+      });
       return;
     }
     const writtingHomeworks = this.homeworks[0].baiTapVeNha.filter(
@@ -170,7 +176,10 @@ export default class Homeworks {
   }
   getHomeworkType(homework) {
     if (!homework) {
-      devErrorMessage("Lấy kiểu bài tập lỗi, bài tập không tồn tại.");
+      devErrorMessage({
+        message: "Lấy kiểu bài tập lỗi, bài tập không tồn tại.",
+        from: "classes/Homeworks.js",
+      });
       return;
     }
     let type = "";
@@ -179,13 +188,19 @@ export default class Homeworks {
     if (homework.data.viet.active) type = "viet";
     if (homework.data.matching.active) type = "matching";
     if (type === "") {
-      devErrorMessage("Kiểu bài tập rỗng, không hợp lệ.");
+      devErrorMessage({
+        message: "Kiểu bài tập rỗng, không hợp lệ.",
+        from: "classes/Homeworks.js",
+      });
     }
     return type;
   }
   getHomeworkTypeDatas(homework, type) {
     if (!homework || !type) {
-      devErrorMessage("Lấy datas theo kiểu bài tập lỗi.");
+      devErrorMessage({
+        message: "Lấy datas theo kiểu bài tập lỗi.",
+        from: "classes/Homeworks.js",
+      });
       return;
     }
     let datas = [];
@@ -202,15 +217,19 @@ export default class Homeworks {
     tinhTrang,
   }) {
     if (!writtingDatas || !baiLamCuaHocSinh || !tinhTrang) {
-      devErrorMessage(
-        "Lỗi chuyển hóa bài tập dạng viết thành datas render: inputs không hợp lệ"
-      );
+      devErrorMessage({
+        message:
+          "Lỗi chuyển hóa bài tập dạng viết thành datas render: inputs không hợp lệ",
+        from: "classes/Homeworks.js",
+      });
       return;
     }
     if (writtingDatas.length === 0) {
-      devErrorMessage(
-        "writtingDatas ban đầu rỗng, không có data để render bài tập dạng viết."
-      );
+      devErrorMessage({
+        message:
+          "writtingDatas ban đầu rỗng, không có data để render bài tập dạng viết.",
+        from: "classes/Homeworks.js",
+      });
       return [];
     }
 
@@ -226,6 +245,7 @@ export default class Homeworks {
   #initCreateHomeworkWrittingRender({ writtingDatas, soLanNop, tinhTrang }) {
     const initHomeworkWrittingRender = writtingDatas.map((writtingData) => {
       return {
+        key: writtingData.id,
         id: writtingData.id,
         content: "",
         imageUrl: writtingData.imageUrl,
@@ -257,15 +277,19 @@ export default class Homeworks {
       !tinhTrang ||
       !dapAnCuaGiaoVien
     ) {
-      devErrorMessage(
-        "Lỗi chuyển hóa bài tập dạng điền khuyết thành datas render: inputs không hợp lệ"
-      );
+      devErrorMessage({
+        message:
+          "Lỗi chuyển hóa bài tập dạng điền khuyết thành datas render: inputs không hợp lệ",
+        from: "classes/Homeworks.js",
+      });
       return;
     }
     if (fillEmptyDatas.length === 0) {
-      devErrorMessage(
-        "fillEmptyDatas ban đầu rỗng, không có data để render bài tập dạng điền khuyết."
-      );
+      devErrorMessage({
+        message:
+          "fillEmptyDatas ban đầu rỗng, không có data để render bài tập dạng điền khuyết.",
+        from: "classes/Homeworks.js",
+      });
       return [];
     }
 
@@ -282,6 +306,7 @@ export default class Homeworks {
   #initCreateHomeworkFillEmptyRender({ fillEmptyDatas, soLanNop, tinhTrang }) {
     const initHomeworkFilEmptyRender = fillEmptyDatas.map((fillEmptyData) => {
       return {
+        key: fillEmptyData.id,
         id: fillEmptyData.id,
         kieu: fillEmptyData.kieu, //đk đầu, giữa, cuối
         imageUrl: fillEmptyData.imageUrl,
@@ -306,9 +331,11 @@ export default class Homeworks {
   }
   #fillHomeworkEmptyWithTeacherGrading(dapAnCuaGiaoVien) {
     if (!dapAnCuaGiaoVien || dapAnCuaGiaoVien.length === 0) {
-      devErrorMessage(
-        "Chưa có bài sửa của giáo viên để xử lý thêm vào bài tập về nhà render."
-      );
+      devErrorMessage({
+        message:
+          "Chưa có bài sửa của giáo viên để xử lý thêm vào bài tập về nhà render.",
+        from: "classes/Homeworks.js",
+      });
       return;
     }
     dapAnCuaGiaoVien.forEach((dapAn) => {
@@ -333,15 +360,19 @@ export default class Homeworks {
   //TYPE TRUE/FALSE
   convertHomeworkTrueFalseDatasToRender({ trueFalseDatas, baiLamCuaHocSinh }) {
     if (!trueFalseDatas || !baiLamCuaHocSinh) {
-      devErrorMessage(
-        "Lỗi chuyển hóa bài tập dạng viết thành datas render: inputs không hợp lệ"
-      );
+      devErrorMessage({
+        message:
+          "Lỗi chuyển hóa bài tập dạng viết thành datas render: inputs không hợp lệ",
+        from: "classes/Homeworks.js",
+      });
       return;
     }
     if (trueFalseDatas.length === 0) {
-      devErrorMessage(
-        "trueFalseDatas ban đầu rỗng, không có data để render bài tập dạng trắc nghiệm."
-      );
+      devErrorMessage({
+        message:
+          "trueFalseDatas ban đầu rỗng, không có data để render bài tập dạng trắc nghiệm.",
+        from: "classes/Homeworks.js",
+      });
       return [];
     }
     this.#initCreateHomeworkTrueFalseOptions(trueFalseDatas);
@@ -351,6 +382,7 @@ export default class Homeworks {
   #initCreateHomeworkTrueFalseOptions(trueFalseDatas) {
     const initTrueFalseOptions = trueFalseDatas.map((trueFalseData) => {
       return {
+        key: trueFalseData.id,
         id: trueFalseData.id,
         content: trueFalseData.content,
         isSelected: false,
@@ -360,9 +392,11 @@ export default class Homeworks {
   }
   #fillHomeworkTrueFalseWithStudentWork(baiLamCuaHocSinh) {
     if (!baiLamCuaHocSinh || baiLamCuaHocSinh.length === 0) {
-      devErrorMessage(
-        "Chưa có bài làm của học sinh để chuyển hóa vào bài tập về nhà render."
-      );
+      devErrorMessage({
+        message:
+          "Chưa có bài làm của học sinh để chuyển hóa vào bài tập về nhà render.",
+        from: "classes/Homeworks.js",
+      });
       return;
     }
     const chosenOptionOfStudent = baiLamCuaHocSinh[0].id || "";
@@ -378,15 +412,19 @@ export default class Homeworks {
   //TYPE MATCHING
   convertHomeworkMatchingToRender({ matchingDatas, baiLamCuaHocSinh }) {
     if (!matchingDatas || !baiLamCuaHocSinh) {
-      devErrorMessage(
-        "Lỗi chuyển hóa bài tập dạng matching thành datas render: inputs không hợp lệ"
-      );
+      devErrorMessage({
+        message:
+          "Lỗi chuyển hóa bài tập dạng matching thành datas render: inputs không hợp lệ",
+        from: "classes/Homeworks.js",
+      });
       return;
     }
     if (matchingDatas.length === 0) {
-      devErrorMessage(
-        "matchingDatas ban đầu rỗng, không có data để render bài tập dạng trắc nghiệm."
-      );
+      devErrorMessage({
+        message:
+          "matchingDatas ban đầu rỗng, không có data để render bài tập dạng trắc nghiệm.",
+        from: "classes/Homeworks.js",
+      });
       return {};
     }
     if (
@@ -412,9 +450,11 @@ export default class Homeworks {
     const cloneItemsTrai = [...JSON.parse(JSON.stringify(itemsTrai))];
 
     if (baiLamCuaHocSinh.length === 0) {
-      devErrorMessage(
-        "Chưa có bài làm matching của học sinh để fill vào bài tập về nhà render."
-      );
+      devErrorMessage({
+        message:
+          "Chưa có bài làm matching của học sinh để fill vào bài tập về nhà render.",
+        from: "classes/Homeworks.js",
+      });
       return cloneItemsTrai;
     }
     baiLamCuaHocSinh.forEach((item) => {
@@ -436,9 +476,11 @@ export default class Homeworks {
   //GENERAL FUNCTIONS
   #checkHomeworkGeneralDatasImage(homeworkTypeRender) {
     if (!homeworkTypeRender || homeworkTypeRender.length === 0) {
-      devErrorMessage(
-        "Lỗi kiểm tra url hình của bài tập: input homeworks không hợp lệ."
-      );
+      devErrorMessage({
+        message:
+          "Lỗi kiểm tra url hình của bài tập: input homeworks không hợp lệ.",
+        from: "classes/Homeworks.js",
+      });
       return;
     }
     homeworkTypeRender.forEach((homework) => {
@@ -453,9 +495,11 @@ export default class Homeworks {
       !homeworkTypeRender ||
       homeworkTypeRender.length === 0
     ) {
-      devErrorMessage(
-        "Lỗi điền bài làm của học sinh vào bài tập render: inputs không hợp lệ."
-      );
+      devErrorMessage({
+        message:
+          "Lỗi điền bài làm của học sinh vào bài tập render: inputs không hợp lệ.",
+        from: "classes/Homeworks.js",
+      });
       return;
     }
     baiLamCuaHocSinh.forEach((baiLam) => {

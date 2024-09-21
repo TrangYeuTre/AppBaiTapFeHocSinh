@@ -1,15 +1,16 @@
 import CardHomework from "../UI/CardHomework";
 import Loading from "../UI/Loading";
-import { useRouter } from "next/router";
-import { useSelector, useDispatch } from "react-redux";
-import { SubscriptionAuthActions } from "../../store/subscriptionSlice";
-import Subscription from "../../classes/Subscription";
-import { useState, useEffect } from "react";
 import LoadExercisesFailHint from "./LoadExercisesFailHint";
 import ClassifyExercises from "./ClassifyExercises";
 import axios from "axios";
+import Subscription from "../../classes/Subscription";
 import LocalNotification from "../UI/LocalNotification";
+import { useRouter } from "next/router";
+import { useSelector, useDispatch } from "react-redux";
+import { SubscriptionAuthActions } from "../../store/subscriptionSlice";
+import { useState, useEffect } from "react";
 import { useLocalNotification } from "../../hooks/useHooks";
+import { devErrorMessage } from "../../helper/uti";
 
 export default function LoadExercises() {
   const router = useRouter();
@@ -43,7 +44,10 @@ export default function LoadExercises() {
         new Subscription({ ...updatedSubscriptionInstance })
       );
     } catch (err) {
-      console.log(err);
+      devErrorMessage({
+        err,
+        from: "/hocSinh/Components/Demo/Exercises.js",
+      });
       doSetLocalNotification({
         status: err.response.status,
         message: err.response.data,

@@ -1,11 +1,11 @@
 export default function Layout({ children }) {
-  const preventRightClick = (e) => {
-    //TẮT tạm FIXME:
-    // e.preventDefault();
+  const preventRightClick = (event) => {
+    if (process.env.NODE_ENV === "production") {
+      event.preventDefault();
+    }
   };
   return (
     <div onContextMenu={preventRightClick}>
-      {/* <Header /> */}
       <main className="py-10">{children}</main>
     </div>
   );

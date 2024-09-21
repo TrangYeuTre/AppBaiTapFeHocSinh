@@ -1,9 +1,8 @@
 import BottomMenu from "./General/BottomMenu";
 import CardHomework from "../UI/CardHomework";
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
 import { useAxiosInstance } from "../../hooks/useHooks";
-import { formatDateFillInput } from "../../helper/uti";
+import { formatDateFillInput, devErrorMessage } from "../../helper/uti";
 import staticData from "../../data/static.json";
 import Image from "next/image";
 import Loading from "../UI/Loading";
@@ -35,7 +34,10 @@ export default function Archivements() {
         setArchivementData(response.data.data.data);
       }
     } catch (err) {
-      console.log(err);
+      devErrorMessage({
+        err,
+        from: "/Components/Demo/Archivements.js",
+      });
     } finally {
       setIsFetching(false);
     }
@@ -56,7 +58,6 @@ export default function Archivements() {
       awardImageUrl = "/assets/award1.gif";
     return { ...item, awardImageUrl };
   });
-
   return (
     <>
       <CardHomework>

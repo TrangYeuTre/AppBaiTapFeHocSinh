@@ -1,18 +1,22 @@
 import CardHomework from "../UI/CardHomework";
-import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
-import { useAxiosInstance } from "../../hooks/useHooks";
-import { formatDateFillInput } from "../../helper/uti";
 import staticData from "../../data/static.json";
 import Image from "next/image";
 import Loading from "../UI/Loading";
-import axios from "axios";
+import { useState, useEffect } from "react";
+import { useAxiosInstance } from "../../hooks/useHooks";
+import {
+  formatDateFillInput,
+  devErrorMessage,
+  checkErrorAndRedirectLogin,
+} from "../../helper/uti";
+import { useRouter } from "next/router";
 
 export default function Archivements() {
   const [archivementData, setArchivementData] = useState({});
   const [isFetching, setIsFetching] = useState(false);
 
   const axiosInstance = useAxiosInstance();
+  const router = useRouter();
 
   useEffect(() => {
     getUserArchivements(axiosInstance);
@@ -35,7 +39,14 @@ export default function Archivements() {
         setArchivementData(response.data.data.data);
       }
     } catch (err) {
-      console.log(err);
+      devErrorMessage({
+        err,
+        from: "/Components/Products/Archivements.js",
+      });
+      checkErrorAndRedirectLogin({
+        err,
+        router,
+      });
     } finally {
       setIsFetching(false);
     }
@@ -73,7 +84,10 @@ export default function Archivements() {
             <hr className="!w-full !my-0" />
             <ul className="w-full px-2">
               {archivementsWithIconAward.map((archivement) => (
-                <li className="archivement-item-wrapper">
+                <li
+                  className="archivement-item-wrapper"
+                  key={Math.random() + archivement.time}
+                >
                   <div className="archivement-item-1slot">
                     {formatDateFillInput(archivement.time)}
                   </div>

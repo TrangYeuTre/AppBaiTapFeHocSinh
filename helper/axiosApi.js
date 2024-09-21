@@ -37,8 +37,10 @@ export const signIn = async ({
     setError("");
   } catch (err) {
     if (err && err.response) {
-      devErrorMessage(err.response.data || "Thông tin đăng nhập không đúng.");
-
+      devErrorMessage({
+        err,
+        from: "helper/axiosApi.js",
+      });
       setError(
         err.response.status === 429
           ? err.response.data
@@ -59,9 +61,10 @@ export const getAvailableHomeworks1Student = async ({
     const response = await axiosInstance.get(fetchUrl);
     return response.data.data || [];
   } catch (err) {
-    console.log(err);
-    devErrorMessage("Load bài tập về nhà cho học sinh lỗi gì đó.");
-    // if (err.response.status === 429) router.replace("/auth");
+    devErrorMessage({
+      err,
+      from: "helper/axiosApi.js",
+    });
     return [];
   }
 };
@@ -74,7 +77,10 @@ export const submitAnswers = async ({ hws, axiosInstance, hocSinh }) => {
     const response = await axiosInstance.put(fetchUrl, updatedDatas);
     return response.status;
   } catch (err) {
-    console.log(err);
+    devErrorMessage({
+      err,
+      from: "helper/axiosApi.js",
+    });
     return 500;
   }
 };
@@ -121,22 +127,25 @@ export const subscriptionSignup = async ({
     if (response.data) {
       dispatch(
         SubscriptionAuthActions.setAuth({
-          // token: response.data.data.data.token,
           username: response.data.data.data.username,
           isExpired: response.data.data.data.isExpired,
         })
       );
-      if (router) router.push("/auth/wellcome");
+      if (router) router.push("/auth/welcome");
     } else {
       dispatch(SubscriptionAuthActions.clearAuth());
     }
     clearLocalNotification();
   } catch (err) {
-    console.log(err);
+    devErrorMessage({
+      err,
+      from: "helper/axiosApi.js",
+    });
     if (err && err.response) {
-      devErrorMessage(
-        err.response.data || "Lỗi đăng kí mới tài khoản subscription."
-      );
+      devErrorMessage({
+        err,
+        from: "helper/axiosApi.js",
+      });
       doSetLocalNotification({
         status: err.response.status,
         message: err.response.data.data.message || "Lỗi đăng kí mới tài khoản",
@@ -173,10 +182,11 @@ export const subscriptionSignin = async ({
         })
       );
       if (response.data.data.data.isExpired) {
-        router.replace("/auth/wellcome");
+        router.replace("/auth/welcome");
       } else {
         router.replace("/products");
       }
+      getInfosUserAldreadyLoggedIn;
       // if (router) router.push("/products");
     } else {
       dispatch(SubscriptionAuthActions.clearAuth());
@@ -184,9 +194,10 @@ export const subscriptionSignin = async ({
     clearLocalNotification();
   } catch (err) {
     if (err && err.response) {
-      devErrorMessage(
-        err.response.data || "Lỗi đăng nhập tài khoản subscription."
-      );
+      devErrorMessage({
+        err,
+        from: "helper/axiosApi.js",
+      });
       if (err.response.status === 429)
         doSetLocalNotification({ status: 429, message: err.response.data });
       if (err.response.data.data)
@@ -215,7 +226,10 @@ export const subscriptionSignOut = async ({
     dispatch(SubscriptionAuthActions.clearAuth());
     router.replace("/subscription");
   } catch (err) {
-    console.log(err);
+    devErrorMessage({
+      err,
+      from: "helper/axiosApi.js",
+    });
   }
 };
 
@@ -248,9 +262,10 @@ export const removeDiviceInfos = async ({
     }
   } catch (err) {
     if (err && err.response) {
-      devErrorMessage(
-        err.response.data || "Lỗi xóa thiết bị cũ đang đăng nhập."
-      );
+      devErrorMessage({
+        err,
+        from: "helper/axiosApi.js",
+      });
       doSetLocalNotification({
         status: err.response.status,
         message:
@@ -276,7 +291,10 @@ export const forgotPassword = async ({ email, doSetLocalNotification }) => {
     }
   } catch (err) {
     if (err && err.response) {
-      devErrorMessage(err.response.data || "Lỗi gởi yêu cầu quên mật khẩu");
+      devErrorMessage({
+        err,
+        from: "helper/axiosApi.js",
+      });
       doSetLocalNotification({
         status: err.response.status,
         message:
@@ -294,6 +312,7 @@ export const resetPassword = async ({
 }) => {
   const fetchUrl = API_HOCSINH + "/subscriptionAuth/resetPassword";
   try {
+    //Token này là token query từ url gỏi trong mail của client
     const response = await axios.post(fetchUrl, {
       token,
       username,
@@ -308,7 +327,10 @@ export const resetPassword = async ({
     }
   } catch (err) {
     if (err && err.response) {
-      devErrorMessage(err.response.data || "Lỗi đổi lại mật khẩu.");
+      devErrorMessage({
+        err,
+        from: "helper/axiosApi.js",
+      });
       doSetLocalNotification({
         status: err.response.status,
         message: err.response.data.data.message || "Lỗi đổi lại mật khẩu.",
@@ -325,7 +347,7 @@ export const getAppInfos = async ({ axios }) => {
   return response;
 };
 
-export const getInfosUserAldreadyLoggedIn = async (axiosInstance) => {
+export const getInfosUserAldreadyLoggedIn = async ({ axiosInstance }) => {
   try {
     const fetchUrl =
       API_HOCSINH +
@@ -334,21 +356,25 @@ export const getInfosUserAldreadyLoggedIn = async (axiosInstance) => {
 
     const {
       username = "",
-      // token = "",
       isExpired = true,
       expirySubscriptionTime = "",
     } = response.data.data.data;
 
-    console.log(username, isExpired, expirySubscriptionTime);
-
-    return { username, isExpired, expirySubscriptionTime };
+    return { username, isExpired, expirySubscriptionTime, message: "" };
   } catch (err) {
-    console.log(err);
+    devErrorMessage({
+      err,
+      from: "helper/axiosApi.js",
+    });
+    let message = "";
+    const { response = {} } = err;
+    const { data = {} } = response;
+    if (Object.keys(data).length > 0) message = data.data.message;
     return {
       username: "",
-      token: "",
       isExpired: true,
       expirySubscriptionTime: "",
+      message,
     };
   }
 };

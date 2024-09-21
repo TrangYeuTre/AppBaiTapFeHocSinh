@@ -1,15 +1,16 @@
 import CardHomework from "../UI/CardHomework";
 import SubcriptionProtect from "../auth/SubscriptionProtect";
 import Loading from "../UI/Loading";
+import LoadExercisesFailHint from "./LoadExercisesFailHint";
+import ClassifyExercises from "./ClassifyExercises";
+import QuitExerciseBar from "./General/QuitExerciseBar";
 import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
 import { SubscriptionAuthActions } from "../../store/subscriptionSlice";
 import Subscription from "../../classes/Subscription";
 import { useAxiosInstance } from "../../hooks/useHooks";
 import { useState, useEffect } from "react";
-import LoadExercisesFailHint from "./LoadExercisesFailHint";
-import ClassifyExercises from "./ClassifyExercises";
-import QuitExerciseBar from "./General/QuitExerciseBar";
+import { devErrorMessage, checkErrorAndRedirectLogin } from "../../helper/uti";
 
 export default function LoadExercises() {
   const router = useRouter();
@@ -43,7 +44,14 @@ export default function LoadExercises() {
         new Subscription({ ...updatedSubscriptionInstance })
       );
     } catch (err) {
-      console.log(err);
+      devErrorMessage({
+        err,
+        from: "/Components/Products/Exercises.js",
+      });
+      checkErrorAndRedirectLogin({
+        err,
+        router,
+      });
     } finally {
       setIsFetching(false);
     }

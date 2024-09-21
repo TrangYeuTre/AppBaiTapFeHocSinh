@@ -1,14 +1,15 @@
 import CardHomework from "../UI/CardHomework";
 import SubcriptionProtect from "../auth/SubscriptionProtect";
 import Loading from "../UI/Loading";
+import LoadExercisesFailHint from "./LoadExercisesFailHint";
+import ClassifyExercises from "./ClassifyExercises";
+import Subscription from "../../classes/Subscription";
 import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
 import { SubscriptionAuthActions } from "../../store/subscriptionSlice";
-import Subscription from "../../classes/Subscription";
 import { useAxiosInstance } from "../../hooks/useHooks";
 import { useState, useEffect } from "react";
-import LoadExercisesFailHint from "./LoadExercisesFailHint";
-import ClassifyExercises from "./ClassifyExercises";
+import { devErrorMessage } from "../../helper/uti";
 
 export default function ConsolidateExercises() {
   const router = useRouter();
@@ -37,7 +38,10 @@ export default function ConsolidateExercises() {
         new Subscription({ ...updatedSubscriptionInstance })
       );
     } catch (err) {
-      console.log(err);
+      devErrorMessage({
+        err,
+        from: "/Components/Demo/Consolidate.js",
+      });
     } finally {
       setIsFetching(false);
     }

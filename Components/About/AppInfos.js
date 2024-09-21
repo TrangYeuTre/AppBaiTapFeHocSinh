@@ -1,12 +1,12 @@
 import CardHomework from "../UI/CardHomework";
+import LocalNotification from "../UI/LocalNotification";
+import Link from "next/link";
 import staticData from "../../data/static.json";
 import axios from "axios";
 import { getAppInfos } from "../../helper/axiosApi";
-import { useEffect, useState } from "react";
+import { devErrorMessage } from "../../helper/uti";
+import { useState } from "react";
 import { useLocalNotification } from "../../hooks/useHooks";
-import LocalNotification from "../UI/LocalNotification";
-import Loading from "../UI/Loading";
-import Link from "next/link";
 import { useSelector } from "react-redux";
 
 export default function AppInfos() {
@@ -30,7 +30,10 @@ export default function AppInfos() {
         setInfos(response.data.data.data);
       }
     } catch (err) {
-      console.log(err);
+      devErrorMessage({
+        err,
+        from: "Components/About/AppInfos.js",
+      });
       doSetLocalNotification({
         status: 400,
         message: "Tải thông tin lỗi.",

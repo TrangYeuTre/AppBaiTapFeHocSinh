@@ -22,9 +22,7 @@ export default function SubscriptionRoute() {
 
   //SIde effect nếu không có token từ slice, moi từ local ra fetch lên api check token local
   useEffect(() => {
-    console.log("chạy chứ");
     const doFetch = async () => {
-      console.log("--- chạy fetch kiểm tra đã login chưa ngay form login");
       const {
         username: checkedUsername,
         isExpired: checkedIsExpired,

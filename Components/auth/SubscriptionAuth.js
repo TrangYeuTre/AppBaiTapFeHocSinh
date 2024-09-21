@@ -162,10 +162,10 @@ export default function SubscriptionAuth() {
           {loggedInDevice && (
             <p className="text-base text-coBlue2">
               Hướng dẫn: <br />
-              - Điền đúng thông tin username và password phía trên <br />
-              - Sau đó bấm nút 'Đăng xuất khỏi thiết bị cũ' bên dưới. <br />-
-              Trang web sẽ được tải lại. Sau đó tiến hành đăng nhập như bình
-              thường là được.
+              - Điền đúng thông tin username và password phía trên <br />- Sau
+              đó bấm nút <strong>Đăng xuất khỏi thiết bị cũ</strong> bên dưới.{" "}
+              <br />- Trang web sẽ được tải lại. Sau đó tiến hành đăng nhập như
+              bình thường là được.
             </p>
           )}
           <Button onAction={!loggedInDevice ? loginHandler : removeDivice}>
@@ -251,7 +251,6 @@ export default function SubscriptionAuth() {
             placeholder="Điền email để nhận link lấy lại mật khẩu."
             required
           />
-          {/* {error && <p className="text-base text-coRed">{error}</p>} */}
           <LocalNotification localNoti={localNoti} />
           <Button onAction={forgotPasswordHandler}>
             {localFetching ? "Đang xử lý..." : "Gởi yêu cầu"}

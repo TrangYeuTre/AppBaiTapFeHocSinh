@@ -1,15 +1,15 @@
 import CardHomework from "../UI/CardHomework";
 import SubcriptionProtect from "../auth/SubscriptionProtect";
 import Loading from "../UI/Loading";
+import LoadExercisesFailHint from "./LoadExercisesFailHint";
+import ClassifyExercises from "./ClassifyExercises";
 import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
 import { SubscriptionAuthActions } from "../../store/subscriptionSlice";
 import Subscription from "../../classes/Subscription";
 import { useAxiosInstance, useLocalNotification } from "../../hooks/useHooks";
 import { useState, useEffect } from "react";
-import LoadExercisesFailHint from "./LoadExercisesFailHint";
-import ClassifyExercises from "./ClassifyExercises";
-import LocalNotification from "../UI/LocalNotification";
+import { devErrorMessage, checkErrorAndRedirectLogin } from "../../helper/uti";
 
 export default function ConsolidateExercises() {
   const router = useRouter();
@@ -40,11 +40,11 @@ export default function ConsolidateExercises() {
         new Subscription({ ...updatedSubscriptionInstance })
       );
     } catch (err) {
-      console.log(err);
-      doSetLocalNotification({
-        status: err.response.status,
-        message: err.response.data.data.message,
+      devErrorMessage({
+        err,
+        from: "/Components/Products/Consolidate.js",
       });
+      checkErrorAndRedirectLogin({ err, router });
     } finally {
       setIsFetching(false);
     }

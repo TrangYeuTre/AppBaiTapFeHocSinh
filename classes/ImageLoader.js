@@ -1,3 +1,4 @@
+import { devErrorMessage } from "../helper/uti";
 export default class ImageLoader {
   constructor(src) {
     this.src = src;
@@ -9,7 +10,10 @@ export default class ImageLoader {
     try {
       this.loadable = await this.#isImageValidAsync(this.src);
     } catch (err) {
-      console.log(err);
+      devErrorMessage({
+        err,
+        from: "classes/IamgeLoader.js",
+      });
       this.loadable = false;
     }
     this.#checkIs404Src();

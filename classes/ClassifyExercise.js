@@ -116,7 +116,11 @@ export class TracNghiemExercise extends ClassifyExercise {
     this.imageUrl = renderData.imageUrl;
     //Xử lý nội dung câu hỏi tùy theo dạng điền khuyết
     this.options = renderData.datas.map((item) => {
-      return { id: item.id, content: item.content, isSelected: false };
+      return {
+        id: item.id,
+        content: item.content,
+        isSelected: false,
+      };
     });
     this.rightOption = renderData.datas.find((item) => item.isAnswer).id;
   }

@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import { subscriptionSignOut } from "../../helper/axiosApi";
 import { useAxiosInstance } from "../../hooks/useHooks";
 
-export default function Wellcome() {
+export default function Wellcome({ message }) {
   const router = useRouter();
   const axiosInstance = useAxiosInstance();
   const dispatch = useDispatch();
@@ -44,7 +44,8 @@ export default function Wellcome() {
         </h1>
         <hr />
         <p>
-          📌 Tài khoản của bạn chưa đăng kí hoặc đã hết hạn gói đăng kí tháng.{" "}
+          {message ||
+            "📌 Tài khoản của bạn chưa đăng kí hoặc đã hết hạn gói đăng kí tháng."}
         </p>
         <hr />
         <p>

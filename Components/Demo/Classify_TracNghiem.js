@@ -1,15 +1,15 @@
-import { TracNghiemExercise } from "../../classes/ClassifyExercise";
-import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { SubscriptionAuthActions } from "../../store/subscriptionSlice";
-import { useLocalNotification } from "../../hooks/useHooks";
 import LocalNotification from "../UI/LocalNotification";
 import AutoResizeTextarea from "../Homeworks/AutoHeightTextarea";
 import ImagePreview from "../UI/ImagePreview";
 import Congratulation from "./General/Congratulation";
 import RightAnswerNoti from "./General/RightAnswerNoti";
 import WrongAnswerNoti from "./General/WrongAnswerNoti";
-import { scrollToElementId } from "../../helper/uti";
+import { TracNghiemExercise } from "../../classes/ClassifyExercise";
+import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { SubscriptionAuthActions } from "../../store/subscriptionSlice";
+import { useLocalNotification } from "../../hooks/useHooks";
+import { scrollToElementId, devErrorMessage } from "../../helper/uti";
 
 export default function ClassifyTracNghiem({
   exerciseData,
@@ -43,7 +43,10 @@ export default function ClassifyTracNghiem({
       setTracNghiemData(tnData);
       setOptions(tnData.getOptions());
     } catch (err) {
-      console.log(err);
+      devErrorMessage({
+        err,
+        from: "/Components/Demo/Classify_TracNghiem.js",
+      });
     } finally {
       setInitLoadData(false);
     }

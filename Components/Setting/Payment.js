@@ -40,6 +40,11 @@ export default function Payment() {
             </Link>
           </span>
         </p>
+        <p>
+          📌 <span className="text-coRed">Lưu ý:</span> Mỗi tài khoản đăng kí
+          thành công chỉ dùng được trên một thiết bị. Để dùng được trên thiết bị
+          mới cần đăng xuất trên thiết bị cũ.
+        </p>
 
         <hr className="!my-0" />
         <div className="flex flex-row flex-wrap shrink-0 gap-2">
@@ -68,8 +73,8 @@ export default function Payment() {
             <>
               <h2 className="product-title-left">Chính sách thanh toán</h2>
               <ol className="list-decimal pl-4">
-                Khi sử dụng ứng dụng học tập của chúng tôi, bạn sẽ cần hoàn tất
-                quá trình thanh toán để có thể truy cập vào các nội dung và tính
+                Khi sử dụng ứng dụng học tập của chúng tôi, bạn cần hoàn tất quá
+                trình thanh toán để có thể truy cập vào các nội dung và tính
                 năng của ứng dụng. Chính sách thanh toán của chúng tôi như sau:
                 <li>
                   <strong>Phương thức thanh toán</strong>: Chúng tôi chấp nhận
@@ -80,14 +85,14 @@ export default function Payment() {
                 <li>
                   <strong>Xác nhận thanh toán</strong>: Sau khi nhận được thông
                   tin chuyển khoản từ bạn, chúng tôi sẽ tiến hành xác minh trong
-                  vòng 24h. Nếu giao dịch hợp lệ, tài khoản của bạn sẽ được kích
-                  hoạt và bạn sẽ có thể bắt đầu sử dụng ứng dụng.
+                  vòng 24h. Nếu giao dịch hợp lệ, tài khoản của bạn được kích
+                  hoạt và bạn có thể bắt đầu sử dụng ứng dụng.
                 </li>
                 <li>
                   <strong>Thời gian kích hoạt tài khoản</strong>: Sau khi thanh
                   toán được xác nhận thành công, tài khoản của bạn sẽ được kích
                   hoạt chậm nhất trong 1h. Chúng tôi sẽ gửi thông báo qua email
-                  hoặc thông qua ứng dụng để xác nhận việc kích hoạt.
+                  để xác nhận việc kích hoạt.
                 </li>
               </ol>
               <hr className="!my-2" />
@@ -95,16 +100,15 @@ export default function Payment() {
               <ol className="list-decimal pl-4">
                 <li>
                   <strong>Tính bảo mật</strong>: Thông tin thanh toán của bạn sẽ
-                  được chúng tôi bảo mật tuyệt đối. Chúng tôi cam kết không chia
-                  sẻ thông tin tài khoản ngân hàng của bạn với bên thứ ba mà
-                  không có sự đồng ý của bạn, trừ khi có yêu cầu của pháp luật.
+                  được chúng tôi bảo mật. Chúng tôi cam kết không chia sẻ thông
+                  tin tài khoản ngân hàng của bạn với bên thứ ba mà không có sự
+                  đồng ý của bạn, trừ khi có yêu cầu của pháp luật.
                 </li>
                 <li>
                   <strong>Chính sách hoàn tiền</strong>: Trong trường hợp bạn
                   gặp sự cố với tài khoản sau khi đã thanh toán, vui lòng liên
-                  hệ với chúng tôi qua thông tin liên hệ bên dưới để được hỗ
-                  trợ. Chúng tôi sẽ tiến hành kiểm tra và xác minh các vấn đề
-                  liên quan.
+                  hệ với chúng tôi. Chúng tôi sẽ tiến hành kiểm tra và xác minh
+                  các vấn đề liên quan.
                   <ul>
                     <li>
                       Chúng tôi chỉ hoàn tiền trong các trường hợp thanh toán
