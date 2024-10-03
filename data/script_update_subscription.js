@@ -163,7 +163,7 @@ myCategories.categories[3].datas = DOC_HIEU_DOAN_DATAS.map((item) => {
   };
 });
 
-//LOGIC GHI JSON
+//LOGIC GHI JSON..
 const fs = require("fs");
 const path = require("path");
 
