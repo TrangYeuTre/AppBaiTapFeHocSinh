@@ -85,7 +85,7 @@ const DOC_HIEU_DOAN_DATAS = [
   "30.DH3. Làng gốm Bát Tràng",
 ];
 
-//LOGIC SCRIPT Ở ĐÂY
+//LOGIC SCRIPT Ở ĐÂY.
 
 const myCategories = {
   categories: [
