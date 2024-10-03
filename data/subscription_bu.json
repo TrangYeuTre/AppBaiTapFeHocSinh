@@ -5,110 +5,74 @@
       "isSelected": false,
       "_id": "item-1",
       "name": "Điền khuyết vần",
-      "query": {
-        "field": "maSo",
-        "value": "tv4.van"
-      },
+      "query": { "field": "maSo", "value": "tv4.van" },
       "route": "/dien-khuyet-van",
       "datas": [
         {
           "isSelected": false,
-          "_id": "ai ay ây",
+          "_id": "item-1-1",
           "name": "ai ay ây",
-          "query": {
-            "field": "noiDungMucTieu",
-            "value": "ai ay ây"
-          }
+          "query": { "field": "noiDungMucTieu", "value": "ai ay ây" }
         },
         {
           "isSelected": false,
-          "_id": "ao au âu",
+          "_id": "item-1-2",
           "name": "ao au âu",
-          "query": {
-            "field": "noiDungMucTieu",
-            "value": "ao au âu"
-          }
+          "query": { "field": "noiDungMucTieu", "value": "ao au âu" }
         },
         {
           "isSelected": false,
-          "_id": "oi ôi ơi",
+          "_id": "item-1-3",
           "name": "oi ôi ơi",
-          "query": {
-            "field": "noiDungMucTieu",
-            "value": "oi ôi ơi"
-          }
+          "query": { "field": "noiDungMucTieu", "value": "oi ôi ơi" }
         },
         {
           "isSelected": false,
-          "_id": "on ôn ơn",
+          "_id": "item-1-4",
           "name": "on ôn ơn",
-          "query": {
-            "field": "noiDungMucTieu",
-            "value": "on ôn ơn"
-          }
+          "query": { "field": "noiDungMucTieu", "value": "on ôn ơn" }
         },
         {
           "isSelected": false,
-          "_id": "an ăn ân",
+          "_id": "item-1-5",
           "name": "an ăn ân",
-          "query": {
-            "field": "noiDungMucTieu",
-            "value": "an ăn ân"
-          }
+          "query": { "field": "noiDungMucTieu", "value": "an ăn ân" }
         },
         {
           "isSelected": false,
-          "_id": "en ên in un",
+          "_id": "item-1-6",
           "name": "en ên in un",
-          "query": {
-            "field": "noiDungMucTieu",
-            "value": "en ên in un"
-          }
+          "query": { "field": "noiDungMucTieu", "value": "oi ôi ơi" }
         },
         {
           "isSelected": false,
-          "_id": "am ăm âm",
+          "_id": "item-1-7",
           "name": "am ăm âm",
-          "query": {
-            "field": "noiDungMucTieu",
-            "value": "am ăm âm"
-          }
+          "query": { "field": "noiDungMucTieu", "value": "am ăm âm" }
         },
         {
           "isSelected": false,
-          "_id": "om ôm ơm",
+          "_id": "item-1-8",
           "name": "om ôm ơm",
-          "query": {
-            "field": "noiDungMucTieu",
-            "value": "om ôm ơm"
-          }
+          "query": { "field": "noiDungMucTieu", "value": "om ôm ơm" }
         },
         {
           "isSelected": false,
-          "_id": "em êm im um",
+          "_id": "item-1-9",
           "name": "em êm im um",
-          "query": {
-            "field": "noiDungMucTieu",
-            "value": "em êm im um"
-          }
+          "query": { "field": "noiDungMucTieu", "value": "em êm im um" }
         },
         {
           "isSelected": false,
-          "_id": "ap ăp âp",
+          "_id": "item-1-10",
           "name": "ap ăp âp",
-          "query": {
-            "field": "noiDungMucTieu",
-            "value": "ap ăp âp"
-          }
+          "query": { "field": "noiDungMucTieu", "value": "ap ăp âp" }
         },
         {
           "isSelected": false,
-          "_id": "ep êp",
+          "_id": "item-1-11",
           "name": "ep êp",
-          "query": {
-            "field": "noiDungMucTieu",
-            "value": "ep êp"
-          }
+          "query": { "field": "noiDungMucTieu", "value": "ep êp" }
         }
       ]
     },
@@ -117,74 +81,50 @@
       "isSelected": false,
       "_id": "item-2",
       "name": "Điền khuyết âm đầu",
-      "query": {
-        "field": "maSo",
-        "value": "tv4.amdau"
-      },
+      "query": { "field": "maSo", "value": "tv4.amdau" },
       "route": "/dien-khuyet-am-dau",
       "datas": [
         {
           "isSelected": false,
-          "_id": "c-k",
+          "_id": "item-2-1",
           "name": "c-k",
-          "query": {
-            "field": "noiDungMucTieu",
-            "value": "c-k"
-          }
+          "query": { "field": "noiDungMucTieu", "value": "c-k" }
         },
         {
           "isSelected": false,
-          "_id": "g-gh",
+          "_id": "item-2-2",
           "name": "g-gh",
-          "query": {
-            "field": "noiDungMucTieu",
-            "value": "g-gh"
-          }
+          "query": { "field": "noiDungMucTieu", "value": "g-gh" }
         },
         {
           "isSelected": false,
-          "_id": "ng-ngh",
+          "_id": "item-2-3",
           "name": "ng-ngh",
-          "query": {
-            "field": "noiDungMucTieu",
-            "value": "ng-ngh"
-          }
+          "query": { "field": "noiDungMucTieu", "value": "ng-ngh" }
         },
         {
           "isSelected": false,
-          "_id": "s-x",
+          "_id": "item-2-4",
           "name": "s-x",
-          "query": {
-            "field": "noiDungMucTieu",
-            "value": "s-x"
-          }
+          "query": { "field": "noiDungMucTieu", "value": "s-x" }
         },
         {
           "isSelected": false,
-          "_id": "ch-tr",
+          "_id": "item-2-5",
           "name": "ch-tr",
-          "query": {
-            "field": "noiDungMucTieu",
-            "value": "ch-tr"
-          }
+          "query": { "field": "noiDungMucTieu", "value": "ch-tr" }
         },
         {
           "isSelected": false,
-          "_id": "r-gi-d",
+          "_id": "item-2-6",
           "name": "r-gi-d",
-          "query": {
-            "field": "noiDungMucTieu",
-            "value": "r-gi-d"
-          }
+          "query": { "field": "noiDungMucTieu", "value": "ep êp" }
         },
         {
           "isSelected": false,
-          "_id": "ch-kh",
+          "_id": "item-2-7",
           "name": "ch-kh",
-          "query": {
-            "field": "noiDungMucTieu",
-            "value": "ch-kh"
-          }
+          "query": { "field": "noiDungMucTieu", "value": "ch-kh" }
         }
       ]
     },
@@ -193,15 +133,12 @@
       "isSelected": false,
       "_id": "item-3",
       "name": "Đọc hiểu câu",
-      "query": {
-        "field": "maSo",
-        "value": "d1."
-      },
+      "query": { "field": "maSo", "value": "d1." },
       "route": "/doc-hieu-cau",
       "datas": [
         {
           "isSelected": false,
-          "_id": "1.DH3. Rùa con tìm nhà",
+          "_id": "item-3-1",
           "name": "1.DH3. Rùa con tìm nhà",
           "query": {
             "field": "tenBaiTap",
@@ -210,7 +147,7 @@
         },
         {
           "isSelected": false,
-          "_id": "2.DH3.Tôi là HS lớp một",
+          "_id": "item-3-2",
           "name": "2.DH3.Tôi là HS lớp một",
           "query": {
             "field": "tenBaiTap",
@@ -219,7 +156,7 @@
         },
         {
           "isSelected": false,
-          "_id": "3.DH3.Chợ hoa ngày tết ở HN",
+          "_id": "item-3-3",
           "name": "3.DH3.Chợ hoa ngày tết ở HN",
           "query": {
             "field": "tenBaiTap",
@@ -228,7 +165,7 @@
         },
         {
           "isSelected": false,
-          "_id": "4.DH3.Mũ bảo hiểm",
+          "_id": "item-3-4",
           "name": "4.DH3.Mũ bảo hiểm",
           "query": {
             "field": "tenBaiTap",
@@ -237,7 +174,7 @@
         },
         {
           "isSelected": false,
-          "_id": "5.DH3.Khu rừng kì lạ dưới đáy biển",
+          "_id": "item-3-5",
           "name": "5.DH3.Khu rừng kì lạ dưới đáy biển",
           "query": {
             "field": "tenBaiTap",
@@ -246,7 +183,7 @@
         },
         {
           "isSelected": false,
-          "_id": "6.DH3.Tiếng đàn",
+          "_id": "item-3-6",
           "name": "6.DH3.Tiếng đàn",
           "query": {
             "field": "tenBaiTap",
@@ -255,7 +192,7 @@
         },
         {
           "isSelected": false,
-          "_id": "7.DH3.Bài đọc cho gà trống",
+          "_id": "item-3-7",
           "name": "7.DH3.Bài đọc cho gà trống",
           "query": {
             "field": "tenBaiTap",
@@ -264,7 +201,7 @@
         },
         {
           "isSelected": false,
-          "_id": "8.DH3.Cuốn sách của em",
+          "_id": "item-3-8",
           "name": "8.DH3.Cuốn sách của em",
           "query": {
             "field": "tenBaiTap",
@@ -273,7 +210,7 @@
         },
         {
           "isSelected": false,
-          "_id": "9.DH3.Lính cứu hỏa",
+          "_id": "item-3-9",
           "name": "9.DH3.Lính cứu hỏa",
           "query": {
             "field": "tenBaiTap",
@@ -282,7 +219,7 @@
         },
         {
           "isSelected": false,
-          "_id": "10.DH3.Bác trống trường",
+          "_id": "item-3-10",
           "name": "10.DH3.Bác trống trường",
           "query": {
             "field": "tenBaiTap",
@@ -291,7 +228,7 @@
         },
         {
           "isSelected": false,
-          "_id": "11.DH3.Chú sóc ngoan",
+          "_id": "item-3-11",
           "name": "11.DH3.Chú sóc ngoan",
           "query": {
             "field": "tenBaiTap",
@@ -300,7 +237,7 @@
         },
         {
           "isSelected": false,
-          "_id": "12.DH3.Loài chim của biển cả",
+          "_id": "item-3-12",
           "name": "12.DH3.Loài chim của biển cả",
           "query": {
             "field": "tenBaiTap",
@@ -309,7 +246,7 @@
         },
         {
           "isSelected": false,
-          "_id": "13.DH3.Ruộng bậc thang ở Sapa",
+          "_id": "item-3-13",
           "name": "13.DH3.Ruộng bậc thang ở Sapa",
           "query": {
             "field": "tenBaiTap",
@@ -318,7 +255,7 @@
         },
         {
           "isSelected": false,
-          "_id": "14.DH3.Những cánh cò",
+          "_id": "item-3-14",
           "name": "14.DH3.Những cánh cò",
           "query": {
             "field": "tenBaiTap",
@@ -327,7 +264,7 @@
         },
         {
           "isSelected": false,
-          "_id": "15.DH3.Chúa tể rừng xanh",
+          "_id": "item-3-15",
           "name": "15.DH3.Chúa tể rừng xanh",
           "query": {
             "field": "tenBaiTap",
@@ -336,7 +273,7 @@
         },
         {
           "isSelected": false,
-          "_id": "17.DH3.Ngày mới bắt đầu",
+          "_id": "item-3-17",
           "name": "17.DH3.Ngày mới bắt đầu",
           "query": {
             "field": "tenBaiTap",
@@ -345,7 +282,7 @@
         },
         {
           "isSelected": false,
-          "_id": "18.DH3.Anh hùng biển cả",
+          "_id": "item-3-18",
           "name": "18.DH3.Anh hùng biển cả",
           "query": {
             "field": "tenBaiTap",
@@ -354,7 +291,7 @@
         },
         {
           "isSelected": false,
-          "_id": "19.DH3.Chữ A và những người bạn",
+          "_id": "item-3-19",
           "name": "19.DH3.Chữ A và những người bạn",
           "query": {
             "field": "tenBaiTap",
@@ -363,7 +300,7 @@
         },
         {
           "isSelected": false,
-          "_id": "21.DH3.Du lịch biển Việt Nam",
+          "_id": "item-3-21",
           "name": "21.DH3.Du lịch biển Việt Nam",
           "query": {
             "field": "tenBaiTap",
@@ -372,7 +309,7 @@
         },
         {
           "isSelected": false,
-          "_id": "22.DH3.Gấu trắng là chúa tò mò",
+          "_id": "item-3-22",
           "name": "22.DH3.Gấu trắng là chúa tò mò",
           "query": {
             "field": "tenBaiTap",
@@ -381,7 +318,7 @@
         },
         {
           "isSelected": false,
-          "_id": "23.DH3.Những ngày bà về phép",
+          "_id": "item-3-23",
           "name": "23.DH3.Những ngày bà về phép",
           "query": {
             "field": "tenBaiTap",
@@ -390,7 +327,7 @@
         },
         {
           "isSelected": false,
-          "_id": "24.DH3. Ở nhà sách",
+          "_id": "item-3-24",
           "name": "24.DH3. Ở nhà sách",
           "query": {
             "field": "tenBaiTap",
@@ -399,7 +336,7 @@
         },
         {
           "isSelected": false,
-          "_id": "25.DH3. Tôi là học sinh lớp hai",
+          "_id": "item-3-25",
           "name": "25.DH3. Tôi là học sinh lớp hai",
           "query": {
             "field": "tenBaiTap",
@@ -408,7 +345,7 @@
         },
         {
           "isSelected": false,
-          "_id": "26.DH3. Những điều cần biết về bút chì",
+          "_id": "item-3-26",
           "name": "26.DH3. Những điều cần biết về bút chì",
           "query": {
             "field": "tenBaiTap",
@@ -417,7 +354,7 @@
         },
         {
           "isSelected": false,
-          "_id": "27.DH3. Vui học ở thảo cầm viên",
+          "_id": "item-3-27",
           "name": "27.DH3. Vui học ở thảo cầm viên",
           "query": {
             "field": "tenBaiTap",
@@ -426,7 +363,7 @@
         },
         {
           "isSelected": false,
-          "_id": "28.DH3. Ban mai trên bản",
+          "_id": "item-3-28",
           "name": "28.DH3. Ban mai trên bản",
           "query": {
             "field": "tenBaiTap",
@@ -435,7 +372,7 @@
         },
         {
           "isSelected": false,
-          "_id": "29.DH3. Thư viện biết đi",
+          "_id": "item-3-29",
           "name": "29.DH3. Thư viện biết đi",
           "query": {
             "field": "tenBaiTap",
@@ -444,7 +381,7 @@
         },
         {
           "isSelected": false,
-          "_id": "30.DH3. Làng gốm Bát Tràng",
+          "_id": "item-3-30",
           "name": "30.DH3. Làng gốm Bát Tràng",
           "query": {
             "field": "tenBaiTap",
@@ -458,15 +395,12 @@
       "isSelected": false,
       "_id": "item-4",
       "name": "Đọc hiểu văn bản",
-      "query": {
-        "field": "maSo",
-        "value": "dh1."
-      },
+      "query": { "field": "maSo", "value": "dh1." },
       "route": "/doc-hieu-van-ban",
       "datas": [
         {
           "isSelected": false,
-          "_id": "1.DH3. Rùa con tìm nhà",
+          "_id": "item-4-1",
           "name": "1.DH3. Rùa con tìm nhà",
           "query": {
             "field": "noiDungMucTieu",
@@ -475,7 +409,7 @@
         },
         {
           "isSelected": false,
-          "_id": "2.DH3.Tôi là HS lớp một",
+          "_id": "item-4-2",
           "name": "2.DH3.Tôi là HS lớp một",
           "query": {
             "field": "noiDungMucTieu",
@@ -484,16 +418,16 @@
         },
         {
           "isSelected": false,
-          "_id": "3.DH3.Chợ hoa ngày tết ở HN",
-          "name": "3.DH3.Chợ hoa ngày tết ở HN",
+          "_id": "item-4-3",
+          "name": "3.DH3. Chợ hoa ngày tết ở HN",
           "query": {
             "field": "noiDungMucTieu",
-            "value": "3.DH3.Chợ hoa ngày tết ở HN"
+            "value": "3.DH3. Chợ hoa ngày tết ở HN"
           }
         },
         {
           "isSelected": false,
-          "_id": "4.DH3.Mũ bảo hiểm",
+          "_id": "item-4-4",
           "name": "4.DH3.Mũ bảo hiểm",
           "query": {
             "field": "noiDungMucTieu",
@@ -502,151 +436,151 @@
         },
         {
           "isSelected": false,
-          "_id": "5.DH3.Khu rừng kì lạ dưới đáy biển",
+          "_id": "item-4-5",
           "name": "5.DH3.Khu rừng kì lạ dưới đáy biển",
           "query": {
-            "field": "noiDungMucTieu",
+            "field": "tenBaiTap",
             "value": "5.DH3.Khu rừng kì lạ dưới đáy biển"
           }
         },
         {
           "isSelected": false,
-          "_id": "6.DH3.Tiếng đàn",
+          "_id": "item-4-6",
           "name": "6.DH3.Tiếng đàn",
           "query": {
-            "field": "noiDungMucTieu",
+            "field": "tenBaiTap",
             "value": "6.DH3.Tiếng đàn"
           }
         },
         {
           "isSelected": false,
-          "_id": "7.DH3.Bài đọc cho gà trống",
+          "_id": "item-4-7",
           "name": "7.DH3.Bài đọc cho gà trống",
           "query": {
-            "field": "noiDungMucTieu",
+            "field": "tenBaiTap",
             "value": "7.DH3.Bài đọc cho gà trống"
           }
         },
         {
           "isSelected": false,
-          "_id": "8.DH3.Cuốn sách của em",
+          "_id": "item-4-8",
           "name": "8.DH3.Cuốn sách của em",
           "query": {
-            "field": "noiDungMucTieu",
+            "field": "tenBaiTap",
             "value": "8.DH3.Cuốn sách của em"
           }
         },
         {
           "isSelected": false,
-          "_id": "9.DH3.Lính cứu hỏa",
+          "_id": "item-4-9",
           "name": "9.DH3.Lính cứu hỏa",
           "query": {
-            "field": "noiDungMucTieu",
+            "field": "tenBaiTap",
             "value": "9.DH3.Lính cứu hỏa"
           }
         },
         {
           "isSelected": false,
-          "_id": "10.DH3.Bác trống trường",
+          "_id": "item-4-10",
           "name": "10.DH3.Bác trống trường",
           "query": {
-            "field": "noiDungMucTieu",
+            "field": "tenBaiTap",
             "value": "10.DH3.Bác trống trường"
           }
         },
         {
           "isSelected": false,
-          "_id": "11.DH3.Chú sóc ngoan",
+          "_id": "item-4-11",
           "name": "11.DH3.Chú sóc ngoan",
           "query": {
-            "field": "noiDungMucTieu",
+            "field": "tenBaiTap",
             "value": "11.DH3.Chú sóc ngoan"
           }
         },
         {
           "isSelected": false,
-          "_id": "12.DH3.Loài chim của biển cả",
+          "_id": "item-4-12",
           "name": "12.DH3.Loài chim của biển cả",
           "query": {
-            "field": "noiDungMucTieu",
+            "field": "tenBaiTap",
             "value": "12.DH3.Loài chim của biển cả"
           }
         },
         {
           "isSelected": false,
-          "_id": "13.DH3.Ruộng bậc thang ở Sapa",
+          "_id": "item-4-13",
           "name": "13.DH3.Ruộng bậc thang ở Sapa",
           "query": {
-            "field": "noiDungMucTieu",
+            "field": "tenBaiTap",
             "value": "13.DH3.Ruộng bậc thang ở Sapa"
           }
         },
         {
           "isSelected": false,
-          "_id": "14.DH3.Những cánh cò",
+          "_id": "item-4-14",
           "name": "14.DH3.Những cánh cò",
           "query": {
-            "field": "noiDungMucTieu",
+            "field": "tenBaiTap",
             "value": "14.DH3.Những cánh cò"
           }
         },
         {
           "isSelected": false,
-          "_id": "15.DH3.Chúa tể rừng xanh",
+          "_id": "item-4-15",
           "name": "15.DH3.Chúa tể rừng xanh",
           "query": {
-            "field": "noiDungMucTieu",
+            "field": "tenBaiTap",
             "value": "15.DH3.Chúa tể rừng xanh"
           }
         },
         {
           "isSelected": false,
-          "_id": "17.DH3.Ngày mới bắt đầu",
+          "_id": "item-4-17",
           "name": "17.DH3.Ngày mới bắt đầu",
           "query": {
-            "field": "noiDungMucTieu",
+            "field": "tenBaiTap",
             "value": "17.DH3.Ngày mới bắt đầu"
           }
         },
         {
           "isSelected": false,
-          "_id": "18.DH3.Anh hùng biển cả",
+          "_id": "item-4-18",
           "name": "18.DH3.Anh hùng biển cả",
           "query": {
-            "field": "noiDungMucTieu",
+            "field": "tenBaiTap",
             "value": "18.DH3.Anh hùng biển cả"
           }
         },
         {
           "isSelected": false,
-          "_id": "19.DH3.Chữ A và những người bạn",
+          "_id": "item-4-19",
           "name": "19.DH3.Chữ A và những người bạn",
           "query": {
-            "field": "noiDungMucTieu",
+            "field": "tenBaiTap",
             "value": "19.DH3.Chữ A và những người bạn"
           }
         },
         {
           "isSelected": false,
-          "_id": "20.DH3.Đất nước chúng mình",
+          "_id": "item-4-20",
           "name": "20.DH3.Đất nước chúng mình",
           "query": {
-            "field": "noiDungMucTieu",
+            "field": "tenBaiTap",
             "value": "20.DH3.Đất nước chúng mình"
           }
         },
         {
           "isSelected": false,
-          "_id": "21.DH3.Du lịch biển Việt Nam",
+          "_id": "item-4-21",
           "name": "21.DH3.Du lịch biển Việt Nam",
           "query": {
-            "field": "noiDungMucTieu",
+            "field": "tenBaiTap",
             "value": "21.DH3.Du lịch biển Việt Nam"
           }
         },
         {
           "isSelected": false,
-          "_id": "22.DH3.Gấu trắng là chúa tò mò",
+          "_id": "item-4-22",
           "name": "22.DH3.Gấu trắng là chúa tò mò",
           "query": {
             "field": "noiDungMucTieu",
@@ -655,74 +589,11 @@
         },
         {
           "isSelected": false,
-          "_id": "23.DH3.Những ngày bà về phép",
+          "_id": "item-4-23",
           "name": "23.DH3.Những ngày bà về phép",
           "query": {
             "field": "noiDungMucTieu",
             "value": "23.DH3.Những ngày bà về phép"
-          }
-        },
-        {
-          "isSelected": false,
-          "_id": "24.DH3. Ở nhà sách",
-          "name": "24.DH3. Ở nhà sách",
-          "query": {
-            "field": "noiDungMucTieu",
-            "value": "24.DH3. Ở nhà sách"
-          }
-        },
-        {
-          "isSelected": false,
-          "_id": "25.DH3. Tôi là học sinh lớp hai",
-          "name": "25.DH3. Tôi là học sinh lớp hai",
-          "query": {
-            "field": "noiDungMucTieu",
-            "value": "25.DH3. Tôi là học sinh lớp hai"
-          }
-        },
-        {
-          "isSelected": false,
-          "_id": "26.DH3. Những điều cần biết về bút chì",
-          "name": "26.DH3. Những điều cần biết về bút chì",
-          "query": {
-            "field": "noiDungMucTieu",
-            "value": "26.DH3. Những điều cần biết về bút chì"
-          }
-        },
-        {
-          "isSelected": false,
-          "_id": "27.DH3. Vui học ở thảo cầm viên",
-          "name": "27.DH3. Vui học ở thảo cầm viên",
-          "query": {
-            "field": "noiDungMucTieu",
-            "value": "27.DH3. Vui học ở thảo cầm viên"
-          }
-        },
-        {
-          "isSelected": false,
-          "_id": "28.DH3. Ban mai trên bản",
-          "name": "28.DH3. Ban mai trên bản",
-          "query": {
-            "field": "noiDungMucTieu",
-            "value": "28.DH3. Ban mai trên bản"
-          }
-        },
-        {
-          "isSelected": false,
-          "_id": "29.DH3. Thư viện biết đi",
-          "name": "29.DH3. Thư viện biết đi",
-          "query": {
-            "field": "noiDungMucTieu",
-            "value": "29.DH3. Thư viện biết đi"
-          }
-        },
-        {
-          "isSelected": false,
-          "_id": "30.DH3. Làng gốm Bát Tràng",
-          "name": "30.DH3. Làng gốm Bát Tràng",
-          "query": {
-            "field": "noiDungMucTieu",
-            "value": "30.DH3. Làng gốm Bát Tràng"
           }
         }
       ]
