@@ -95,6 +95,8 @@ export default function ClassifyDienKhuyet({
   const showExerciseContent =
     !congratulation && !initLoadData && dienKhuyetData;
 
+  console.log(dienKhuyetData)
+
   return (
     <>
       {/* {showInitLoadData && <Loading />} */}

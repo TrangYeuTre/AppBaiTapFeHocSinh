@@ -320,3 +320,11 @@ Mô tả nào:
 - ~~Ok chạy build sản phẩm cuối thôi nào.~~
 
 - backup git và deploy thôi nào.
+
+# VERSION 2.1.1
+
+## Nhiệm vụ chính
+  - 📌 THêm hiệu ứng âm thanh. ✅
+  - Phần câu hỏi cho font to lên và màu đỏ ✅
+  - 🛑 Refactore lại code
+    

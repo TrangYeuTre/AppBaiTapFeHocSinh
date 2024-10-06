@@ -8,6 +8,8 @@ export default function ClassifyExercises({
 }) {
   const { phanLoai } = exerciseData;
 
+  console.log(exerciseData);
+
   if (phanLoai === "dienKhuyet")
     return (
       <ClassifyDienKhuyet

@@ -128,7 +128,7 @@
 }
 
 .guide-text {
-  @apply italic text-coGray2;
+  @apply italic text-coRed text-lg lg:max-2xl:text-xl 2xl:text-2xl;
 }
 .error-text {
   @apply bg-coRed text-coWhite italic text-center;

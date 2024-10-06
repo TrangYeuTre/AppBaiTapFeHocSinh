@@ -1,6 +1,13 @@
 import Image from "next/image";
+import { Howl } from "howler";
 
 export default function WrongAnswerNoti({ dapAn }) {
+  const wrongSound = new Howl({
+    src: "/sounds/wrongAnswer.mp3",
+    volume: 1,
+  });
+  wrongSound.play();
+
   return (
     <div
       className="p-3 bg-coRed2 flex flex-row flex-wrap 
