@@ -341,6 +341,10 @@ Mô tả nào:
     - Categories ✅
     - archivement✅
     - Congratulation✅
+- FIx bug:
+  - Demo, phần thành tích bấm tiếp theo không redirect lại trang chọn ✅
+  - Phần trắc nghiệm, chọn xong thì scroll xuống nút tiếp theo
+    - Vãi trắc nghiệm đọc hiểu đoạn thì ok, đọc hiểu câu sao nó không scrool nhỉ
 - 🛑 Viết unit test
   - Tư tưởng: copy và paste code cho chat gpt nó check
   - Viết cho thằng demo trước

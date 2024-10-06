@@ -1,6 +1,6 @@
 import LocalNotification from "../UI/LocalNotification";
-import AutoResizeTextarea from "../Homeworks/AutoHeightTextarea";
 import ImagePreview from "../UI/ImagePreview";
+import AutoResizeTextarea from "../Homeworks/AutoHeightTextarea";
 import Congratulation from "./General/Congratulation";
 import RightAnswerNoti from "../Products/General/RightAnswerNoti";
 import WrongAnswerNoti from "../Products/General/WrongAnswerNoti";
@@ -8,8 +8,8 @@ import { TracNghiemExercise } from "../../classes/ClassifyExercise";
 import { useState, useEffect, useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { SubscriptionAuthActions } from "../../store/subscriptionSlice";
-import { useLocalNotification } from "../../hooks/useHooks";
 import { scrollToElementId, devErrorMessage } from "../../helper/uti";
+import { useLocalNotification } from "../../hooks/useHooks";
 
 export default function ClassifyTracNghiem({
   exerciseData,
@@ -35,7 +35,7 @@ export default function ClassifyTracNghiem({
     scrollToElementId("#1");
   }, [exerciseData]);
 
-  const createInitData = async () => {
+  const createInitData = useCallback(async () => {
     setState((prev) => ({ ...prev, initLoadData: true }));
     try {
       const tnData = new TracNghiemExercise({ ...exerciseData });
@@ -47,13 +47,10 @@ export default function ClassifyTracNghiem({
         initLoadData: false,
       }));
     } catch (err) {
-      devErrorMessage({
-        err,
-        from: "/Components/Products/Classify_TracNghiem.js",
-      });
+      devErrorMessage({ err, from: "/Components/Demo/Classify_TracNghiem.js" });
       setState((prev) => ({ ...prev, initLoadData: false }));
     }
-  };
+  }, [exerciseData]);
 
   const chooseAnswer = useCallback(
     (id) => {

@@ -37,7 +37,7 @@ export default function ClassifyDienKhuyet({
     scrollToElementId("#1");
   }, [state.dienKhuyetData]);
 
-  const createInitData = async () => {
+  const createInitData = useCallback(async () => {
     setState((prevState) => ({ ...prevState, initLoadData: true }));
     try {
       const dkData = new DienKhuyetExercise({
@@ -48,11 +48,11 @@ export default function ClassifyDienKhuyet({
       await dkData.initLoadImage();
       setState((prevState) => ({ ...prevState, dienKhuyetData: dkData }));
     } catch (err) {
-      devErrorMessage({ err, from: "/Components/Products/Classify_DienKhuyet.js" });
+      devErrorMessage({ err, from: "/Components/Demo/Classify_DienKhuyet.js" });
     } finally {
       setState((prevState) => ({ ...prevState, initLoadData: false }));
     }
-  };
+  }, [exerciseData]);
 
   const checkResult = useCallback(
     (e) => {

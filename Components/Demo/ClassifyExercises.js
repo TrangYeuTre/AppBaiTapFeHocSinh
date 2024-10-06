@@ -1,5 +1,5 @@
-import ClassifyDienKhuyet from "../Products/Classify_DienKhuyet";
-import ClassisfyTracNghiem from "../Products/Classify_TracNghiem";
+import ClassifyDienKhuyet from "./Classify_DienKhuyet";
+import ClassisfyTracNghiem from "./Classify_TracNghiem";
 
 export default function ClassifyExercises({
   exerciseData,
