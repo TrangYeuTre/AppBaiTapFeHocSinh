@@ -1,44 +1,44 @@
-import { DienKhuyetExercise } from "../../classes/ClassifyExercise";
-import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { SubscriptionAuthActions } from "../../store/subscriptionSlice";
-import { scrollToElementId, devErrorMessage } from "../../helper/uti";
 import AutoResizeTextarea from "../Homeworks/AutoHeightTextarea";
 import ImagePreview from "../UI/ImagePreview";
 import Congratulation from "./General/Congratulation";
-import RightAnswerNoti from "./General/RightAnswerNoti";
-import WrongAnswerNoti from "./General/WrongAnswerNoti";
+import RightAnswerNoti from "../Products/General/RightAnswerNoti";
+import WrongAnswerNoti from "../Products/General/WrongAnswerNoti";
+import { DienKhuyetExercise } from "../../classes/ClassifyExercise";
+import { useState, useEffect, useCallback } from "react";
+import { useDispatch } from "react-redux";
+import { SubscriptionAuthActions } from "../../store/subscriptionSlice";
+import { scrollToElementId, devErrorMessage } from "../../helper/uti";
 
 export default function ClassifyDienKhuyet({
   exerciseData,
   goToNextExercise,
   subscriptionInstance,
 }) {
-  const [initLoadData, setInitLoadData] = useState(false);
-  const [dienKhuyetData, setDienKhuyetData] = useState();
-  const [checked, setChecked] = useState(false);
-  const [dapAn, setDapAn] = useState({ result: null, message: "" });
-  const [congratulation, setCongratulation] = useState(false);
+  const [state, setState] = useState({
+    initLoadData: false,
+    dienKhuyetData: null,
+    checked: false,
+    dapAn: { result: null, message: "" },
+    congratulation: false,
+  });
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    //1. Xử lý tạo data render
     createInitData();
   }, [exerciseData]);
 
   useEffect(() => {
-    scrollToElementId("#1");
-    //2. Xong hết thì focus vào input cho tiện điền giá trị
-    if (dienKhuyetData) {
-      dienKhuyetData.initClearAndFocusInput(
-        `input-dk-${dienKhuyetData.inputId}`
+    if (state.dienKhuyetData) {
+      state.dienKhuyetData.initClearAndFocusInput(
+        `input-dk-${state.dienKhuyetData.inputId}`
       );
     }
-  }, [dienKhuyetData]);
+    scrollToElementId("#1");
+  }, [state.dienKhuyetData]);
 
   const createInitData = async () => {
-    setInitLoadData(true);
+    setState((prevState) => ({ ...prevState, initLoadData: true }));
     try {
       const dkData = new DienKhuyetExercise({
         ...exerciseData,
@@ -46,94 +46,79 @@ export default function ClassifyDienKhuyet({
       });
 
       await dkData.initLoadImage();
-      setDienKhuyetData(dkData);
+      setState((prevState) => ({ ...prevState, dienKhuyetData: dkData }));
     } catch (err) {
-      devErrorMessage({
-        err,
-        from: "/Components/Products/Classify_DienKhuyet.js",
-      });
+      devErrorMessage({ err, from: "/Components/Demo/Classify_DienKhuyet.js" });
     } finally {
-      setInitLoadData(false);
+      setState((prevState) => ({ ...prevState, initLoadData: false }));
     }
   };
 
-  const checkResult = (e) => {
-    e.preventDefault();
-    setChecked(true);
-    const da = dienKhuyetData.getResult();
-    if (da.result) {
-      dispatch(SubscriptionAuthActions.countRightAnswer());
-      dispatch(SubscriptionAuthActions.saveRightAnswer(dienKhuyetData._id));
-    } else {
-      dispatch(SubscriptionAuthActions.saveWrongAnswer(dienKhuyetData._id));
-    }
-    setDapAn((preState) => {
-      return { ...preState, ...da };
-    });
-    scrollToElementId("#2");
-  };
+  const checkResult = useCallback(
+    (e) => {
+      e.preventDefault();
+      setState((prevState) => ({ ...prevState, checked: true }));
+      const da = state.dienKhuyetData.getResult();
 
-  const goToNextExerciseHandler = (e) => {
-    e.preventDefault();
-    //1. Check xem index bài tập đang load nếu là 10 rồi thì tới trang chúc mừng
-    const currentExerciseIndex = subscriptionInstance.getCurrentExerciseIndex();
-    if (
-      +currentExerciseIndex ===
-      subscriptionInstance.getExercisesLength() - 1
-    ) {
-      setCongratulation(true);
-      return;
-    }
-    //Reset các state trước
-    setChecked(false);
-    setDapAn({ result: null, message: "" });
-    goToNextExercise();
-  };
+      if (da.result) {
+        dispatch(SubscriptionAuthActions.countRightAnswer());
+        dispatch(
+          SubscriptionAuthActions.saveRightAnswer(state.dienKhuyetData._id)
+        );
+      } else {
+        dispatch(
+          SubscriptionAuthActions.saveWrongAnswer(state.dienKhuyetData._id)
+        );
+      }
 
-  const showRightNoti = dapAn.result && dapAn.message;
-  const showInitLoadData = !congratulation && initLoadData;
+      setState((prevState) => ({ ...prevState, dapAn: da }));
+      scrollToElementId("#2");
+    },
+    [dispatch, state.dienKhuyetData]
+  );
+
+  const goToNextExerciseHandler = useCallback(
+    (e) => {
+      e.preventDefault();
+      const currentExerciseIndex =
+        subscriptionInstance.getCurrentExerciseIndex();
+
+      if (
+        currentExerciseIndex ===
+        subscriptionInstance.getExercisesLength() - 1
+      ) {
+        setState((prevState) => ({ ...prevState, congratulation: true }));
+      } else {
+        setState((prevState) => ({
+          ...prevState,
+          checked: false,
+          dapAn: { result: null, message: "" },
+        }));
+        goToNextExercise();
+      }
+    },
+    [goToNextExercise, subscriptionInstance]
+  );
+
+  const showRightNoti = state.dapAn.result && state.dapAn.message;
+  const showInitLoadData = !state.congratulation && state.initLoadData;
   const showExerciseContent =
-    !congratulation && !initLoadData && dienKhuyetData;
-
-  console.log(dienKhuyetData)
+    !state.congratulation && !state.initLoadData && state.dienKhuyetData;
 
   return (
     <>
-      {/* {showInitLoadData && <Loading />} */}
       {showInitLoadData && (
         <p className="text-coGreen text-center italic">Đang xử lý dữ liệu...</p>
       )}
       {showExerciseContent && (
-        <div id="#1">
-          <AutoResizeTextarea
-            inputValue={`Đề bài: ${dienKhuyetData.deBai || null}`}
-            ordinalNumber={dienKhuyetData.ordinal || ""}
-          />
-
-          <hr />
-          <ImagePreview url={dienKhuyetData.imageUrl} />
-          <hr />
-          <form
-            className="card-homework-student-work-wrapper"
-            onSubmit={!checked ? checkResult : goToNextExerciseHandler}
-          >
-            <p className="guide-text">{dienKhuyetData.cauHoi}</p>
-            {dienKhuyetData.noiDungBaiTap}
-            {checked && showRightNoti && <RightAnswerNoti dapAn={dapAn} />}
-
-            {checked && !showRightNoti && <WrongAnswerNoti dapAn={dapAn} />}
-
-            <button
-              id="#2"
-              type="submit"
-              className="btn-shape btn-shape-main mt-10"
-            >
-              {!checked ? "Kiểm tra" : "Câu tiếp theo"}
-            </button>
-          </form>
-        </div>
+        <DienKhuyetContent
+          state={state}
+          checkResult={checkResult}
+          goToNextExerciseHandler={goToNextExerciseHandler}
+          showRightNoti={showRightNoti}
+        />
       )}
-      {congratulation && (
+      {state.congratulation && (
         <Congratulation
           exerciseData={exerciseData}
           subscriptionInstance={subscriptionInstance}
@@ -142,3 +127,38 @@ export default function ClassifyDienKhuyet({
     </>
   );
 }
+
+const DienKhuyetContent = ({
+  state,
+  checkResult,
+  goToNextExerciseHandler,
+  showRightNoti,
+}) => {
+  return (
+    <div id="1">
+      <AutoResizeTextarea
+        inputValue={`Đề bài: ${state.dienKhuyetData.deBai || ""}`}
+        ordinalNumber={state.dienKhuyetData.ordinal || ""}
+      />
+      <hr />
+      <ImagePreview url={state.dienKhuyetData.imageUrl} />
+      <hr />
+      <form
+        className="card-homework-student-work-wrapper"
+        onSubmit={!state.checked ? checkResult : goToNextExerciseHandler}
+      >
+        <p className="guide-text">{state.dienKhuyetData.cauHoi}</p>
+        {state.dienKhuyetData.noiDungBaiTap}
+        {state.checked &&
+          (showRightNoti ? (
+            <RightAnswerNoti dapAn={state.dapAn} />
+          ) : (
+            <WrongAnswerNoti dapAn={state.dapAn} />
+          ))}
+        <button id="2" type="submit" className="btn-shape btn-shape-main mt-10">
+          {!state.checked ? "Kiểm tra" : "Câu tiếp theo"}
+        </button>
+      </form>
+    </div>
+  );
+};

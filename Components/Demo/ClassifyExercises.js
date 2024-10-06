@@ -1,28 +1,31 @@
-import ClassifyDienKhuyet from "./Classify_DienKhuyet";
-import ClassisfyTracNghiem from "./Classify_TracNghiem";
+import ClassifyDienKhuyet from "../Products/Classify_DienKhuyet";
+import ClassisfyTracNghiem from "../Products/Classify_TracNghiem";
 
 export default function ClassifyExercises({
   exerciseData,
   goToNextExercise,
   subscriptionInstance,
 }) {
-  const { phanLoai } = exerciseData;
+  const { phanLoai = "" } = exerciseData;
 
-  if (phanLoai === "dienKhuyet")
-    return (
-      <ClassifyDienKhuyet
-        exerciseData={exerciseData}
-        goToNextExercise={goToNextExercise}
-        subscriptionInstance={subscriptionInstance}
-      />
-    );
-  if (phanLoai === "tracNghiem")
-    return (
-      <ClassisfyTracNghiem
-        exerciseData={exerciseData}
-        goToNextExercise={goToNextExercise}
-        subscriptionInstance={subscriptionInstance}
-      />
-    );
-  return <p>Phân loại bài tập</p>;
+  switch (phanLoai) {
+    case "dienKhuyet":
+      return (
+        <ClassifyDienKhuyet
+          exerciseData={exerciseData}
+          goToNextExercise={goToNextExercise}
+          subscriptionInstance={subscriptionInstance}
+        />
+      );
+    case "tracNghiem":
+      return (
+        <ClassisfyTracNghiem
+          exerciseData={exerciseData}
+          goToNextExercise={goToNextExercise}
+          subscriptionInstance={subscriptionInstance}
+        />
+      );
+    default:
+      return <p>Không tìm thấy phân loại bài tập phù hợp</p>;
+  }
 }

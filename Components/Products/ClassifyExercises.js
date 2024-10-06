@@ -6,25 +6,26 @@ export default function ClassifyExercises({
   goToNextExercise,
   subscriptionInstance,
 }) {
-  const { phanLoai } = exerciseData;
+  const { phanLoai="" } = exerciseData;
 
-  console.log(exerciseData);
-
-  if (phanLoai === "dienKhuyet")
-    return (
-      <ClassifyDienKhuyet
-        exerciseData={exerciseData}
-        goToNextExercise={goToNextExercise}
-        subscriptionInstance={subscriptionInstance}
-      />
-    );
-  if (phanLoai === "tracNghiem")
-    return (
-      <ClassisfyTracNghiem
-        exerciseData={exerciseData}
-        goToNextExercise={goToNextExercise}
-        subscriptionInstance={subscriptionInstance}
-      />
-    );
-  return <p>Phân loại bài tập</p>;
+  switch (phanLoai) {
+    case "dienKhuyet":
+      return (
+        <ClassifyDienKhuyet
+          exerciseData={exerciseData}
+          goToNextExercise={goToNextExercise}
+          subscriptionInstance={subscriptionInstance}
+        />
+      );
+    case "tracNghiem":
+      return (
+        <ClassisfyTracNghiem
+          exerciseData={exerciseData}
+          goToNextExercise={goToNextExercise}
+          subscriptionInstance={subscriptionInstance}
+        />
+      );
+    default:
+      return <p>Không tìm thấy phân loại bài tập phù hợp</p>;
+  }
 }

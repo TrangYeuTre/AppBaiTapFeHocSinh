@@ -1,8 +1,8 @@
+import axios from "axios";
 import CardHomework from "../UI/CardHomework";
 import Loading from "../UI/Loading";
 import LoadExercisesFailHint from "./LoadExercisesFailHint";
 import ClassifyExercises from "./ClassifyExercises";
-import axios from "axios";
 import Subscription from "../../classes/Subscription";
 import LocalNotification from "../UI/LocalNotification";
 import { useRouter } from "next/router";
@@ -49,8 +49,8 @@ export default function LoadExercises() {
         from: "/hocSinh/Components/Demo/Exercises.js",
       });
       doSetLocalNotification({
-        status: err.response.status,
-        message: err.response.data,
+        status: err?.response?.status,
+        message: err?.response?.data,
       });
     } finally {
       setIsFetching(false);
@@ -71,6 +71,8 @@ export default function LoadExercises() {
     loadExercises();
     //Ở đây phải reset bài làm của học sinh trên slice
     dispatch(SubscriptionAuthActions.resetStudentWork());
+    //Clean up useEffect có gọi api
+    return () => {};
   }, []);
 
   const emptyExercises = subscriptionInstance.isEmptyExercises();

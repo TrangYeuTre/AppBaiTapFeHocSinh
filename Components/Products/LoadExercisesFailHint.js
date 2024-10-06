@@ -1,5 +1,5 @@
-import Link from "next/link";
 import LocalNotification from "../UI/LocalNotification";
+import Link from "next/link";
 
 export default function LoadExercisesFailHint({ loadExercises, localNoti }) {
   return (
@@ -12,6 +12,7 @@ export default function LoadExercisesFailHint({ loadExercises, localNoti }) {
       >
         Bấm vào đây để tải lại
       </button>
+      <Link href="/products">Bấm vào đây để trở lại trang chọn bài tập.</Link>
     </div>
   );
 }

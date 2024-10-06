@@ -2,71 +2,77 @@ import CardHomework from "../UI/CardHomework";
 import staticData from "../../data/static.json";
 import Image from "next/image";
 import Loading from "../UI/Loading";
-import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
+import { useState, useEffect, useMemo } from "react";
 import { useAxiosInstance } from "../../hooks/useHooks";
 import {
-  formatDateFillInput,
+  formatDateView,
   devErrorMessage,
   checkErrorAndRedirectLogin,
 } from "../../helper/uti";
-import { useRouter } from "next/router";
 
 export default function Archivements() {
+  const axiosInstance = useAxiosInstance();
+  const router = useRouter();
   const [archivementData, setArchivementData] = useState({});
   const [isFetching, setIsFetching] = useState(false);
 
-  const axiosInstance = useAxiosInstance();
-  const router = useRouter();
-
   useEffect(() => {
+    //Lấy thành tích
+    const getUserArchivements = async (axiosInstance) => {
+      if (!axiosInstance) return;
+      const enviroment = process.env.NODE_ENV;
+      const API_HOCSINH =
+        enviroment === "development"
+          ? staticData.API_HOCSINH_DEV
+          : staticData.API_HOCSINH;
+
+      const fetchUrl = API_HOCSINH + "/subscriptionAuth/archivements";
+      try {
+        setIsFetching(true);
+        const response = await axiosInstance.get(fetchUrl);
+        if (response.data && response.data.data) {
+          setArchivementData(response.data.data.data);
+        }
+      } catch (err) {
+        devErrorMessage({
+          err,
+          from: "/Components/Products/Archivements.js",
+        });
+        checkErrorAndRedirectLogin({
+          err,
+          router,
+        });
+      } finally {
+        setIsFetching(false);
+      }
+    };
+
     getUserArchivements(axiosInstance);
   }, []);
 
-  //Lấy thành tích
-  const getUserArchivements = async (axiosInstance) => {
-    if (!axiosInstance) return;
-    const enviroment = process.env.NODE_ENV;
-    const API_HOCSINH =
-      enviroment === "development"
-        ? staticData.API_HOCSINH_DEV
-        : staticData.API_HOCSINH;
+  const archivementsWithIconAward = useMemo(() => {
+    const archivements = archivementData?.archivements || [];
 
-    const fetchUrl = API_HOCSINH + "/subscriptionAuth/archivements";
-    try {
-      setIsFetching(true);
-      const response = await axiosInstance.get(fetchUrl);
-      if (response.data && response.data.data) {
-        setArchivementData(response.data.data.data);
-      }
-    } catch (err) {
-      devErrorMessage({
-        err,
-        from: "/Components/Products/Archivements.js",
-      });
-      checkErrorAndRedirectLogin({
-        err,
-        router,
-      });
-    } finally {
-      setIsFetching(false);
-    }
-  };
+    return archivements.map((item) => {
+      item.thanhTich = +item.thanhTich || 0;
+      let awardImageUrl = "";
 
-  const archivements = archivementData.archivements || [];
+      const percentageRightAnswer =
+        item?.tongSoBai && +item.tongSoBai > 0
+          ? (+item.thanhTich / +item.tongSoBai) * 100
+          : 0;
 
-  archivements.forEach((item) => (item.thanhTich = +item.thanhTich));
-  const archivementsWithIconAward = archivements.map((item) => {
-    let awardImageUrl = "";
-    const percentageRightAnswer = (+item.thanhTich / +item.tongSoBai) * 100;
-    if (percentageRightAnswer === 0) awardImageUrl = "/assets/sad.gif";
-    if (percentageRightAnswer > 0 && percentageRightAnswer <= 60)
-      awardImageUrl = "/assets/award3.gif";
-    if (percentageRightAnswer > 60 && percentageRightAnswer <= 80)
-      awardImageUrl = "/assets/award2.gif";
-    if (percentageRightAnswer > 80 && percentageRightAnswer <= 100)
-      awardImageUrl = "/assets/award1.gif";
-    return { ...item, awardImageUrl };
-  });
+      if (percentageRightAnswer === 0) awardImageUrl = "/assets/sad.gif";
+      else if (percentageRightAnswer <= 60)
+        awardImageUrl = "/assets/award3.gif";
+      else if (percentageRightAnswer <= 80)
+        awardImageUrl = "/assets/award2.gif";
+      else awardImageUrl = "/assets/award1.gif";
+
+      return { ...item, awardImageUrl };
+    });
+  }, [archivementData]);
 
   return (
     <>
@@ -89,7 +95,7 @@ export default function Archivements() {
                   key={Math.random() + archivement.time}
                 >
                   <div className="archivement-item-1slot">
-                    {formatDateFillInput(archivement.time)}
+                    {formatDateView(archivement.time)}
                   </div>
                   <div className="archivement-item-2slot">
                     {archivement.noiDungMucTieu}

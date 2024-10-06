@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect } from "react";
 import Image from "next/image";
 import {
   useLocalNotification,
@@ -8,9 +8,18 @@ import {
 } from "../../../hooks/useHooks";
 import LocalNotification from "../../UI/LocalNotification";
 import { scrollToElementId } from "../../../helper/uti";
+import { Howl } from "howler";
 
 export default function Congratulation({ exerciseData, subscriptionInstance }) {
   scrollToElementId("#1");
+  useEffect(() => {
+    const winSound = new Howl({
+      src: "/sounds/win.mp3",
+      volume: 0.5,
+    });
+    winSound.play();
+  }, []);
+
   const subscriptionAuth = useSelector((state) => state.subscriptionAuth);
   const studentWork = subscriptionAuth.studentWork;
 

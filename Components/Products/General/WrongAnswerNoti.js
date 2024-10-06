@@ -1,12 +1,15 @@
 import Image from "next/image";
 import { Howl } from "howler";
+import { useEffect } from "react";
 
 export default function WrongAnswerNoti({ dapAn }) {
-  const wrongSound = new Howl({
-    src: "/sounds/wrongAnswer.mp3",
-    volume: 1,
-  });
-  wrongSound.play();
+  useEffect(() => {
+    const wrongSound = new Howl({
+      src: "/sounds/wrongAnswer.mp3",
+      volume: 1,
+    });
+    wrongSound.play();
+  }, []);
 
   return (
     <div

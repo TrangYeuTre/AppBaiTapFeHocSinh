@@ -14,6 +14,7 @@ export default function InitChooseApp() {
           href="/demo"
           className="btn-shape btn-shape-try col-span-1 no-underline"
           rel="noopener noreferrer"
+          target="_blank"
         >
           <div className="icon-wrapper">
             <Image
@@ -29,6 +30,7 @@ export default function InitChooseApp() {
           href="/auth"
           className="btn-shape btn-shape-main col-span-1 no-underline"
           rel="noopener noreferrer"
+          target="_blank"
         >
           <div className="icon-wrapper">
             <Image
@@ -44,6 +46,7 @@ export default function InitChooseApp() {
           href="/subscription"
           className="btn-shape btn-shape-submit col-span-1 no-underline"
           rel="noopener noreferrer"
+          target="_blank"
         >
           <div className="icon-wrapper">
             <Image
@@ -56,6 +59,23 @@ export default function InitChooseApp() {
           <p className="text-center">Tài khoản mua tháng</p>
         </Link>
       </div>
+      <hr className="border-2 border-dashed my-4 lg:my-8" />
+      <Link
+        href="/payment"
+        className="btn-shape btn-shape-try col-span-1 no-underline"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        <div className="icon-wrapper">
+          <Image
+            alt="bottom menu icon"
+            src="/assets/icons/payment.svg"
+            fill
+            className="object-cover"
+          />
+        </div>
+        <p className="text-center">Thanh toán - gia hạn</p>
+      </Link>
     </Card>
   );
 }

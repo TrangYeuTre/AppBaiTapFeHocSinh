@@ -3,23 +3,24 @@ import SubcriptionProtect from "../auth/SubscriptionProtect";
 import Loading from "../UI/Loading";
 import LoadExercisesFailHint from "./LoadExercisesFailHint";
 import ClassifyExercises from "./ClassifyExercises";
+import Subscription from "../../classes/Subscription";
+import QuitExerciseBar from "./General/QuitExerciseBar";
 import { useRouter } from "next/router";
 import { useSelector, useDispatch } from "react-redux";
 import { SubscriptionAuthActions } from "../../store/subscriptionSlice";
-import Subscription from "../../classes/Subscription";
 import { useAxiosInstance, useLocalNotification } from "../../hooks/useHooks";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { devErrorMessage, checkErrorAndRedirectLogin } from "../../helper/uti";
 
 export default function ConsolidateExercises() {
   const router = useRouter();
   const dispatch = useDispatch();
+  const axiosInstance = useAxiosInstance();
 
   const { username, isExpired } = useSelector(
     (state) => state.subscriptionAuth
   );
 
-  const axiosInstance = useAxiosInstance();
   const { localNoti, doSetLocalNotification, clearLocalNotification } =
     useLocalNotification();
 
@@ -29,7 +30,7 @@ export default function ConsolidateExercises() {
   const [isFetching, setIsFetching] = useState(false);
 
   //CB: fetct lấy bài tập về
-  const loadExercises = async () => {
+  const loadExercises = useCallback(async () => {
     try {
       setIsFetching(true);
       const updatedSubscriptionInstance =
@@ -48,41 +49,33 @@ export default function ConsolidateExercises() {
     } finally {
       setIsFetching(false);
     }
-  };
+  }, [subscriptionInstance, axiosInstance, router]);
 
-  const goToNextExercise = () => {
+  const goToNextExercise = useCallback(() => {
     const updatedSubscriptionInstance =
       subscriptionInstance.increaseExerciseIndex();
     setSubscriptionInstance(
       new Subscription({ ...updatedSubscriptionInstance })
     );
-  };
-
-  const quitExercisePackage = () => router.replace("/products");
+  }, [subscriptionInstance]);
 
   useEffect(() => {
     loadExercises();
     //Ở đây phải reset bài làm của học sinh trên slice
     dispatch(SubscriptionAuthActions.resetStudentWork());
+    //Clear gởi api khi cần
+    return () => {};
   }, []);
 
   const emptyExercises = subscriptionInstance.isEmptyExercises();
-
   const exerciseData = subscriptionInstance.getExerciseByCurrentIndex();
 
   return (
     <SubcriptionProtect>
       <CardHomework>
         <div className="relative">
-          <div className="absolute top-0 right-0">
-            <button
-              type="button"
-              onClick={quitExercisePackage}
-              className="btn btn-ghost !w-fit"
-            >
-              x
-            </button>
-          </div>
+          <QuitExerciseBar isDemo={false} />
+
           {isFetching && <Loading />}
           {emptyExercises && (
             <LoadExercisesFailHint

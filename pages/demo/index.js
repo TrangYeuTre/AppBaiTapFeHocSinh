@@ -31,7 +31,7 @@ export default function DemoRoute() {
           {
             name: "Thanh toán",
             route: "/payment",
-            icon: "/assets/icons/pen.svg",
+            icon: "/assets/icons/payment.svg",
           },
         ]}
       />

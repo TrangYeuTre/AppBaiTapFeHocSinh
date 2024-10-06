@@ -378,3 +378,4 @@ export const getInfosUserAldreadyLoggedIn = async ({ axiosInstance }) => {
     };
   }
 };
+
