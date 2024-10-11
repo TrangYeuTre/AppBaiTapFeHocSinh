@@ -103,9 +103,18 @@ export class DienKhuyetExercise extends ClassifyExercise {
 }
 
 export class TracNghiemExercise extends ClassifyExercise {
-  constructor({ _id, ordinal, deBai, renderData, tenBaiTap, maSo }) {
+  constructor({
+    _id,
+    ordinal,
+    deBai,
+    renderData,
+    tenBaiTap,
+    maSo,
+    videoYoutubeId = "",
+  }) {
     super(_id, ordinal, deBai);
     this.maSo;
+    this.videoYoutubeId = videoYoutubeId;
     this.renderData = renderData;
     const layCauHoiLamTenBaiTap = maSo.toLowerCase().includes("dh1.");
     this.cauHoi = layCauHoiLamTenBaiTap
@@ -131,7 +140,10 @@ export class TracNghiemExercise extends ClassifyExercise {
     return this;
   }
   getOptions() {
-    return this.options;
+    return this?.options || [];
+  }
+  getVideoYoutubeId() {
+    return this?.videoYoutubeId || "";
   }
   getResult(choosenOptionId) {
     if (choosenOptionId === this.rightOption) {

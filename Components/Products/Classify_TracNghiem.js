@@ -4,6 +4,7 @@ import ImagePreview from "../UI/ImagePreview";
 import Congratulation from "./General/Congratulation";
 import RightAnswerNoti from "../Products/General/RightAnswerNoti";
 import WrongAnswerNoti from "../Products/General/WrongAnswerNoti";
+import VideoVertical from "../UI/VideoVertical";
 import { TracNghiemExercise } from "../../classes/ClassifyExercise";
 import { useState, useEffect, useCallback } from "react";
 import { useDispatch } from "react-redux";
@@ -24,6 +25,8 @@ export default function ClassifyTracNghiem({
     dapAn: { result: null, message: "" },
     congratulation: false,
     options: [],
+    videoYoutubeId: "",
+    showVideoYoutube: false,
   });
 
   const { localNoti, doSetLocalNotification, clearLocalNotification } =
@@ -39,12 +42,14 @@ export default function ClassifyTracNghiem({
     setState((prev) => ({ ...prev, initLoadData: true }));
     try {
       const tnData = new TracNghiemExercise({ ...exerciseData });
+      const videoYoutubeId = tnData.getVideoYoutubeId();
       await tnData.initLoadImage();
       setState((prev) => ({
         ...prev,
         tracNghiemData: tnData,
         options: tnData.getOptions(),
         initLoadData: false,
+        videoYoutubeId,
       }));
     } catch (err) {
       devErrorMessage({
@@ -128,6 +133,12 @@ export default function ClassifyTracNghiem({
     [subscriptionInstance, goToNextExercise]
   );
 
+  const toggleShowHideVideoYoutube = () =>
+    setState((prev) => ({
+      ...prev,
+      showVideoYoutube: !prev.showVideoYoutube,
+    }));
+
   const {
     initLoadData,
     tracNghiemData,
@@ -135,6 +146,8 @@ export default function ClassifyTracNghiem({
     dapAn,
     congratulation,
     options,
+    videoYoutubeId,
+    showVideoYoutube,
   } = state;
   const showInitLoadData = !congratulation && initLoadData;
   const showExerciseContent =
@@ -148,12 +161,15 @@ export default function ClassifyTracNghiem({
       {showExerciseContent && (
         <TracNghiemContent
           tracNghiemData={tracNghiemData}
-          checkResult={checkResult}
-          goToNextExerciseHandler={goToNextExerciseHandler}
           options={options}
           checked={checked}
           dapAn={dapAn}
           localNoti={localNoti}
+          videoYoutubeId={videoYoutubeId}
+          showVideoYoutube={showVideoYoutube}
+          toggleShowHideVideoYoutube={toggleShowHideVideoYoutube}
+          checkResult={checkResult}
+          goToNextExerciseHandler={goToNextExerciseHandler}
           chooseAnswer={chooseAnswer}
         />
       )}
@@ -176,6 +192,9 @@ const TracNghiemContent = ({
   dapAn,
   localNoti,
   chooseAnswer,
+  toggleShowHideVideoYoutube,
+  showVideoYoutube,
+  videoYoutubeId,
 }) => {
   return (
     <div id="#1">
@@ -184,10 +203,26 @@ const TracNghiemContent = ({
         ordinalNumber={tracNghiemData.ordinal || ""}
       />
       <hr />
-      {tracNghiemData.imageUrl && (
-        <ImagePreview url={tracNghiemData.imageUrl} />
+      {videoYoutubeId && (
+        <>
+          <button
+            type="button"
+            className="btn-shape btn-shape-video !my-4"
+            onClick={toggleShowHideVideoYoutube}
+          >
+            🖥️ Video hỗ trợ
+          </button>
+          {showVideoYoutube && (
+            <VideoVertical videoYoutubeId={videoYoutubeId} startAt={32} />
+          )}
+          <hr />
+        </>
       )}
-      <hr />
+      {tracNghiemData.imageUrl && (
+        <>
+          <ImagePreview url={tracNghiemData.imageUrl} /> <hr />
+        </>
+      )}
       <form
         className="card-homework-student-work-wrapper"
         onSubmit={!checked ? checkResult : goToNextExerciseHandler}

@@ -348,3 +348,20 @@ Mô tả nào:
 - 🛑 Viết unit test
   - Tư tưởng: copy và paste code cho chat gpt nó check
   - Viết cho thằng demo trước
+
+# VERSION 2.1.2
+
+## Nhiệm vụ chính
+
+🛑 Thêm video vào dạng bài tập đọc hiểu đoạn
+
+- Cài gói react-youtube ✅
+- Test thử trên một comp vớ vẩn nào đã ✅
+- Thêm vào model Exercises (cả 2 api hs và admin): props videoYoutubeId✅
+- Xử lý trong admin✅
+  - Trong component thêm bài tập mới / sửa bài tập / clone to Add: thêm một trường là videoYoutubeId✅
+  - Xử lý submit data phải lấy  trường mới này nữa✅
+
+- Ok trở về hocSinh nào
+  - Load prop videoYoutubeId này vào dạng bài trắc nghiệm -> render nó ra thôi✅
+  - Ok rồi nhưng bị ném lỗi vl gì đó. GIờ thử build rồi chạy xem sao, xem có lỗi gì không 
