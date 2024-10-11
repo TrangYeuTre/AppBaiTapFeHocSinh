@@ -24,29 +24,6 @@ export default function ExerciseManage({ username, hocSinh }) {
     message: "",
   });
 
-  // const submitHomeworks = async () => {
-  //   const { valid, message } = instanceHomeworks.validSubmit();
-  //   if (!valid) {
-  //     setError({ init: false, message });
-  //     dispatch(HwsActions.scrollToSubmitErrorMessage());
-  //   } else {
-  //     setError({ init: true, message: "" });
-  //     await submitAnswers({
-  //       hws: instanceHomeworks.homeworks,
-  //       axiosInstance,
-  //       hocSinh,
-  //       router,
-  //     });
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   scrollToElementId(recentElementConfirmId);
-  //   setTimeout(() => {
-  //     dispatch(HwsActions.stopUpdatingStore());
-  //   }, 1000);
-  // }, [recentElementConfirmId, homeworks]);
-
   if (!homeworks || homeworks.length === 0)
     return (
       <Card plusStyle="w-1/2">

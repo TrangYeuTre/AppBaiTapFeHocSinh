@@ -359,9 +359,11 @@ Mô tả nào:
 - Test thử trên một comp vớ vẩn nào đã ✅
 - Thêm vào model Exercises (cả 2 api hs và admin): props videoYoutubeId✅
 - Xử lý trong admin✅
+
   - Trong component thêm bài tập mới / sửa bài tập / clone to Add: thêm một trường là videoYoutubeId✅
-  - Xử lý submit data phải lấy  trường mới này nữa✅
+  - Xử lý submit data phải lấy trường mới này nữa✅
 
 - Ok trở về hocSinh nào
   - Load prop videoYoutubeId này vào dạng bài trắc nghiệm -> render nó ra thôi✅
-  - Ok rồi nhưng bị ném lỗi vl gì đó. GIờ thử build rồi chạy xem sao, xem có lỗi gì không 
+  - Ok rồi nhưng bị ném lỗi vl gì đó. GIờ thử build rồi chạy xem sao, xem có lỗi gì không ✅
+  - Load video bị lỗi khi repsonsive khá phức tạp -> cho một cái modal đẻ load video riêng biệt ✅

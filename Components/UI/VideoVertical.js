@@ -3,7 +3,8 @@ import YouTube from "react-youtube";
 
 export default function VideoVertical({
   videoYoutubeId = "KpALivUQ1fo",
-  startAt = 20,
+  startAt = 0,
+  onCloseModal,
 }) {
   const playerRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -17,6 +18,8 @@ export default function VideoVertical({
       playerRef.current.seekTo(startAt);
       playerRef.current.playVideo();
       setIsPlaying(true);
+    } else {
+      console.error("Player is not ready");
     }
   };
 
@@ -24,40 +27,61 @@ export default function VideoVertical({
     if (playerRef.current) {
       playerRef.current.pauseVideo();
       setIsPlaying(false);
+    } else {
+      console.error("Player is not ready");
     }
   };
 
-  // Kiểm tra nếu window có sẵn trên client
-  const origin = typeof window !== "undefined" ? window.location.origin : "";
+  const handleContinue = () => {
+    if (playerRef.current) {
+      playerRef.current.playVideo();
+      setIsPlaying(true);
+    } else {
+      console.error("Player is not ready");
+    }
+  };
 
   return (
-    <div className="p-4 rounded-xl border-4 border-coRed2 w-fit mx-auto">
-      <YouTube
-        videoId={videoYoutubeId}
-        opts={{
-          height: "800",
-          width: "450",
-          playerVars: {
-            autoplay: 0,
-            origin: origin, // Sử dụng origin chỉ khi có window
-          },
+    <div className="h-full">
+      <div
+        style={{
+          height: "90%",
+          width: "100%",
+          aspectRatio: "9/16",
         }}
-        onReady={onReady}
-      />
-      <div className="flex flex-row gap-2 items-center justify-center my-2">
-        <button
-          className="btn-shape btn-shape-try"
-          onClick={() => handlePlay()}
-          disabled={isPlaying}
-        >
+      >
+        <YouTube
+          videoId={videoYoutubeId}
+          opts={{
+            height: "100%",
+            width: "100%",
+            playerVars: {
+              autoplay: 0,
+            },
+          }}
+          onReady={onReady}
+          className="w-full h-full"
+        />
+      </div>
+
+      {/* Div chứa các button */}
+      <div className="flex flex-row flex-1 gap-2 p-2 my-2 h-fit">
+        <button className="btn-shape btn-shape-video" onClick={handlePlay}>
+          Phát từ đầu
+        </button>
+        <button className="btn-shape btn-shape-video" onClick={handleContinue}>
           Phát
         </button>
-        <button
-          className="btn-shape btn-shape-try"
-          onClick={handlePause}
-          disabled={!isPlaying}
-        >
+        <button className="btn-shape btn-shape-video" onClick={handlePause}>
           Dừng
+        </button>
+        <button
+          className="btn-shape btn-shape-ghost"
+          onClick={() => {
+            onCloseModal();
+          }}
+        >
+          Đóng
         </button>
       </div>
     </div>

@@ -11,6 +11,7 @@ import { useDispatch } from "react-redux";
 import { SubscriptionAuthActions } from "../../store/subscriptionSlice";
 import { useLocalNotification } from "../../hooks/useHooks";
 import { scrollToElementId, devErrorMessage } from "../../helper/uti";
+import ModalYoutube from "../modal/ModalYoutube";
 
 export default function ClassifyTracNghiem({
   exerciseData,
@@ -133,11 +134,12 @@ export default function ClassifyTracNghiem({
     [subscriptionInstance, goToNextExercise]
   );
 
-  const toggleShowHideVideoYoutube = () =>
+  const toggleShowHideVideoYoutube = (action) => {
     setState((prev) => ({
       ...prev,
-      showVideoYoutube: !prev.showVideoYoutube,
+      showVideoYoutube: action === "show" ? true : false,
     }));
+  };
 
   const {
     initLoadData,
@@ -208,12 +210,20 @@ const TracNghiemContent = ({
           <button
             type="button"
             className="btn-shape btn-shape-video !my-4"
-            onClick={toggleShowHideVideoYoutube}
+            onClick={toggleShowHideVideoYoutube.bind(this, "show")}
           >
             🖥️ Video hỗ trợ
           </button>
           {showVideoYoutube && (
-            <VideoVertical videoYoutubeId={videoYoutubeId} startAt={32} />
+            <ModalYoutube
+              onCloseModal={toggleShowHideVideoYoutube.bind(this, "hide")}
+            >
+              <VideoVertical
+                videoYoutubeId={videoYoutubeId}
+                startAt={32}
+                onCloseModal={toggleShowHideVideoYoutube.bind(this, "hide")}
+              />
+            </ModalYoutube>
           )}
           <hr />
         </>

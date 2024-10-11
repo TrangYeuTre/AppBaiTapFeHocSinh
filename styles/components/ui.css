@@ -78,6 +78,11 @@
   @apply border-coGray2 text-coGray2
   hover:bg-coGray6;
 }
+.btn-shape-ghost-fill {
+  @apply border-coGray3 text-coWhite bg-coGray3
+  hover:bg-coGray6;
+}
+
 .btn-shape-try {
   @apply border-coGreen text-coGreen
   hover:bg-coGreen2;
