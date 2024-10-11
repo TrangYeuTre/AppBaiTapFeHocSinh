@@ -42,10 +42,10 @@ export default function VideoVertical({
   };
 
   return (
-    <div className="h-full relative">
+    <div className="h-full overflow-auto" id="video-youtube-container">
       <div
         style={{
-          height: "90%",
+          height: "80vh",
           width: "100%",
           aspectRatio: "9/16",
         }}
@@ -65,8 +65,9 @@ export default function VideoVertical({
       </div>
 
       {/* Div chứa các button */}
-      <div className="absolute bottom-0 left-0 w-full">
-        <div className="flex flex-row flex-1 gap-2 p-2 my-2 h-fit">
+      {/* <div className="absolute bottom-2 md:bottom-0 left-0 w-full"> */}
+      <div className="h-20vh">
+        <div className="flex flex-row flex-1 gap-2 p-2 my-2">
           <button className="btn-shape btn-shape-video" onClick={handlePlay}>
             Phát từ đầu
           </button>
