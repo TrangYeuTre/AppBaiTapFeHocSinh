@@ -42,7 +42,7 @@ export default function VideoVertical({
   };
 
   return (
-    <div className="h-full">
+    <div className="h-full relative">
       <div
         style={{
           height: "90%",
@@ -65,24 +65,29 @@ export default function VideoVertical({
       </div>
 
       {/* Div chứa các button */}
-      <div className="flex flex-row flex-1 gap-2 p-2 my-2 h-fit">
-        <button className="btn-shape btn-shape-video" onClick={handlePlay}>
-          Phát từ đầu
-        </button>
-        <button className="btn-shape btn-shape-video" onClick={handleContinue}>
-          Phát
-        </button>
-        <button className="btn-shape btn-shape-video" onClick={handlePause}>
-          Dừng
-        </button>
-        <button
-          className="btn-shape btn-shape-ghost"
-          onClick={() => {
-            onCloseModal();
-          }}
-        >
-          Đóng
-        </button>
+      <div className="absolute bottom-0 left-0 w-full">
+        <div className="flex flex-row flex-1 gap-2 p-2 my-2 h-fit">
+          <button className="btn-shape btn-shape-video" onClick={handlePlay}>
+            Phát từ đầu
+          </button>
+          <button
+            className="btn-shape btn-shape-video"
+            onClick={handleContinue}
+          >
+            Phát
+          </button>
+          <button className="btn-shape btn-shape-video" onClick={handlePause}>
+            Dừng
+          </button>
+          <button
+            className="btn-shape btn-shape-ghost"
+            onClick={() => {
+              onCloseModal();
+            }}
+          >
+            Đóng
+          </button>
+        </div>
       </div>
     </div>
   );

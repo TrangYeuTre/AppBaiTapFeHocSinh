@@ -367,3 +367,4 @@ Mô tả nào:
   - Load prop videoYoutubeId này vào dạng bài trắc nghiệm -> render nó ra thôi✅
   - Ok rồi nhưng bị ném lỗi vl gì đó. GIờ thử build rồi chạy xem sao, xem có lỗi gì không ✅
   - Load video bị lỗi khi repsonsive khá phức tạp -> cho một cái modal đẻ load video riêng biệt ✅
+  - Sửa lại thằng điều khiển video cho nó fix cứng luôn đi, để tránh bị trôi

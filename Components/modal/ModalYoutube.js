@@ -7,7 +7,7 @@ export default function ModalYoutube({ children, onCloseModal }) {
       <div className="flex flex-col flex-1 items-center justify-center relative ">
         <button
           type="button"
-          className="btn-shape btn-shape-ghost !w-fit absolute top-2 right-2"
+          className="btn-shape btn-shape-ghost !w-fit absolute top-2 right-2 z-20"
           onClick={onCloseModal}
         >
           Đóng
