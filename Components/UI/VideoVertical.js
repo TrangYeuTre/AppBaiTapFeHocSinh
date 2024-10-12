@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import YouTube from "react-youtube";
 
 export default function VideoVertical({
-  videoYoutubeId = "KpALivUQ1fo",
+  videoYoutubeId = "",
   startAt = 0,
   onCloseModal,
 }) {
@@ -42,10 +42,10 @@ export default function VideoVertical({
   };
 
   return (
-    <div className="h-full overflow-auto" id="video-youtube-container">
+    <div className="h-full " id="video-youtube-container">
       <div
         style={{
-          height: "80vh",
+          height: "65vh",
           width: "100%",
           aspectRatio: "9/16",
         }}
@@ -83,7 +83,7 @@ export default function VideoVertical({
           <button
             className="btn-shape btn-shape-ghost"
             onClick={() => {
-              onCloseModal();
+              onCloseModal && onCloseModal();
             }}
           >
             Đóng
