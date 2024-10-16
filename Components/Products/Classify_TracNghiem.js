@@ -220,7 +220,7 @@ const TracNghiemContent = ({
             >
               <VideoVertical
                 videoYoutubeId={videoYoutubeId}
-                startAt={32}
+                // startAt={0}
                 onCloseModal={toggleShowHideVideoYoutube.bind(this, "hide")}
               />
             </ModalYoutube>
