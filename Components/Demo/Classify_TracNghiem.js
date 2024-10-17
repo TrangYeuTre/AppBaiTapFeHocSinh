@@ -10,6 +10,8 @@ import { useDispatch } from "react-redux";
 import { SubscriptionAuthActions } from "../../store/subscriptionSlice";
 import { scrollToElementId, devErrorMessage } from "../../helper/uti";
 import { useLocalNotification } from "../../hooks/useHooks";
+import VideoVertical from "../UI/VideoVertical";
+import ModalYoutube from "../modal/ModalYoutube";
 
 export default function ClassifyTracNghiem({
   exerciseData,
@@ -24,6 +26,8 @@ export default function ClassifyTracNghiem({
     dapAn: { result: null, message: "" },
     congratulation: false,
     options: [],
+    videoYoutubeId: "",
+    showVideoYoutube: false,
   });
 
   const { localNoti, doSetLocalNotification, clearLocalNotification } =
@@ -39,12 +43,14 @@ export default function ClassifyTracNghiem({
     setState((prev) => ({ ...prev, initLoadData: true }));
     try {
       const tnData = new TracNghiemExercise({ ...exerciseData });
+      const videoYoutubeId = tnData.getVideoYoutubeId();
       await tnData.initLoadImage();
       setState((prev) => ({
         ...prev,
         tracNghiemData: tnData,
         options: tnData.getOptions(),
         initLoadData: false,
+        videoYoutubeId,
       }));
     } catch (err) {
       devErrorMessage({ err, from: "/Components/Demo/Classify_TracNghiem.js" });
@@ -125,6 +131,13 @@ export default function ClassifyTracNghiem({
     [subscriptionInstance, goToNextExercise]
   );
 
+  const toggleShowHideVideoYoutube = (action) => {
+    setState((prev) => ({
+      ...prev,
+      showVideoYoutube: action === "show" ? true : false,
+    }));
+  };
+
   const {
     initLoadData,
     tracNghiemData,
@@ -132,6 +145,8 @@ export default function ClassifyTracNghiem({
     dapAn,
     congratulation,
     options,
+    videoYoutubeId,
+    showVideoYoutube,
   } = state;
   const showInitLoadData = !congratulation && initLoadData;
   const showExerciseContent =
@@ -152,6 +167,9 @@ export default function ClassifyTracNghiem({
           dapAn={dapAn}
           localNoti={localNoti}
           chooseAnswer={chooseAnswer}
+          videoYoutubeId={videoYoutubeId}
+          showVideoYoutube={showVideoYoutube}
+          toggleShowHideVideoYoutube={toggleShowHideVideoYoutube}
         />
       )}
       {congratulation && (
@@ -173,6 +191,9 @@ const TracNghiemContent = ({
   dapAn,
   localNoti,
   chooseAnswer,
+  toggleShowHideVideoYoutube,
+  showVideoYoutube,
+  videoYoutubeId,
 }) => {
   return (
     <div id="#1">
@@ -181,6 +202,30 @@ const TracNghiemContent = ({
         ordinalNumber={tracNghiemData.ordinal || ""}
       />
       <hr />
+      {videoYoutubeId && (
+        <>
+          <button
+            type="button"
+            className="btn-shape btn-shape-video !my-4"
+            onClick={toggleShowHideVideoYoutube.bind(this, "show")}
+          >
+            🖥️ Video hỗ trợ
+          </button>
+          {showVideoYoutube && (
+            <ModalYoutube
+              onCloseModal={toggleShowHideVideoYoutube.bind(this, "hide")}
+            >
+              <VideoVertical
+                videoYoutubeId={videoYoutubeId}
+                // startAt={0}
+                onCloseModal={toggleShowHideVideoYoutube.bind(this, "hide")}
+              />
+            </ModalYoutube>
+          )}
+          <hr />
+        </>
+      )}
+
       {tracNghiemData.imageUrl && (
         <ImagePreview url={tracNghiemData.imageUrl} />
       )}
