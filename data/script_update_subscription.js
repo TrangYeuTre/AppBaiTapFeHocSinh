@@ -51,6 +51,16 @@ const DOC_HIEU_CAU_DATAS = [
   "28.DH3. Ban mai trên bản",
   "29.DH3. Thư viện biết đi",
   "30.DH3. Làng gốm Bát Tràng",
+  "31.DH3. Cô chổi rơm",
+  "32.DH3. Hồ gươm",
+  "33.DH3. Bưu điện TP Hồ Chí Minh",
+  "34.DH3. Cái bàn học của tôi",
+  "35.DH3. Góc nhỏ yêu thương",
+  "36.DH3. Nữ hoàng của đảo",
+  "37.DH3. Tôi là lego",
+  "38.DH3. Bữa tiệc 36 món",
+  "39.DH3. Kiến và chim bồ câu",
+  "40.DH3. Chú bé chăn cừu",
 ];
 
 const DOC_HIEU_DOAN_DATAS = [
@@ -83,6 +93,16 @@ const DOC_HIEU_DOAN_DATAS = [
   "28.DH3. Ban mai trên bản",
   "29.DH3. Thư viện biết đi",
   "30.DH3. Làng gốm Bát Tràng",
+  "31.DH3. Cô chổi rơm",
+  "32.DH3. Hồ gươm",
+  "33.DH3. Bưu điện TP Hồ Chí Minh",
+  "34.DH3. Cái bàn học của tôi",
+  "35.DH3. Góc nhỏ yêu thương",
+  "36.DH3. Nữ hoàng của đảo",
+  "37.DH3. Tôi là lego",
+  "38.DH3. Bữa tiệc 36 món",
+  "39.DH3. Kiến và chim bồ câu",
+  "40.DH3. Chú bé chăn cừu",
 ];
 
 //LOGIC SCRIPT Ở ĐÂY.
@@ -178,7 +198,7 @@ const updateSubscriptionDatas = (categories) => {
         console.error("Có lỗi xảy ra khi ghi file:", err);
         return;
       }
-      console.log("Ghi dữ liệu vào file test.json thành công!");
+      console.log("Ghi dữ liệu vào file subscription.json thành công!");
     }
   );
 };

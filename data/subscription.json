@@ -450,6 +450,96 @@
             "field": "tenBaiTap",
             "value": "30.DH3. Làng gốm Bát Tràng"
           }
+        },
+        {
+          "isSelected": false,
+          "_id": "31.DH3. Cô chổi rơm",
+          "name": "31.DH3. Cô chổi rơm",
+          "query": {
+            "field": "tenBaiTap",
+            "value": "31.DH3. Cô chổi rơm"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "32.DH3. Hồ gươm",
+          "name": "32.DH3. Hồ gươm",
+          "query": {
+            "field": "tenBaiTap",
+            "value": "32.DH3. Hồ gươm"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "33.DH3. Bưu điện TP Hồ Chí Minh",
+          "name": "33.DH3. Bưu điện TP Hồ Chí Minh",
+          "query": {
+            "field": "tenBaiTap",
+            "value": "33.DH3. Bưu điện TP Hồ Chí Minh"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "34.DH3. Cái bàn học của tôi",
+          "name": "34.DH3. Cái bàn học của tôi",
+          "query": {
+            "field": "tenBaiTap",
+            "value": "34.DH3. Cái bàn học của tôi"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "35.DH3. Góc nhỏ yêu thương",
+          "name": "35.DH3. Góc nhỏ yêu thương",
+          "query": {
+            "field": "tenBaiTap",
+            "value": "35.DH3. Góc nhỏ yêu thương"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "36.DH3. Nữ hoàng của đảo",
+          "name": "36.DH3. Nữ hoàng của đảo",
+          "query": {
+            "field": "tenBaiTap",
+            "value": "36.DH3. Nữ hoàng của đảo"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "37.DH3. Tôi là lego",
+          "name": "37.DH3. Tôi là lego",
+          "query": {
+            "field": "tenBaiTap",
+            "value": "37.DH3. Tôi là lego"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "38.DH3. Bữa tiệc 36 món",
+          "name": "38.DH3. Bữa tiệc 36 món",
+          "query": {
+            "field": "tenBaiTap",
+            "value": "38.DH3. Bữa tiệc 36 món"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "39.DH3. Kiến và chim bồ câu",
+          "name": "39.DH3. Kiến và chim bồ câu",
+          "query": {
+            "field": "tenBaiTap",
+            "value": "39.DH3. Kiến và chim bồ câu"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "40.DH3. Chú bé chăn cừu",
+          "name": "40.DH3. Chú bé chăn cừu",
+          "query": {
+            "field": "tenBaiTap",
+            "value": "40.DH3. Chú bé chăn cừu"
+          }
         }
       ]
     },
@@ -723,6 +813,96 @@
           "query": {
             "field": "noiDungMucTieu",
             "value": "30.DH3. Làng gốm Bát Tràng"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "31.DH3. Cô chổi rơm",
+          "name": "31.DH3. Cô chổi rơm",
+          "query": {
+            "field": "noiDungMucTieu",
+            "value": "31.DH3. Cô chổi rơm"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "32.DH3. Hồ gươm",
+          "name": "32.DH3. Hồ gươm",
+          "query": {
+            "field": "noiDungMucTieu",
+            "value": "32.DH3. Hồ gươm"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "33.DH3. Bưu điện TP Hồ Chí Minh",
+          "name": "33.DH3. Bưu điện TP Hồ Chí Minh",
+          "query": {
+            "field": "noiDungMucTieu",
+            "value": "33.DH3. Bưu điện TP Hồ Chí Minh"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "34.DH3. Cái bàn học của tôi",
+          "name": "34.DH3. Cái bàn học của tôi",
+          "query": {
+            "field": "noiDungMucTieu",
+            "value": "34.DH3. Cái bàn học của tôi"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "35.DH3. Góc nhỏ yêu thương",
+          "name": "35.DH3. Góc nhỏ yêu thương",
+          "query": {
+            "field": "noiDungMucTieu",
+            "value": "35.DH3. Góc nhỏ yêu thương"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "36.DH3. Nữ hoàng của đảo",
+          "name": "36.DH3. Nữ hoàng của đảo",
+          "query": {
+            "field": "noiDungMucTieu",
+            "value": "36.DH3. Nữ hoàng của đảo"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "37.DH3. Tôi là lego",
+          "name": "37.DH3. Tôi là lego",
+          "query": {
+            "field": "noiDungMucTieu",
+            "value": "37.DH3. Tôi là lego"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "38.DH3. Bữa tiệc 36 món",
+          "name": "38.DH3. Bữa tiệc 36 món",
+          "query": {
+            "field": "noiDungMucTieu",
+            "value": "38.DH3. Bữa tiệc 36 món"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "39.DH3. Kiến và chim bồ câu",
+          "name": "39.DH3. Kiến và chim bồ câu",
+          "query": {
+            "field": "noiDungMucTieu",
+            "value": "39.DH3. Kiến và chim bồ câu"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "40.DH3. Chú bé chăn cừu",
+          "name": "40.DH3. Chú bé chăn cừu",
+          "query": {
+            "field": "noiDungMucTieu",
+            "value": "40.DH3. Chú bé chăn cừu"
           }
         }
       ]
