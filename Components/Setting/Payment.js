@@ -178,7 +178,7 @@ export default function Payment() {
             <li>
               {" "}
               <span className="text-coGray2 italic mr-2">Ví dụ:</span>{" "}
-              <span>abc@mail.com-appbtcotrang</span>
+              <span>abc_gmail.com-appbtcotrang</span>
             </li>
           </ul>
           <div
