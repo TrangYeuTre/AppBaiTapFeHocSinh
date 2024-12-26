@@ -21,14 +21,22 @@ export default function Payment() {
         </Link>
         <h1 className="product-title-center">Thanh toán</h1>
         <hr className="!my-0" />
-        <h2 className="product-title-left">Gia hạn 1 tháng </h2>
+        <h2 className="product-title-left">Gia hạn: </h2>
         {/* <p>
           Giá ưu đãi: <del className="italic text-coGray2">50.000 đ</del>{" "}
           <span className="font-bold text-xl text-coGreen mx-2">20.000 đ</span>
         </p> */}
         <p>
-          Phí: <span className="font-bold text-xl text-coGreen">50.000 đ</span>{" "}
+          Một tháng:{" "}
+          <span className="font-bold text-xl text-coGreen">50.000 đ</span>{" "}
           {/* <span className="font-bold text-xl text-coGreen mx-2">20.000 đ</span> */}
+        </p>
+        <p>
+          Một năm:{" "}
+          <span className="text-xl text-coRed mx-2 line-through">
+            600.000 đ
+          </span>{" "}
+          <span className="font-bold text-xl text-coGreen">399.000 đ</span>{" "}
         </p>
 
         <p>
