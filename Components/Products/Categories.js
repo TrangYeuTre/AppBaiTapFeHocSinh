@@ -1,48 +1,54 @@
 import CardHomework from "../UI/CardHomework";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useMemo, useCallback } from "react";
 import ItemPicker from "../UI/ItemPicker";
 import ProdCates from "../../classes/ProductCategories";
 import { useRouter } from "next/router";
 
-export default function ProductCategories() {
+export default function ProductCategories({ triggerShowHideBottomMenu }) {
   const router = useRouter();
   const [picked, setPicked] = useState({ cate: "", child: "" });
 
-  const categories = new ProdCates();
-  const mainCates = categories.getMainCates(picked.cate);
-  const childCates = categories.getChildCates(picked.cate, picked.child);
+  const categories = useMemo(() => new ProdCates(), []);
+  const mainCates = useMemo(() => categories.getMainCates(picked.cate), [picked.cate, categories]);
+  const childCates = useMemo(() => categories.getChildCates(picked.cate, picked.child), [picked.cate, picked.child, categories]);
 
-  const pickMainCate = useCallback((cate) => {
-    if (!cate || !cate._id) return;
-    setPicked({ cate: cate._id, child: "" });
-  }, []);
+  const pickMainCate = useCallback(
+    (cate) => {
+      if (cate?._id) {
+        setPicked({ cate: cate._id, child: "" });
+        triggerShowHideBottomMenu?.("show");
+      }
+    },
+    [triggerShowHideBottomMenu]
+  );
 
-  const pickChildCate = useCallback((child) => {
-    if (!child || !child._id) return;
-    setPicked((prevState) => ({ ...prevState, child: child._id }));
-  }, []);
+  const pickChildCate = useCallback(
+    (child) => {
+      if (child?._id) {
+        setPicked((prevState) => ({ ...prevState, child: child._id }));
+        triggerShowHideBottomMenu?.("hide");
+      }
+    },
+    [triggerShowHideBottomMenu]
+  );
+
+  const saveSearchResultToLocalStorage = useCallback(() => {
+    const { mainQuery, childQuery } = categories.getMainChildKeyQueryExercises(picked);
+    localStorage.setItem("mainCate", JSON.stringify(mainQuery));
+    localStorage.setItem("childCate", JSON.stringify(childQuery));
+  }, [picked, categories]);
 
   const loadExerciseHandler = useCallback(
     (e) => {
       e.preventDefault();
-      const { mainQuery, childQuery } =
-        categories.getMainChildKeyQueryExercises(picked);
+      saveSearchResultToLocalStorage();
+      const { mainQuery, childQuery } = categories.getMainChildKeyQueryExercises(picked);
       router.replace(
-        `/products/exercises?main=${JSON.stringify(
-          mainQuery
-        )}&child=${JSON.stringify(childQuery)}`
+        `/products/exercises?main=${JSON.stringify(mainQuery)}&child=${JSON.stringify(childQuery)}`
       );
     },
-    [picked, categories, router]
+    [picked, categories, router, saveSearchResultToLocalStorage]
   );
-
-  useEffect(() => {
-    const scrollToActionElement = document.getElementById(
-      "picked-cate-scroll-to"
-    );
-    if (scrollToActionElement)
-      scrollToActionElement.scrollIntoView({ behavior: "smooth" });
-  }, [picked.child]);
 
   return (
     <CardHomework>
@@ -52,13 +58,20 @@ export default function ProductCategories() {
       >
         <h2 className="product-title-left">Chọn chuyên đề</h2>
         <ItemPicker itemsIn={mainCates} itemOut={pickMainCate} />
+
         {picked.cate && (
           <>
             <hr />
             <h2 className="product-title-left">Chọn bài tập</h2>
-            <ItemPicker itemsIn={childCates} itemOut={pickChildCate} />
+            <ItemPicker
+              itemsIn={childCates}
+              itemOut={pickChildCate}
+              showSearchItem={true}
+              picked={picked}
+            />
           </>
         )}
+
         {picked.cate && picked.child && (
           <>
             <hr />

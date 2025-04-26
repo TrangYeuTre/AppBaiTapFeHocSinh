@@ -4,7 +4,7 @@ import ItemPicker from "../UI/ItemPicker";
 import ProdCates from "../../classes/ProductCategories";
 import CardHomework from "../UI/CardHomework";
 
-export default function ProductCategories() {
+export default function ProductCategories({ triggerShowHideBottomMenu }) {
   const router = useRouter();
   const [picked, setPicked] = useState({ cate: "", child: "" });
 
@@ -12,26 +12,35 @@ export default function ProductCategories() {
   const mainCates = categories.getMainCates(picked.cate);
   const childCates = categories.getDemoChildCates(picked.cate, picked.child);
 
-  const pickMainCate = useCallback((cate) => {
-    if (!cate || !cate._id) return;
-    setPicked({ cate: cate._id, child: "" });
-  }, []);
+  const pickMainCate = useCallback(
+    (cate) => {
+      if (!cate || !cate._id) return;
+      setPicked({ cate: cate._id, child: "" });
+      if (triggerShowHideBottomMenu) triggerShowHideBottomMenu("show");
+    },
+    [triggerShowHideBottomMenu]
+  );
 
-  const pickChildCate = useCallback((child) => {
-    if (!child || !child._id) return;
-    setPicked((prevState) => ({ ...prevState, child: child._id }));
-  }, []);
+  const pickChildCate = useCallback(
+    (child) => {
+      if (!child || !child._id) return;
+      setPicked((prevState) => ({ ...prevState, child: child._id }));
+      if (triggerShowHideBottomMenu) triggerShowHideBottomMenu("hide");
+    },
+    [triggerShowHideBottomMenu]
+  );
 
   const loadExerciseHandler = useCallback(
     (e) => {
       e.preventDefault();
       const { mainQuery, childQuery } =
-        categories.getMainChildKeyQueryExercises(picked);
-      router.replace(
-        `/demo/exercises?main=${JSON.stringify(
-          mainQuery
-        )}&child=${JSON.stringify(childQuery)}`
-      );
+        categories.getMainChildKeyQueryExercises(picked) || {};
+
+      // Ensure mainQuery and childQuery are valid
+      const main = mainQuery ? JSON.stringify(mainQuery) : "";
+      const child = childQuery ? JSON.stringify(childQuery) : "";
+
+      router.replace(`/demo/exercises?main=${main}&child=${child}`);
     },
     [picked, categories, router]
   );
@@ -56,7 +65,12 @@ export default function ProductCategories() {
           <>
             <hr />
             <h2 className="product-title-left">Chọn bài tập</h2>
-            <ItemPicker itemsIn={childCates} itemOut={pickChildCate} />
+            <ItemPicker
+              itemsIn={childCates}
+              itemOut={pickChildCate}
+              showSearchItem={true}
+              picked={picked}
+            />
           </>
         )}
         {picked.cate && picked.child && (

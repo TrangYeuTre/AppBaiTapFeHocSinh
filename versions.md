@@ -368,3 +368,12 @@ Mô tả nào:
   - Ok rồi nhưng bị ném lỗi vl gì đó. GIờ thử build rồi chạy xem sao, xem có lỗi gì không ✅
   - Load video bị lỗi khi repsonsive khá phức tạp -> cho một cái modal đẻ load video riêng biệt ✅
   - Sửa lại thằng điều khiển video cho nó fix cứng luôn đi, để tránh bị trôi
+
+# VERSION 2.1.3
+
+- Cải thiện hiệu năng
+- Gỡ bỏ tính năng giao bài cho học sinh lớp học cô Trang.
+- Gỡ tính năng xem số lượng bài tập trong about.
+- Thêm tính năng tìm kiếm bài tập theo tên.
+- Cập nhật bài tập Điền khuyết vần: at-ac, eo-êu, ia-ua-ưa, ip-it
+- Cập nhật bài tập Đọc hiểu câu, Đọc hiểu văn bản: thêm 20 bài, từ bài 41.DH3.Cây liễu dẻo dai đến 60.DH3.Mùa đông ở vùng cao

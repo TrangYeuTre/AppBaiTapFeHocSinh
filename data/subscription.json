@@ -109,6 +109,42 @@
             "field": "noiDungMucTieu",
             "value": "ep êp"
           }
+        },
+        {
+          "isSelected": false,
+          "_id": "at ac",
+          "name": "at ac",
+          "query": {
+            "field": "noiDungMucTieu",
+            "value": "at ac"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "eo êu",
+          "name": "eo êu",
+          "query": {
+            "field": "noiDungMucTieu",
+            "value": "eo êu"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "ia ua ưa",
+          "name": "ia ua ưa",
+          "query": {
+            "field": "noiDungMucTieu",
+            "value": "ia ua ưa"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "ip it",
+          "name": "ip it",
+          "query": {
+            "field": "noiDungMucTieu",
+            "value": "ip it"
+          }
         }
       ]
     },
@@ -540,6 +576,186 @@
             "field": "tenBaiTap",
             "value": "40.DH3. Chú bé chăn cừu"
           }
+        },
+        {
+          "isSelected": false,
+          "_id": "41.DH3. Cây liễu dẻo dai",
+          "name": "41.DH3. Cây liễu dẻo dai",
+          "query": {
+            "field": "tenBaiTap",
+            "value": "41.DH3. Cây liễu dẻo dai"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "42.DH3. Sư tử và chuột nhắt",
+          "name": "42.DH3. Sư tử và chuột nhắt",
+          "query": {
+            "field": "noiDungMucTieu",
+            "value": "42.DH3. Sư tử và chuột nhắt"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "43.DH3. Tiếng vọng của núi",
+          "name": "43.DH3. Tiếng vọng của núi",
+          "query": {
+            "field": "noiDungMucTieu",
+            "value": "43.DH3. Tiếng vọng của núi"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "44.DH3. Thần đồng Lương Thế Vinh",
+          "name": "44.DH3. Thần đồng Lương Thế Vinh",
+          "query": {
+            "field": "noiDungMucTieu",
+            "value": "44.DH3. Thần đồng Lương Thế Vinh"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "45.DH3. Phần thưởng",
+          "name": "45.DH3. Phần thưởng",
+          "query": {
+            "field": "noiDungMucTieu",
+            "value": "45.DH3. Phần thưởng"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "46.DH3. Những cây sen đá",
+          "name": "46.DH3. Những cây sen đá",
+          "query": {
+            "field": "noiDungMucTieu",
+            "value": "46.DH3. Những cây sen đá"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "47.DH3. Con lợn đất",
+          "name": "47.DH3. Con lợn đất",
+          "query": {
+            "field": "noiDungMucTieu",
+            "value": "47.DH3. Con lợn đất"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "48.DH3. Câu hỏi của sói",
+          "name": "48.DH3. Câu hỏi của sói",
+          "query": {
+            "field": "noiDungMucTieu",
+            "value": "48.DH3. Câu hỏi của sói"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "49.DH3. Bức tranh bàn tay",
+          "name": "49.DH3. Bức tranh bàn tay",
+          "query": {
+            "field": "noiDungMucTieu",
+            "value": "49.DH3. Bức tranh bàn tay"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "50.DH3. Cây xoài của ông em",
+          "name": "50.DH3. Cây xoài của ông em",
+          "query": {
+            "field": "noiDungMucTieu",
+            "value": "50.DH3. Cây xoài của ông em"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "51.DH3. Chơi chong chóng",
+          "name": "51.DH3. Chơi chong chóng",
+          "query": {
+            "field": "noiDungMucTieu",
+            "value": "51.DH3. Chơi chong chóng"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "52.DH3. Gà tỉ tê với gà",
+          "name": "52.DH3. Gà tỉ tê với gà",
+          "query": {
+            "field": "noiDungMucTieu",
+            "value": "52.DH3. Gà tỉ tê với gà"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "53.DH3. Hươu cao cổ",
+          "name": "53.DH3. Hươu cao cổ",
+          "query": {
+            "field": "noiDungMucTieu",
+            "value": "53.DH3. Hươu cao cổ"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "54.DH3. Một ngày ở vườn quốc gia",
+          "name": "54.DH3. Một ngày ở vườn quốc gia",
+          "query": {
+            "field": "noiDungMucTieu",
+            "value": "54.DH3. Một ngày ở vườn quốc gia"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "55.DH3. Cây xấu hổ",
+          "name": "55.DH3. Cây xấu hổ",
+          "query": {
+            "field": "noiDungMucTieu",
+            "value": "55.DH3. Cây xấu hổ"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "56.DH3. Cầu thủ dự bị",
+          "name": "56.DH3. Cầu thủ dự bị",
+          "query": {
+            "field": "noiDungMucTieu",
+            "value": "56.DH3. Cầu thủ dự bị"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "57.DH3. Bà tôi",
+          "name": "57.DH3. Bà tôi",
+          "query": {
+            "field": "noiDungMucTieu",
+            "value": "57.DH3. Bà tôi"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "58.DH3. Khu vườn tuổi thơ",
+          "name": "58.DH3. Khu vườn tuổi thơ",
+          "query": {
+            "field": "noiDungMucTieu",
+            "value": "58.DH3. Khu vườn tuổi thơ"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "59.DH3. Con suối bản tôi",
+          "name": "59.DH3. Con suối bản tôi",
+          "query": {
+            "field": "noiDungMucTieu",
+            "value": "59.DH3. Con suối bản tôi"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "60.DH3. Mùa đông ở vùng cao",
+          "name": "60.DH3. Mùa đông ở vùng cao",
+          "query": {
+            "field": "noiDungMucTieu",
+            "value": "60.DH3. Mùa đông ở vùng cao"
+          }
         }
       ]
     },
@@ -903,6 +1119,186 @@
           "query": {
             "field": "noiDungMucTieu",
             "value": "40.DH3. Chú bé chăn cừu"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "41.DH3. Cây liễu dẻo dai",
+          "name": "41.DH3. Cây liễu dẻo dai",
+          "query": {
+            "field": "noiDungMucTieu",
+            "value": "41.DH3. Cây liễu dẻo dai"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "42.DH3. Sư tử và chuột nhắt",
+          "name": "42.DH3. Sư tử và chuột nhắt",
+          "query": {
+            "field": "noiDungMucTieu",
+            "value": "42.DH3. Sư tử và chuột nhắt"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "43.DH3. Tiếng vọng của núi",
+          "name": "43.DH3. Tiếng vọng của núi",
+          "query": {
+            "field": "noiDungMucTieu",
+            "value": "43.DH3. Tiếng vọng của núi"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "44.DH3. Thần đồng Lương Thế Vinh",
+          "name": "44.DH3. Thần đồng Lương Thế Vinh",
+          "query": {
+            "field": "noiDungMucTieu",
+            "value": "44.DH3. Thần đồng Lương Thế Vinh"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "45.DH3. Phần thưởng",
+          "name": "45.DH3. Phần thưởng",
+          "query": {
+            "field": "noiDungMucTieu",
+            "value": "45.DH3. Phần thưởng"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "46.DH3. Những cây sen đá",
+          "name": "46.DH3. Những cây sen đá",
+          "query": {
+            "field": "noiDungMucTieu",
+            "value": "46.DH3. Những cây sen đá"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "47.DH3. Con lợn đất",
+          "name": "47.DH3. Con lợn đất",
+          "query": {
+            "field": "noiDungMucTieu",
+            "value": "47.DH3. Con lợn đất"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "48.DH3. Câu hỏi của sói",
+          "name": "48.DH3. Câu hỏi của sói",
+          "query": {
+            "field": "noiDungMucTieu",
+            "value": "48.DH3. Câu hỏi của sói"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "49.DH3. Bức tranh bàn tay",
+          "name": "49.DH3. Bức tranh bàn tay",
+          "query": {
+            "field": "noiDungMucTieu",
+            "value": "49.DH3. Bức tranh bàn tay"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "50.DH3. Cây xoài của ông em",
+          "name": "50.DH3. Cây xoài của ông em",
+          "query": {
+            "field": "noiDungMucTieu",
+            "value": "50.DH3. Cây xoài của ông em"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "51.DH3. Chơi chong chóng",
+          "name": "51.DH3. Chơi chong chóng",
+          "query": {
+            "field": "noiDungMucTieu",
+            "value": "51.DH3. Chơi chong chóng"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "52.DH3. Gà tỉ tê với gà",
+          "name": "52.DH3. Gà tỉ tê với gà",
+          "query": {
+            "field": "noiDungMucTieu",
+            "value": "52.DH3. Gà tỉ tê với gà"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "53.DH3. Hươu cao cổ",
+          "name": "53.DH3. Hươu cao cổ",
+          "query": {
+            "field": "noiDungMucTieu",
+            "value": "53.DH3. Hươu cao cổ"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "54.DH3. Một ngày ở vườn quốc gia",
+          "name": "54.DH3. Một ngày ở vườn quốc gia",
+          "query": {
+            "field": "noiDungMucTieu",
+            "value": "54.DH3. Một ngày ở vườn quốc gia"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "55.DH3. Cây xấu hổ",
+          "name": "55.DH3. Cây xấu hổ",
+          "query": {
+            "field": "noiDungMucTieu",
+            "value": "55.DH3. Cây xấu hổ"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "56.DH3. Cầu thủ dự bị",
+          "name": "56.DH3. Cầu thủ dự bị",
+          "query": {
+            "field": "noiDungMucTieu",
+            "value": "56.DH3. Cầu thủ dự bị"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "57.DH3. Bà tôi",
+          "name": "57.DH3. Bà tôi",
+          "query": {
+            "field": "noiDungMucTieu",
+            "value": "57.DH3. Bà tôi"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "58.DH3. Khu vườn tuổi thơ",
+          "name": "58.DH3. Khu vườn tuổi thơ",
+          "query": {
+            "field": "noiDungMucTieu",
+            "value": "58.DH3. Khu vườn tuổi thơ"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "59.DH3. Con suối bản tôi",
+          "name": "59.DH3. Con suối bản tôi",
+          "query": {
+            "field": "noiDungMucTieu",
+            "value": "59.DH3. Con suối bản tôi"
+          }
+        },
+        {
+          "isSelected": false,
+          "_id": "60.DH3. Mùa đông ở vùng cao",
+          "name": "60.DH3. Mùa đông ở vùng cao",
+          "query": {
+            "field": "noiDungMucTieu",
+            "value": "60.DH3. Mùa đông ở vùng cao"
           }
         }
       ]

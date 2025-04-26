@@ -27,22 +27,6 @@ export default function InitChooseApp() {
           <p className="text-center">Dùng thử app</p>
         </Link>
         <Link
-          href="/auth"
-          className="btn-shape btn-shape-main col-span-1 no-underline"
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          <div className="icon-wrapper">
-            <Image
-              alt="bottom menu icon"
-              src="/assets/icons/school.svg"
-              fill
-              className="object-cover"
-            />
-          </div>
-          <p className="text-center">Học sinh nhóm online cô Trang </p>
-        </Link>
-        <Link
           href="/subscription"
           className="btn-shape btn-shape-submit col-span-1 no-underline"
           rel="noopener noreferrer"
@@ -58,24 +42,24 @@ export default function InitChooseApp() {
           </div>
           <p className="text-center">Tài khoản mua tháng</p>
         </Link>
+        <Link
+          href="/payment"
+          className="btn-shape btn-shape-try col-span-1 no-underline"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          <div className="icon-wrapper">
+            <Image
+              alt="bottom menu icon"
+              src="/assets/icons/payment.svg"
+              fill
+              className="object-cover"
+            />
+          </div>
+          <p className="text-center">Thanh toán - gia hạn</p>
+        </Link>
       </div>
-      <hr className="border-2 border-dashed my-4 lg:my-8" />
-      <Link
-        href="/payment"
-        className="btn-shape btn-shape-try col-span-1 no-underline"
-        rel="noopener noreferrer"
-        target="_blank"
-      >
-        <div className="icon-wrapper">
-          <Image
-            alt="bottom menu icon"
-            src="/assets/icons/payment.svg"
-            fill
-            className="object-cover"
-          />
-        </div>
-        <p className="text-center">Thanh toán - gia hạn</p>
-      </Link>
+      {/* <hr className="border-2 border-dashed my-4 lg:my-8" /> */}
     </Card>
   );
 }
